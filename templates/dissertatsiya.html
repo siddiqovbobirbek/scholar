@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Dissertation
+{% endblock %}
+
+{% block links %}
+  <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+{% endblock %}
+{% block content %}
+<form method="post"> {% csrf_token %}
+    <div class="container mt-5" style="font-size:15px">
+        <div class="text-center h4">Dissertatsiya</div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mb-3 pb-1">
+                <div class="form-outline">
+                    <input type="name" name="name" id="name" class="form-control form-control-md" />
+                    <label class="form-label" for="username">Dissertation name</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="font-size:15px">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mb-3 pb-1">
+                <div class="form-outline">
+                    <input type="muallif" name="muallif" id="authors" class="form-control form-control-md" />
+                    <label class="form-label" for="username">Authors</label>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="font-size:15px">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mb-3 pb-1">
+                <div class="form-outline">
+                    <input type="yunalish" name="yunalish" id="direction" class="form-control form-control-md" />
+                    <label class="form-label" for="username">Direction</label>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8"></div>
+            <div class="col-xl-3">
+                <input class="btn btn-outline-primary w-100"  type="submit"
+                value="Saqlash" />
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}

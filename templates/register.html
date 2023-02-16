@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Register
+{% endblock %}
+
+
+{% block links %}
+<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+{% endblock %}
+
+{% block content %}
+
+
+<h3 class="text-center my-5">Registration Form</h3>
+<div class=" d-flex justify-content-center">
+  <div class="col-2"></div>
+  <div class="col-3 container">
+    <img style="border-radius: 50%; object-fit: cover;" class="form-outline text-center" width="80px" height="80px"
+      src="{% static 'assets/img/gmail1.png' %}" alt="gmail">
+    <p class="ps-3">Gmail</p>
+  </div>
+  <div class="col-4 container">
+    <img style="border-radius: 50%; object-fit: cover; " class="form-outline text-center" width="80px" height="80px"
+      src="{% static 'assets/img/facebook.png' %}" alt="facebook">
+    <p class="ps-1">Facebook</p>
+  </div>
+</div>
+<!-- <div class="text-center line form-divider">or</div> -->
+<form action="." method="POST">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="username" name="username" id="username" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="username">Username</label>
+        {{ form.username }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="text" name="email" id="emailAddress" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="emailAddress">Email</label>
+        {{ form.email }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="password" name="password1" id="password1" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="address">Address</label>
+        {{ form.address }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="password" name="password1" id="password1" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="job">Activity (Job) </label>
+        {{ form.job }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="password" name="password1" id="password1" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="age">Age</label>
+        {{ form.age }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="password" name="password1" id="password1" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="number">Phone Number</label>
+        {{ form.number }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+      <div class="form-outline">
+        <!-- <input type="password" name="password1" id="password1" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="password1">Password</label>
+        {{ form.password1 }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 mb-3 pb-1">
+
+      <div class="form-outline">
+        <!-- <input type="password" name="password1" id="password1" class="form-control form-control-lg" /> -->
+        <label class="form-label" for="password1">Confirm Password</label>
+        {{ form.password2 }}
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-3">
+      <input class="btn btn-outline-primary w-100" type="submit" value="Saqlash" />
+    </div>
+  </div>
+</form>
+
+
+{% endblock %}

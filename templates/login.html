@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Login to your account
+{% endblock %}
+
+{% block links %} 
+    <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <br><br>
+    <form>{% csrf_token %}
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <!-- Email input -->
+        <div class="container">
+            <div class="row">
+                <div class="  col-xl-4 col-md-6">
+                    <div class="form-outline col-md-12 mb-4 pb-1">
+                        <label class="form-label" for="form1Example1">Email address</label>
+                        <input type="email" id="form1Example1" class="form-control" />
+
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline  col-xl-12 mb-4 pb-1">
+                        <label class="form-label" for="form1Example2">Password</label>
+                        <input type="password" id="form1Example2" class="form-control" />
+
+                    </div>
+
+                    <!-- 2 column grid layout for inline styling -->
+                    <div class=" mb-4 gap-2 d-flex justify-content-start">
+                        <div class="col-xl-6">
+                            <!-- Checkbox -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                                <label class="form-check-label" for="form1Example3"> Remember me </label>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <!-- Simple link -->
+                            <a href="#!">Forgot password?</a>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="btn btn-primary btn-block form-outline col-md-12 mb-4 pb-1">Login</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
