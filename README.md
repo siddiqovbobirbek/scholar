@@ -4,10 +4,10 @@
     This is test version 
 
 ## Appni ishga tushirishdan oldin qilinishi kerak bo'lgan ishlar
-[] Reponi clone qilish
-[] Kerakli paketlarni o'rnatish 
-[] migrate qilish
-[] Ishga tushirish
+    [1] [] Reponi clone qilish
+    [2] [] Kerakli paketlarni o'rnatish 
+    [3] [] Migrate qilish
+    [4] [] Ishga tushirish
 
 ## Kerakli paketlarni o'rnatish 
 Pastdagi buyruq orqali kerakli paketlarni o'rnating.
