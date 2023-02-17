@@ -2,10 +2,11 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from .models import CustomUser
+from .admin_forms import CustomUserCreationForm
 
 
-class CustomUserCreationForm(UserCreationForm):
-    def __init__(self, *args, **kwargs):
+class RegisterForm(CustomUserCreationForm):
+     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["username"].widget.attrs.update({
             'required':'',
@@ -16,10 +17,28 @@ class CustomUserCreationForm(UserCreationForm):
             'class':'form-control form-control-md',
             'placeholder':'username',
         })
+        self.fields["first_name"].widget.attrs.update({
+            'required':'',
+            'name':'first_name',
+            'id':'first_name',
+            'type':'text',
+            'style':'font-size:15px',
+            'class':'form-control form-control-md',
+            'placeholder':'first name',
+        })
+        self.fields["last_name"].widget.attrs.update({
+            'required':'',
+            'name':'last_name',
+            'id':'last_name',
+            'type':'text',
+            'style':'font-size:15px',
+            'class':'form-control form-control-md',
+            'placeholder':'last name',
+        })
         self.fields["email"].widget.attrs.update({
             'required':'',
             'name':'email',
-            'id':'id="emailAddress',
+            'id':'email',
             'type':'text',
             'style':'font-size:15px',
             'class':'form-control form-control-md',
@@ -79,9 +98,9 @@ class CustomUserCreationForm(UserCreationForm):
             'placeholder':'phone number',
         })
 
-    class Meta(UserCreationForm):
-        model = CustomUser
-        fields = UserCreationForm.Meta.fields+('age', 'number', 'job', 'address', 'email', )
+   
+    
+
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -94,7 +113,7 @@ class CustomUserChangeForm(UserChangeForm):
 
 # class SignUpForm(UserCreationForm):
 #     class Meta:
-#         model = User
+#         model = CustomUser
 #         fields = ['username', 'email', 'first_name', 'last_name', 'password1', 'password2']
 
 #     def clean_username(self, *args, **kwargs):

@@ -1,6 +1,6 @@
 from django.urls import path
 from myApp.views import IndexView, DGUView, DissertationView, BookView, MaqolaView
-from .views import home, show_files, editor, book, dissertation, maqola, dgu
+from .views import home, show_files, editor, book, dissertation, maqola, dgu, about
 
 app_name = "myApp"
 
@@ -17,8 +17,5 @@ urlpatterns = [
     path("maqola/", maqola, name="maqola"),
     path("book/", book, name="book"),
     path("dissertation/", dissertation, name="dissertation"),
-    # path("uploaddgu/", upload_dgu, name="upload_dgu")
-    # path('register/', SignUpView.as_view(), name="register"),
-    # path("register/", register, name="register"),
-    
+    path("about/", about, name="about"),
 ]

@@ -272,3 +272,8 @@ def maqola(request):
         'maqola': maqola
     }
     return render(request, "maqola.html", context)
+
+
+def about(request):
+    context = {}
+    return render(request, "about.html", context)

@@ -15,9 +15,11 @@ defer==1.0.6
 distlib==0.3.4
 distro==1.7.0
 distro-info===1.1build1
+dj-database-url==1.2.0
 Django==4.1.7
 django-widget-tweaks==1.4.12
 duplicity==0.8.21
+environs==9.5.0
 fasteners==0.14.1
 filelock==3.6.0
 future==0.18.2
@@ -35,11 +37,13 @@ louis==3.20.0
 macaroonbakery==1.3.1
 Mako==1.1.3
 MarkupSafe==2.0.1
+marshmallow==3.19.0
 monotonic==1.6
 more-itertools==8.10.0
 netifaces==0.11.0
 oauthlib==3.2.0
 olefile==0.46
+packaging==23.0
 paramiko==2.9.3
 pexpect==4.8.0
 Pillow==9.0.1
@@ -57,6 +61,7 @@ pyRFC3339==1.1
 python-apt==2.4.0
 python-dateutil==2.8.1
 python-debian===0.1.43ubuntu1
+python-dotenv==0.21.1
 pytz==2022.1
 pyxdg==0.27
 PyYAML==5.4.1
