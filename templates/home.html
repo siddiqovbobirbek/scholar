@@ -21,17 +21,17 @@ Home Page
                 <div >
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Nima yuklamoqchisiz?
+                        What do you want to upload?
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'myApp:dgu' %}">DGU</a></li>
-                        <li><a class="dropdown-item" href="{% url 'myApp:maqola' %}">Maqola</a></li>
-                        <li><a class="dropdown-item" href="{% url 'myApp:book' %}">Kitob</a></li>
-                        <li><a class="dropdown-item" href="{% url 'myApp:dissertation' %}">Dissertatsiya</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:maqola' %}">Article</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:book' %}">Book</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:dissertation' %}">Dissertation</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'myApp:upload' %}">Boshqa</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:upload' %}">Other</a></li>
                     </ul>
                 </div>
             </div>
@@ -70,12 +70,55 @@ Home Page
 
                 <ul class="border w-100">
                     <h5 class="mt-xl-4">Full Issue</h5>
-                    {# {% for file in get_files %} #}
-                    <a>{{ get_files.user.username }}</a> <br>
-                    <li class="btn btn-outline-secondary my-xl-4"><i class='bx bxs-file-pdf'></i>
-                        <a href="{{ get_files.file_upload.url }}" download>{{ get_files.file_upload.name|cut:"documents/uploaded-" }}</a>
-                    </li>
-                    {# {% endfor %} #}
+                    {% if get_files %}
+                        {% for item in get_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if dgu_files %}
+                        {% for item in dgu_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if book_files %}
+                        {% for item in book_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if maqola_files %}
+                        {% for item in maqola_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if disser_files %}
+                        {% for item in disser_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100" ><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>

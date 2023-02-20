@@ -17,11 +17,19 @@ from .models import (
 )
 
 def home(request):
-    get_files = FileHandler.objects.prefetch_related('user').first()
-    # first_file_user = get_files.first()
-    # print("First", first_file_user.user)
+    get_files = FileHandler.objects.prefetch_related('user').all()
+    dgu_files = Dgubaza.objects.prefetch_related('user').all()
+    book_files = Bookbaza.objects.prefetch_related('user').all()
+    maqola_files = Maqolabaza.objects.prefetch_related('user').all()
+    disser_files = Dissertationbaza.objects.prefetch_related('user').all()
     print("Files", get_files)
-    context = {'get_files':get_files}
+    context = {
+        'get_files':get_files,
+        'dgu_files':dgu_files,
+        'book_files':book_files,
+        'maqola_files':maqola_files,
+        'disser_files':disser_files
+        }
     return render(request, "home.html", context)
 
 class IndexView(TemplateView): 
@@ -277,3 +285,22 @@ def maqola(request):
 def about(request):
     context = {}
     return render(request, "about.html", context)
+
+
+def search(request):
+    query = request.GET.get('query')
+    context = {}
+    if query:
+        certificate = Certificate.objects.filter(name__icontains = query)
+        article = Article.objects.filter(name__icontains = query)
+        book = Book.objects.filter(name__icontains = query)
+        dissertation = Dissertation.objects.filter(name__icontains = query)
+
+        context = {
+            "certificate": certificate if certificate.exists() else None,
+            "article": article if article.exists() else None,
+            "book": book if book.exists() else None,
+            "dissertation": dissertation if dissertation.exists() else None
+        }
+        
+    return render(request, "search.html", context)

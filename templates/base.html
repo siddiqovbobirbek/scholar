@@ -45,9 +45,9 @@
                 <li class="nav-item"><a href="{% url 'myApp:editor' %}" class="nav-link hover link-dark px-2">Editorial Team</a></li>
                 <li class="nav-item"><a href="{% url 'myApp:about' %}" class="nav-link hover link-dark px-2">About</a></li>
             </ul>
-            <form class=" mb-3 mb-lg-0 d-flex input-group-sm" role="search">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                <input type="button" value="Search" class="btn btn-outline-dark">
+            <form method="get" action="search/" class=" mb-3 mb-lg-0 d-flex input-group-sm" role="search">                
+                <input name="query" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                <input type="submit" value="Search" class="btn btn-outline-dark">
             </form>
         </div>
     </nav>
@@ -62,12 +62,13 @@
 
                 {% endblock %}
             </div>
-            <div class="col-xl-3 p-3">
+            <div class="col-xl-3 p-3 gap-3">
                 <img style="border-radius: 50%;" class="px-5 ms-4 p-3 w-xl-100" width="280px"
                     src="{% static 'assets/img/Library.png' %}" alt="">
-                <img class="px-5 ms-4 w-100" src="{% static 'assets/img/google-scholar.jpg' %}" alt="">
-                <img style="border-radius: 50%;" class="px-5 ms-4 p-3 w-xl-100" width="280px"
-                    src="{% static 'assets/img/toshmi.png' %}" alt="">
+                <img class="px-5 ms-4 mt-4 " src="{% static 'assets/img/google-scholar.jpg' %}" style="width: 280px;"   alt="">
+                <img class="px-5 ms-4 w-sm-75 w-lg-100"
+                    src="{% static 'assets/img/toshmi.png' %}" style="width: 280px;"  alt="">
+                <img class="px-5 ms-4 mt-4" src="{% static 'assets/img/tuit.png' %}" style="width: 280px;" alt="">
             </div>
         </div>
     </div>
@@ -75,14 +76,14 @@
     <!-- START FOOTER -->
     <div class=" footer continaer-flud p-5 bottom-0 w-100">
         <div class="row ">
-            <div class="col-xl-6">
+            <div class="col-xl-5">
                 <p class="h6">
                     This work is licensed under a Creative Commons E'tirof 4.0 Xalqaro License.
                 </p>
             </div>
-            <div class="col-xl-4"></div>
-            <div class="col-xl-2">
-                <img style="border-radius: 50%;" class="w-100" src="{% static 'assets/img/Library.png' %}" alt="">
+            <div class="col-xl-4 col-ms-2"></div>
+            <div class="col-xl-3">
+                <img class="px-5 " src="{% static 'assets/img/Library.png' %}" style="border-radius: 50%; width: 280px; " alt="">
             </div>
         </div>
     </div>
