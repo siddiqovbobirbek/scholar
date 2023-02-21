@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block links %}
+<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl-9  p-3">
+            <div class="d-flex justify-content-between">
+
+                <h5 class="">About the Journal</h5>
+                <div >
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        What do you want to upload?
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'myApp:dgu' %}">DGU</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:maqola' %}">Article</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:book' %}">Book</a></li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:dissertation' %}">Dissertation</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'myApp:upload' %}">Other</a></li>
+                    </ul>
+                </div>
+            </div>
+           
+            <p class="mt-5" style="font-size: 15px;">
+                The main task of the journal is to cover the achievements, problems and prospects, history and
+                stages of <br> development of education and information technology. The journal contains the results
+                of
+                research in the following areas: <br>
+                05.00.00 - Technical sciences, <br>
+                13.00.00 - Pedagogical sciences (methods of teaching computer science).
+            </p>
+            <h5 class="mt-5">Current Issue</h5>
+            <h6 class="mt-4">Vol. 1 No. 6 (2022): CAJECS</h6>
+            <div class="row">
+                <div class="col-xl-3">
+                    <img class="w-100" src="{% static 'assets/img/cajecs.png' %}" alt="404">
+                </div>
+                <div class="col-xl-9">
+                    <p>
+                        The main purpose of the journal is to inform the scientific community about the problems of
+                        improving research and innovation in this field, to cover the scientific work of experts and
+                        scientists in the field through the Internet, to discuss current scientific issues with
+                        scientists around the world. <br>
+                        The main task of the journal is to cover the achievements, problems and prospects, history
+                        and stages of development of education and information technology. The journal contains the
+                        results of research in the following areas:
+                    </p>
+                    <p class="mt-xl-4">05.00.00 - Technical sciences,</p>
+                    <p class="mt-xl-4">13.00.00 - Pedagogical sciences (methods of teaching computer science).</p>
+                    <p class="mt-xl-4">Full coverage of these topics will be provided in scholarly articles,
+                        commentaries, and short commentaries. The journal provides a convenient platform for
+                        researchers, students, practitioners, and teachers to learn and contribute to the field.</p>
+                </div>
+                <p><span class="h6">Published:</span> 2022-12-28</p>
+
+                <ul class="border w-100">
+                    <h5 class="mt-xl-4">Full Issue</h5>
+                    {% if get_files %}
+                        {% for item in get_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if dgu_files %}
+                        {% for item in dgu_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if book_files %}
+                        {% for item in book_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if maqola_files %}
+                        {% for item in maqola_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if disser_files %}
+                        {% for item in disser_files %}
+                            <a>{{ item.user.username }}</a> <br>
+                                
+                            <li class="btn btn-outline-secondary my-xl-4 w-100" ><i class='bx bxs-file-pdf'></i>
+                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+{% endblock %}

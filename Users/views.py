@@ -35,7 +35,7 @@ def register(request):
             
             print("Authenticated user")
             login(request)
-            return redirect("register")
+            return redirect("index")
         else:
             messages.error(request, form.errors)
             print(form.errors)
