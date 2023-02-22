@@ -9,10 +9,13 @@ from django.contrib import messages
 def register(request):
     form = RegisterForm()
     context = {'form': form}
+    print("Req data", request.data)
+    print("Req user", request.user)
     if request.method == "POST":
         print("Request post, on register")
         form = RegisterForm(request.POST)
         print("\n\n", "form.errors:", form.errors, "\n\n")
+        print("Form data", form.cleaned_data)
         if form.is_valid():
             print("Xato yo'q. Forma to'g'ri ")
             form.save()
