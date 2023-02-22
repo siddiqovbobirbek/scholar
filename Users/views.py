@@ -31,12 +31,8 @@ def register(request):
             password1 = form.cleaned_data.get("password1")
             password2 = form.cleaned_data.get("password2")
             print("forma saqlandi. Register forma")
-            new_user = authenticate(username=username, first_name=first_name, 
-                last_name=last_name, email=email, 
-                age=age, address=address, job=job, 
-                number=number, password1=password1, 
-                password2=password2)
-            if new_user.is_authenticated:
+            new_user = authenticate(username=username, password=password2)
+            if new_user is not None:
                 print("Authenticated user")
                 login(request, new_user)
                 messages.error(request, form.errors)
