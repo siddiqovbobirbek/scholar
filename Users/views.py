@@ -9,7 +9,7 @@ from django.contrib import messages
 def register(request):
     form = RegisterForm()
     context = {'form': form}
-    print("Req data", request.data)
+    print("Req data", request)
     print("Req user", request.user)
     if request.method == "POST":
         print("Request post, on register")
