@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm, RegisterForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 def register(request):
@@ -62,3 +63,15 @@ def login(request):
     else:
         messages.error(request, "Invalid email or password")
     return render(request, "login.html")
+
+
+def dashboard(request):
+    return render(request, "dashboard.html")
+
+
+def profile(request):
+    return render(request, "profile.html")
+
+def logout_user(request):
+    logout(request)
+    return redirect('logout')

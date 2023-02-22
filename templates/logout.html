@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Article
+{% endblock %}
+
+{% block links %}
+  <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+{% endblock %}
+{% block content %} 
+    <h2 class="text-center mt-4"> Siz tizimdan chiqdingiz!!!</h2>
+    <p class="text-center mt-4"> Tizimga qayta kiring <a href="{% url 'login' %}">Kirish</a></p>
+{% endblock %}
