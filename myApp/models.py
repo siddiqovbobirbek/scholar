@@ -16,7 +16,7 @@ def file_path(instance, filename):
 class FileHandler(models.Model):
 
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
@@ -30,7 +30,7 @@ class FileHandler(models.Model):
 class Bookbaza(models.Model):
 
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
@@ -44,7 +44,7 @@ class Bookbaza(models.Model):
 class Dgubaza(models.Model):
 
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
@@ -58,7 +58,7 @@ class Dgubaza(models.Model):
 class Dissertationbaza(models.Model):
 
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
@@ -73,7 +73,7 @@ class Dissertationbaza(models.Model):
 class Maqolabaza(models.Model):
 
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(default=timezone.now)
     
     def __str__(self):

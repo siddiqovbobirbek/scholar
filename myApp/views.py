@@ -23,12 +23,14 @@ def home(request):
     maqola_files = Maqolabaza.objects.prefetch_related('user').all()
     disser_files = Dissertationbaza.objects.prefetch_related('user').all()
     print("Files", get_files)
+    print("User", request.user)
     context = {
         'get_files':get_files,
         'dgu_files':dgu_files,
         'book_files':book_files,
         'maqola_files':maqola_files,
-        'disser_files':disser_files
+        'disser_files':disser_files,
+        'user': request.user if request.user.is_authenticated else None
         }
     return render(request, "home.html", context)
 

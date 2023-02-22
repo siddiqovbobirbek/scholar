@@ -38,7 +38,7 @@ def register(request):
                 password2=password2)
             
             print("Authenticated user")
-            login(request)
+            login(request, new_user)
             return redirect("index")
         else:
             messages.error(request, form.errors)
@@ -51,14 +51,14 @@ def register(request):
 
 
 
-def login(request):
+def login_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
         print(username, password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request)
+            login(request, user)
             return redirect("/")
     else:
         messages.error(request, "Invalid email or password")
@@ -74,4 +74,4 @@ def profile(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('logout')
+    return redirect('myApp:home')
