@@ -48,7 +48,7 @@ class IndexView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = FileHandlerForm(request.POST, request.FILES)
+            form = FileHandlerForm(request.POST, request.FILES, user=request.user)
             
             if form.is_valid():
                 FileHandler.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
@@ -75,7 +75,7 @@ class DGUView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = DgubazaForm(request.POST, request.FILES)
+            form = DgubazaForm(request.POST, request.FILES, user=request.user)
             
             if form.is_valid():
                 Dgubaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
@@ -102,7 +102,7 @@ class DissertationView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = DissertationbazaForm(request.POST, request.FILES)
+            form = DissertationbazaForm(request.POST, request.FILES, user=request.user)
             
             if form.is_valid():
                 Dissertationbaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
@@ -131,7 +131,7 @@ class BookView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = BookbazaForm(request.POST, request.FILES)
+            form = BookbazaForm(request.POST, request.FILES, user=request.user)
             
             if form.is_valid():
                 Bookbaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
@@ -160,7 +160,7 @@ class MaqolaView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = MaqolabazaForm(request.POST, request.FILES)
+            form = MaqolabazaForm(request.POST, request.FILES, user=request.user)
             
             if form.is_valid():
                 Maqolabaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
