@@ -36,9 +36,12 @@ def register(request):
                 age=age, address=address, job=job, 
                 number=number, password1=password1, 
                 password2=password2)
-            
-            print("Authenticated user")
-            login(request, new_user)
+            if new_user.is_authenticated:
+                print("Authenticated user")
+                login(request, new_user)
+                messages.error(request, form.errors)
+            else:
+                return render(request, "register.html", context)
             return redirect("index")
         else:
             messages.error(request, form.errors)
