@@ -187,7 +187,6 @@ def editor(request):
     return render(request, "editor.html", context)
 
 
-@login_required
 def book(request):
     user = request.user
     book = None
@@ -209,7 +208,7 @@ def book(request):
     }
     return render(request, "book.html", context)
 
-@login_required
+
 def dgu(request):
 
     user = request.user
@@ -233,7 +232,6 @@ def dgu(request):
     return render(request, "dgu.html", context)
 
 
-@login_required
 def dissertation(request):
     user = request.user
     dissertation = None
@@ -255,7 +253,6 @@ def dissertation(request):
     return render(request, "dissertatsiya.html", context)
 
 
-@login_required
 def maqola(request):
     user = request.user
     maqola = None
