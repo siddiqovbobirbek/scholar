@@ -10,48 +10,52 @@
         {% endblock %}
     </title>
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-    
+
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     {% block links %}
-    
+
     {% endblock %}
 </head>
 
 <body>
     <!-- START HEADER -->
     <div class="fixed-top">
-    <header class=" pb-3  pt-4 bg-primary">
-        <div class="container d-flex flex-wrap justify-content-between">
-            <a href="#" class="d-flex  mb-3 mb-lg-0  text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-                <h3 class="fs-4">Library Of Young Scientists (LYS)</h3>
-            </a>
-            <ul class="nav gap-3 ">
-                <li class="nav-item"><a href="{% url 'login' %}" class="hover nav-link link-dark">Login</a></li>
-                <li class="nav-item"><a href="{% url 'register' %}" class=" hover nav-link link-dark">Sign up</a></li>
-            </ul>
-          
-        </div>
-    </header>
-    <nav class="py-2 mb-5 bg-primary border-bottom">
-        <div class="container d-flex flex-wrap">
-            <ul class="nav me-auto">
-                <li class="nav-item"><a href="{% url 'myApp:home' %}" class="nav-link hover link-dark px-2 active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">FAQs</a></li>
-                <li class="nav-item"><a href="{% url 'myApp:editor' %}" class="nav-link hover link-dark px-2">Editorial Team</a></li>
-                <li class="nav-item"><a href="{% url 'myApp:about' %}" class="nav-link hover link-dark px-2">About</a></li>
-            </ul>
-            <form method="get" action="search/" class=" mb-3 mb-lg-0 d-flex input-group-sm" role="search">                
-                <input name="query" type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                <input type="submit" value="Search" class="btn btn-outline-dark">
-            </form>
-        </div>
-    </nav>
-</div>
+        <header class=" pb-3  pt-4 bg-primary">
+            <div class="container d-flex flex-wrap justify-content-between">
+                <a href="#" class="d-flex  mb-3 mb-lg-0  text-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <h3 class="fs-4">Library Of Young Scientists (LYS)</h3>
+                </a>
+                <form method="get" action="search/" class=" mb-3 mb-lg-0 d-flex input-group-sm" role="search">
+                    <input name="query" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    <input type="submit" value="Search" class="btn btn-outline-dark">
+                </form>
+                <ul class="nav gap-3 ">
+                    <li class="nav-item"><a href="{% url 'login' %}" class="hover nav-link link-dark">Login</a></li>
+                    <li class="nav-item"><a href="{% url 'register' %}" class=" hover nav-link link-dark">Sign up</a>
+                    </li>
+                </ul>
+
+            </div>
+        </header>
+        <nav class="py-2 mb-5 bg-primary border-bottom">
+            <div class="container d-flex flex-wrap">
+                <ul class="nav me-auto">
+                    <li class="nav-item"><a href="{% url 'myApp:home' %}" class="nav-link hover link-dark px-2 active"
+                            aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">FAQs</a></li>
+                    <li class="nav-item"><a href="{% url 'myApp:editor' %}"
+                            class="nav-link hover link-dark px-2">Editorial Team</a></li>
+                    <li class="nav-item"><a href="{% url 'myApp:about' %}"
+                            class="nav-link hover link-dark px-2">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <!-- END HEADER -->
     <!-- START MAIN  -->
     <div class="container mb-4" style="margin-top: 180px;">
@@ -65,9 +69,10 @@
             <div class="col-xl-3 p-3 gap-3">
                 <img style="border-radius: 50%;" class="px-5 ms-4 p-3 w-xl-100" width="280px"
                     src="{% static 'assets/img/Library.png' %}" alt="">
-                <img class="px-5 ms-4 mt-4 " src="{% static 'assets/img/google-scholar.jpg' %}" style="width: 280px;"   alt="">
-                <img class="px-5 ms-4 w-sm-75 w-lg-100"
-                    src="{% static 'assets/img/toshmi.png' %}" style="width: 280px;"  alt="">
+                <img class="px-5 ms-4 mt-4 " src="{% static 'assets/img/google-scholar.jpg' %}" style="width: 280px;"
+                    alt="">
+                <img class="px-5 ms-4 w-sm-75 w-lg-100" src="{% static 'assets/img/toshmi.png' %}" style="width: 280px;"
+                    alt="">
                 <img class="px-5 ms-4 mt-4" src="{% static 'assets/img/tuit.png' %}" style="width: 280px;" alt="">
             </div>
         </div>
@@ -76,14 +81,32 @@
     <!-- START FOOTER -->
     <div class=" footer continaer-flud p-5 bottom-0 w-100">
         <div class="row ">
-            <div class="col-xl-5">
+            <div class="col-md-9">
+                <p>
+                    <strong>CONTACT</strong>
+                </p>
+                <p class="h6">
+                    <img src="{% static 'assets/img/location.png' %}" alt width="25">
+                     Respublic of Uzbekistan, Tashkent, st. Amir Temur, 10
+                </p>
+                <hr>
+                <p class="h6">
+                    <img src="{% static 'assets/img/phone.png' %}" alt width="25">
+                     (+998) 939036903
+                </p>
+                <hr>
+                <p class="h6">
+                    <img src="{% static 'assets/img/mail.png' %}" alt width="25">
+                      info@libys.uz
+                </p>
+                <hr>
                 <p class="h6">
                     This work is licensed under a Creative Commons E'tirof 4.0 Xalqaro License.
                 </p>
             </div>
-            <div class="col-xl-4 col-ms-2"></div>
-            <div class="col-xl-3">
-                <img class="px-5 " src="{% static 'assets/img/Library.png' %}" style="border-radius: 50%; width: 280px; " alt="">
+            <div class="col-md-3" role="complementary">
+                <img class="" src="{% static 'assets/img/Library.png' %}"
+                    style="border-radius: 50%; width: 230px; " alt="">
             </div>
         </div>
     </div>
