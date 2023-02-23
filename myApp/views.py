@@ -2,10 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from myApp.models import FileHandler, Dgubaza, Dissertationbaza, Maqolabaza, Bookbaza
 from .forms import FileHandlerForm, DgubazaForm, DissertationbazaForm, MaqolabazaForm, BookbazaForm
-from Users.models import CustomUser
-# from django.views import generic
-# from django.urls import reverse_lazy
-# from django.contrib.auth import authenticate, login
+
 
 from django.contrib.auth.decorators import login_required
 
@@ -34,27 +31,6 @@ def home(request):
         }
     return render(request, "home.html", context)
 
-class IndexView(TemplateView): 
-    template_name = "upload.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)  
-        get_files = FileHandler.objects.prefetch_related('user').all()
-        print("Files", get_files)
-        context = {'form':FileHandlerForm, 'get_files':get_files}
-        return context
-
-    def post(self, request, **kwargs): 
-        context = {}
-        if request.method == 'POST':
-            form = FileHandlerForm(request.POST, request.FILES, user=request.user)      
-            if form.is_valid():
-                FileHandler.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
-                return redirect('myApp:upload')
-            else:
-                context['form'] = form
-        else:
-            context['form'] = form
-        return redirect('myApp:home')
 
 class DGUView(TemplateView): 
     template_name = "upload_dgu.html"
@@ -68,10 +44,9 @@ class DGUView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = DgubazaForm(request.POST, request.FILES, user=request.user)    
+            form = DgubazaForm(request.POST, request.FILES, user = request.user)    
             if form.is_valid():
-                Dgubaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
-
+                form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form
@@ -92,9 +67,9 @@ class DissertationView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = DissertationbazaForm(request.POST, request.FILES, user=request.user)
+            form = DissertationbazaForm(request.POST, request.FILES, user = request.user)
             if form.is_valid():
-                Dissertationbaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
+                form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form
@@ -117,9 +92,9 @@ class BookView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = BookbazaForm(request.POST, request.FILES, user=request.user) 
+            form = BookbazaForm(request.POST, request.FILES, user = request.user) 
             if form.is_valid():
-                Bookbaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
+                form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form
@@ -142,9 +117,9 @@ class MaqolaView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = MaqolabazaForm(request.POST, request.FILES, user=request.user)
+            form = MaqolabazaForm(request.POST, request.FILES, user = request.user)
             if form.is_valid():
-                Maqolabaza.objects.get_or_create(file_upload=form.cleaned_data.get('file_upload'))
+                form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form

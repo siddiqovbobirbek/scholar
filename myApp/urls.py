@@ -1,12 +1,11 @@
 from django.urls import path
-from myApp.views import IndexView, DGUView, DissertationView, BookView, MaqolaView
+from myApp.views import DGUView, DissertationView, BookView, MaqolaView
 from .views import home, show_files, editor, book, dissertation, maqola, dgu, about, search, index
 
 app_name = "myApp"
 
 urlpatterns = [
     path("", home, name="home"),
-    path("upload/", IndexView.as_view(), name="upload"),
     path("uploaddgu/", DGUView.as_view(), name="upload_dgu"),
     path("uploaddiss/", DissertationView.as_view(), name="upload_disser"),
     path("uploadbook/", BookView.as_view(), name="upload_book"),
