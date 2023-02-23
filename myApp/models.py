@@ -12,23 +12,8 @@ def file_path(instance, filename):
     format = "uploaded-" + filename
     return os.path.join(path, format)
 
-# Create your models here.
-class FileHandler(models.Model):
-
-    file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    upload_date = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return str(self.file_upload.name)
-
-    def get_file_name(self):
-        print("File name is ", self.file_upload.name)
-        return str(self.file_upload.name).replace('documents/uploaded-', '')
-
 
 class Bookbaza(models.Model):
-
     file_upload = models.FileField(upload_to=file_path)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True)
@@ -42,7 +27,6 @@ class Bookbaza(models.Model):
 
 
 class Dgubaza(models.Model):
-
     file_upload = models.FileField(upload_to=file_path)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True)
@@ -56,7 +40,6 @@ class Dgubaza(models.Model):
 
     
 class Dissertationbaza(models.Model):
-
     file_upload = models.FileField(upload_to=file_path)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True)
@@ -71,7 +54,6 @@ class Dissertationbaza(models.Model):
 
 
 class Maqolabaza(models.Model):
-
     file_upload = models.FileField(upload_to=file_path)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     upload_date = models.DateTimeField(auto_now_add=True)
@@ -125,3 +107,11 @@ class Dissertation(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=350)
+    answer = models.TextField()
+
+    def __str__(self):
+        return self.question

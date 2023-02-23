@@ -1,17 +1,10 @@
 from django import forms
-from myApp.models import FileHandler, Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza
+from myApp.models import Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza
 
-class FileHandlerForm(forms.ModelForm):
-
-    file = forms.FileField
-
-    class Meta():
-        model = FileHandler
-        fields = ('file_upload',)
 
 class BookbazaForm(forms.ModelForm):
     file = forms.FileField
-
+    
     class Meta():
         model = Bookbaza
         fields = ('file_upload',)

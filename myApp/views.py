@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-from myApp.models import FileHandler, Dgubaza, Dissertationbaza, Maqolabaza, Bookbaza
-from .forms import FileHandlerForm, DgubazaForm, DissertationbazaForm, MaqolabazaForm, BookbazaForm
+from myApp.models import  Dgubaza, Dissertationbaza, Maqolabaza, Bookbaza, FAQ
+from .forms import  DgubazaForm, DissertationbazaForm, MaqolabazaForm, BookbazaForm
 
 
 from django.contrib.auth.decorators import login_required
@@ -14,15 +14,12 @@ from .models import (
 )
 
 def home(request):
-    get_files = FileHandler.objects.prefetch_related('user').all()
     dgu_files = Dgubaza.objects.prefetch_related('user').all()
     book_files = Bookbaza.objects.prefetch_related('user').all()
     maqola_files = Maqolabaza.objects.prefetch_related('user').all()
     disser_files = Dissertationbaza.objects.prefetch_related('user').all()
-    print("Files", get_files)
     print("User", request.user)
     context = {
-        'get_files':get_files,
         'dgu_files':dgu_files,
         'book_files':book_files,
         'maqola_files':maqola_files,
@@ -130,13 +127,13 @@ class MaqolaView(TemplateView):
 
 
         
-def show_files(request):
-        get_files = FileHandler.objects.prefetch_related('user').last()
-        first_file_user = get_files.first()
-        print("First", first_file_user.user)
-        print("Files", get_files)
-        context = {'get_files':get_files}
-        return render(request, "files.html", context)
+# def show_files(request):
+#         get_files = FileHandler.objects.prefetch_related('user').last()
+#         first_file_user = get_files.first()
+#         print("First", first_file_user.user)
+#         print("Files", get_files)
+#         context = {'get_files':get_files}
+#         return render(request, "files.html", context)
 
 
 def editor(request):
@@ -263,3 +260,9 @@ def search(request):
         }
         
     return render(request, "search.html", context)
+
+
+
+def faq_view(request):
+    faqs = FAQ.objects.all()
+    return render(request, "faq.html", {'faqs': faqs})

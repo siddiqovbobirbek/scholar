@@ -30,17 +30,16 @@
                 </a>
                 
                     {% if user %}
-                    <div class="dropdown">
-
-                    
-                    <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ user.username }}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                    </ul></div>
+                    <div class="dropdown">                    
+                        <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
                     {% else %} 
                         <ul class="nav gap-3">
                             <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'register' %}">Register</a></li>
@@ -58,7 +57,7 @@
                             aria-current="page">Home</a></li>
                     <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">Features</a></li>
                     <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">Pricing</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link hover link-dark px-2">FAQs</a></li>
+                    <li class="nav-item"><a href="{% url 'myApp:faq' %}" class="nav-link hover link-dark px-2">FAQs</a></li>
                     <li class="nav-item"><a href="{% url 'myApp:editor' %}"
                             class="nav-link hover link-dark px-2">Editorial Team</a></li>
                     <li class="nav-item"><a href="{% url 'myApp:about' %}"

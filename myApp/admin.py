@@ -1,10 +1,5 @@
 from django.contrib import admin
-from myApp.models import FileHandler, Certificate, Article, Book, Dissertation, Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza
-
-
-@admin.register(FileHandler)
-class FileHandlerAdmin(admin.ModelAdmin):
-    """FileHandler"""
+from myApp.models import Certificate, Article, Book, Dissertation, Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza
 
 @admin.register(Bookbaza)
 class BookbazaAdmin(admin.ModelAdmin):
