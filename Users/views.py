@@ -5,6 +5,7 @@ from .forms import CustomUserCreationForm, RegisterForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth import logout
+from .admin_forms import ProfileForm
 
 
 def register(request):
@@ -69,7 +70,9 @@ def dashboard(request):
 
 
 def profile(request):
-    return render(request, "profile.html")
+    user_profile = request.user.profile
+
+    return render(request, "profile.html", {'user_profile': user_profile})
 
 def logout_user(request):
     logout(request)
