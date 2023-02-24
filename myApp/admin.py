@@ -1,5 +1,5 @@
 from django.contrib import admin
-from myApp.models import Certificate, Article, Book, Dissertation, Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza
+from myApp.models import Certificate, Article, Book, Dissertation, Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza, FAQ
 
 @admin.register(Bookbaza)
 class BookbazaAdmin(admin.ModelAdmin):
@@ -45,3 +45,9 @@ class BookAdmin(admin.ModelAdmin):
 class DissertationAdmin(admin.ModelAdmin):
     list_display = ("name", "muallif", "yunalish")
     list_display_links = ("name", "muallif", "yunalish")
+
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ("ordernumber", "question", "answer", "status")
+    list_display_links = ("status", "answer")

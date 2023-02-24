@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'Users',
     'myApp',
     'widget_tweaks',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +81,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 
 # Database

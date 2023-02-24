@@ -5,6 +5,7 @@ import os
 from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 def file_path(instance, filename):
@@ -110,8 +111,16 @@ class Dissertation(models.Model):
 
 
 class FAQ(models.Model):
-    question = models.CharField(max_length=350)
-    answer = models.TextField()
+    STATUS = (
+        ('True' , 'True'),
+        ('False', 'False'),
+    )
+    ordernumber = models.IntegerField()
+    question = models.CharField(max_length=300)
+    answer = RichTextUploadingField()
+    status = models.CharField(max_length=10, choices=STATUS)
+    create_ad = models.DateTimeField(auto_now_add=True)
+    update_ad = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.question
