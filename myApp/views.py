@@ -262,7 +262,6 @@ def search(request):
     return render(request, "search.html", context)
 
 
-
 def faq_view(request):
     faq = FAQ.objects.filter(status="True").order_by("ordernumber")
     context = {
