@@ -108,6 +108,19 @@ class CustomUserChangeForm(UserChangeForm):
         fields = UserChangeForm.Meta.fields
 
 
+    
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'first_name',
+            'last_name',
+            'email',
+            'job',
+            'number',
+            'age',
+            'address'
+        ]
 
 
 # class SignUpForm(UserCreationForm):

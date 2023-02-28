@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm, RegisterForm
+from django.http import HttpResponseRedirect
+from .forms import  RegisterForm, ProfileForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -72,3 +72,14 @@ def dashboard(request):
 def logout_user(request):
     logout(request)
     return redirect('myApp:home')
+
+
+def profile_update(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance=request.user)
+    else:
+        profile_form = ProfileForm(instance=request.user) 
+    context = {
+        'profile_form': profile_form
+    }
+    return render(request, "profile_update.html", context)

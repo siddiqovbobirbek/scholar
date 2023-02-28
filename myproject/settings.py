@@ -47,7 +47,9 @@ INSTALLED_APPS = [
     'Users',
     'myApp',
     'widget_tweaks',
+    'ckeditor',
     'ckeditor_uploader',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -83,8 +85,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'foundation-5')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4' 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

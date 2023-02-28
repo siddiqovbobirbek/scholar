@@ -5,14 +5,32 @@ Profile
 {% endblock %}
 
 {% block links %}
-<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+
+  <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
 {% endblock %}
 {% block content %}
-  <h2>Edit Profile</h2>
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save changes</button> 
-  </form>
+  <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
+      <h1 class="h3 mb-0 text-gray-800">Profile</h1>
+    </div>
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="card o-hidden border-0 shadow-lg my-5 col-lg-5">
+        <div class="card-body">
+          <h2>{{ profile.first_name }} {{ profile.last_name }}</h2>
+          <p><strong>Username</strong>{{ profile.address }}</p>
+          <p><strong>First Name</strong>{{ profile.job }}</p>
+          <p><strong>Last Name</strong>{{ profile.age }}</p>
+          <a href="#" class="btn btn-sm btn-primary shadow-sm">Update profil</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
