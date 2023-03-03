@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Home Page
+library of young scientists
 {% endblock %}
 
 {% block links %}
@@ -32,7 +32,7 @@ Home Page
             <h6 class="mt-4">Vol. 1 No. 6 (2022): CAJECS</h6>
             <div class="row">
                 <div class="col-xl-3">
-                    <img class="w-100" src="{% static 'assets/img/cajecs.png' %}" alt="404">
+                    <img class="w-100" src="{% static 'assets/img/libys.jpg' %}" alt="404">
                 </div>
                 <div class="col-xl-9">
                     <p>
@@ -61,6 +61,7 @@ Home Page
                             <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
                                 <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
                             </li>
+                            
                         {% endfor %}
                     {% endif %}
 
@@ -68,9 +69,9 @@ Home Page
                         {% for item in dgu_files %}
                             <a>{{ item.user.username }}</a> <br>
                                 
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                            <iframe class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
                                 <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
+                            </iframe>
                         {% endfor %}
                     {% endif %}
 

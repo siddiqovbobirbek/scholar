@@ -5,7 +5,7 @@ import os
 from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor.fields import RichTextField
 
 
 def file_path(instance, filename):
@@ -117,7 +117,7 @@ class FAQ(models.Model):
     )
     ordernumber = models.IntegerField()
     question = models.CharField(max_length=300)
-    answer = RichTextUploadingField()
+    answer = RichTextField(blank=True, null=True) 
     status = models.CharField(max_length=10, choices=STATUS)
     create_ad = models.DateTimeField(auto_now_add=True)
     update_ad = models.DateTimeField(auto_now=True)

@@ -22,16 +22,16 @@ Login to your account
     <div class="container">
         <div class="row">
             <div class="accordion" id="accordionExample">
-                {% for rs in faq %}
+                {% for bob in faq %}
                   <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading{{rs.id}}">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{rs.id}}" aria-expanded="true" aria-controls="collapse{{rs.id}}">
-                        {{rs.question}}
+                    <h2 class="accordion-header" id="heading{{bob.id}}">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{bob.id}}" aria-expanded="true" aria-controls="collapse{{bob.id}}">
+                        {{bob.question}}
                       </button>
                     </h2>
-                    <div id="collapse{{rs.id}}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" aria-labelledby="heading{{rs.id}}" data-bs-parent="#accordionExample">
+                    <div id="collapse{{bob.id}}" class="accordion-collapse collapse " aria-labelledby="heading{{bob.id}}" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        {{ rs.answer }}
+                        {{ bob.answer }}
                       </div>
                     </div>
                   </div>

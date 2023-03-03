@@ -1,5 +1,33 @@
 from django import forms
-from myApp.models import Bookbaza, Dgubaza, Dissertationbaza, Maqolabaza
+from myApp.models import (
+    Bookbaza, Dgubaza, Dissertationbaza, 
+    Maqolabaza, Article, Book, Dissertation,
+    Certificate
+)
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = '__all__'
+
+    
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = '__all__'
+
+
+class CertificateForm(forms.ModelForm):
+    class Meta:
+        model = Certificate
+        fields = '__all__'
+
+
+class DissertationForm(forms.ModelForm):
+    class Meta:
+        model = Dissertation
+        fields = '__all__'
 
 
 class BookbazaForm(forms.ModelForm):

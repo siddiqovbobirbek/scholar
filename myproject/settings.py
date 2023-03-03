@@ -83,9 +83,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
-
-CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'foundation-5')
 

@@ -268,3 +268,8 @@ def faq_view(request):
         'faq': faq
     }
     return render(request, "faq.html", context)
+
+
+def detail(request):
+    context = {}
+    return render(request, "detail.html", context)

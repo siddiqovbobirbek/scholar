@@ -1,6 +1,6 @@
 from django.urls import path
 from myApp.views import DGUView, DissertationView, BookView, MaqolaView
-from .views import home, editor, book, dissertation, maqola, dgu, about, search, index, faq_view
+from .views import home, editor, book, dissertation, maqola, dgu, about, search, index, faq_view, detail
 
 app_name = "myApp"
 
@@ -18,5 +18,6 @@ urlpatterns = [
     path("about/", about, name="about"),
     path("search/", search, name="search"),
     path("index/", index, name="index"),
-    path("faq/", faq_view, name="faq")
+    path("faq/", faq_view, name="faq"),
+    path("detail/", detail, name="detail"),
 ]
