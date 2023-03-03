@@ -16,6 +16,7 @@
         <h1 class="h3">Profile</h1>
     </div>
     <form method="POST">
+        {% csrf_token %}
         <div class="container my-5">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -54,17 +55,14 @@
                             <label for="username"><strong>Name</strong></label>
                             <div class="col-xl-6">
                                 <div class=" mb-3">
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-default">
+                                    {{ profile_form.first_name }}
                                     <label class="form-label">Given Name</label> <span class="text-danger">*</span>
                                 </div>
-                    
 
                             </div>
                             <div class="col-xl-6">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-default">
+                                    {{ profile_form.last_name }}
                                     <label class="form-label">Family Name</label>
                                 </div>
                             </div>
@@ -90,7 +88,7 @@
                                 <div style="border-left: 2px solid darkcyan; background-color: darkgray;" class="p-4">
                                     * Denotes required field
                                 </div>
-                                <button class="btn btn-outline-primary my-3">save</button>
+                                <button class="btn btn-outline-primary my-3" type="submit">save</button>
                             </div>
                         </div>
                     </div>
@@ -101,14 +99,12 @@
                     <div class="container">
                         <div class="row mt-3">
                             <div class="col-xl-7">
-                                <input type="text" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-default">
-                                <label class="form-label">Email</label> <span class="text-danger">*</span>
+                                {{ profile_form.email }}
+                                <label class="form-label pb-3">Email</label> <span class="text-danger">*</span>
                                 <div class="row">
                                     <div class="col-xl-7">
-                                        <input type="text" class="form-control" aria-label="Sizing example input"
-                                            aria-describedby="inputGroup-sizing-default">
-                                        <label class="form-label">Phone</label>
+                                        {{ profile_form.number }}
+                                        <label class="form-label pb-3">Phone</label>
                                     </div>
                                 </div>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
@@ -159,7 +155,7 @@
                                         class="p-4">
                                         * Denotes required field
                                     </div>
-                                    <button class="btn btn-outline-primary my-3">save</button>
+                                    <button class="btn btn-outline-primary my-3" type="submit">save</button>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +200,7 @@
                                         class="p-4">
                                         * Denotes required field
                                     </div>
-                                    <button class="btn btn-outline-primary my-3">save</button>
+                                    <button class="btn btn-outline-primary my-3" type="submit">save</button>
                                 </div>
                             </div>
                         </div>
@@ -248,7 +244,7 @@
                                                 class="p-4">
                                                 * Denotes required field
                                             </div>
-                                            <button class="btn btn-outline-primary my-3">save</button>
+                                            <button class="btn btn-outline-primary my-3" type="submit">save</button>
                                         </div>
                                     </div>
                                 </div>

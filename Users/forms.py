@@ -5,7 +5,7 @@ from .admin_forms import CustomUserCreationForm
 
 
 class RegisterForm(CustomUserCreationForm):
-     def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["username"].widget.attrs.update({
             'required':'',
@@ -97,11 +97,6 @@ class RegisterForm(CustomUserCreationForm):
             'placeholder':'phone number',
         })
 
-   
-    
-
-
-
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = CustomUser
@@ -110,6 +105,46 @@ class CustomUserChangeForm(UserChangeForm):
 
     
 class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["first_name"].widget.attrs.update({
+            'required':'',
+            'name':'first_name',
+            'style':'font-size:13px',
+            'class':'form-control'
+        }),
+        self.fields["last_name"].widget.attrs.update({
+            'required':'',
+            'name':'last_name',
+            'style':'font-size:13px',
+            'class':'form-control'
+        }),
+        self.fields["email"].widget.attrs.update({
+            'required':'',
+            'name':'email',
+            'style':'font-size:13px',
+            'class':'form-control'
+        }),
+        self.fields["job"].widget.attrs.update({
+            'required':'',
+            'name':'job',
+            'style':'font-size:13px',
+            'class':'form-control'
+        }),
+        self.fields["number"].widget.attrs.update({
+            'required':'',
+            'name':'number',
+            'style':'font-size:13px',
+            'class':'form-control'
+        }),
+        self.fields["address"].widget.attrs.update({
+                'required':'',
+                'name':'address',
+                'style':'font-size:13px',
+                'class':'form-control'
+            }),
+
+
     class Meta:
         model = CustomUser
         fields = [
