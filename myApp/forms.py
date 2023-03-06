@@ -9,25 +9,47 @@ from myApp.models import (
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = [
+            'maq_name',
+            'maq_muallif',
+            'journal_name',
+            'maq_nashr_sanasi',
+            'bob',
+            'number',
+            'sahifalar',
+        ]
 
     
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = [
+            'book_name',
+            'book_muallif',
+            'book_nashr_sanasi',
+            'nashriyot_name',
+        ]
 
 
 class CertificateForm(forms.ModelForm):
     class Meta:
         model = Certificate
-        fields = '__all__'
+        fields = [
+            'cer_name',
+            'cer_muallif',
+            'date',
+            'dgunomer'
+        ]
 
 
 class DissertationForm(forms.ModelForm):
     class Meta:
         model = Dissertation
-        fields = '__all__'
+        fields = [
+            'dis_name',
+            'dis_muallif',
+            'yunalish'
+        ]
 
 
 class BookbazaForm(forms.ModelForm):

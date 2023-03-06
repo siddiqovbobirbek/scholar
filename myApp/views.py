@@ -1,7 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, Http404
 from django.views.generic import TemplateView
 from myApp.models import  Dgubaza, Dissertationbaza, Maqolabaza, Bookbaza, FAQ
-from .forms import  DgubazaForm, DissertationbazaForm, MaqolabazaForm, BookbazaForm
+from .forms import (
+    DgubazaForm, DissertationbazaForm, MaqolabazaForm, 
+    BookbazaForm, BookForm, ArticleForm, CertificateForm, 
+    DissertationForm
+)
 
 
 from django.contrib.auth.decorators import login_required
@@ -146,13 +150,13 @@ def book(request):
     book = None
     if request.method == 'POST':
         if user is not None and user.is_authenticated:
-            name = request.POST['name']
-            muallif = request.POST['muallif']
-            nashr_sanasi = request.POST['nashr_sanasi']
+            book_name = request.POST['book_name']
+            book_muallif = request.POST['book_muallif']
+            book_nashr_sanasi = request.POST['book_nashr_sanasi']
             nashriyot_name = request.POST['nashriyot_name']
             book = Book.objects.create(
-                name=name, muallif=muallif, 
-                nashriyot_name=nashriyot_name, nashr_sanasi=nashr_sanasi
+                book_name=book_name, book_muallif=book_muallif, 
+                nashriyot_name=nashriyot_name, book_nashr_sanasi=book_nashr_sanasi
             )
             print("Kitob: ", book)
         return redirect('myApp:upload_book')    
@@ -164,17 +168,16 @@ def book(request):
 
 
 def dgu(request):
-
     user = request.user
     certificate = None
     if request.method == 'POST':
         if user is not None and user.is_authenticated:
-            name = request.POST['name']
-            muallif = request.POST['muallif']
+            cer_name = request.POST['cer_name']
+            cer_muallif = request.POST['cer_muallif']
             date = request.POST['date']
             dgunomer = request.POST['dgunomer']
             certificate = Certificate.objects.create(
-                name=name, muallif=muallif, 
+                cer_name=cer_name, cer_muallif=cer_muallif, 
                 date=date, dgunomer=dgunomer
             )
             print("Sertifikat: ", certificate)
@@ -191,11 +194,11 @@ def dissertation(request):
     dissertation = None
     if request.method == 'POST':
         if user is not None and user.is_authenticated:
-            name = request.POST['name']
-            muallif = request.POST['muallif']
+            dis_name = request.POST['dis_name']
+            dis_muallif = request.POST['dis_muallif']
             yunalish = request.POST['yunalish']
             dissertation = Dissertation.objects.create(
-                name=name, muallif=muallif, 
+                dis_name=dis_name, dis_muallif=dis_muallif, 
                 yunalish=yunalish
             )
             print("Dissertation: ", dissertation)
@@ -212,16 +215,16 @@ def maqola(request):
     maqola = None
     if request.method == 'POST':
         if user is not None and user.is_authenticated:
-            name = request.POST['name']
-            muallif = request.POST['muallif']
+            maq_name = request.POST['maq_name']
+            maq_muallif = request.POST['maq_muallif']
             journal_name = request.POST['journal_name']
-            nashr_sanasi = request.POST['nashr_sanasi']
+            maq_nashr_sanasi = request.POST['maq_nashr_sanasi']
             bob = request.POST['bob']
             number = request.POST['number']
             sahifalar = request.POST['sahifalar']
             maqola = Article.objects.create(
-                name=name, muallif=muallif, 
-                journal_name=journal_name, nashr_sanasi=nashr_sanasi,
+                maq_name=maq_name, maq_muallif=maq_muallif, 
+                journal_name=journal_name, maq_nashr_sanasi=maq_nashr_sanasi,
                 bob=bob, number=number, sahifalar=sahifalar
             )
             print("Maqola: ", maqola)
@@ -262,6 +265,7 @@ def search(request):
     return render(request, "search.html", context)
 
 
+
 def faq_view(request):
     faq = FAQ.objects.filter(status="True").order_by("ordernumber")
     context = {
@@ -270,6 +274,90 @@ def faq_view(request):
     return render(request, "faq.html", context)
 
 
-def detail(request):
-    context = {}
+
+
+def book_detail(request, book_id):
+    try:
+        book = Book.objects.get(pk=book_id)
+
+    except Book.DoesNotExist:
+        raise Http404("Bunday kitob mavjud emas")
+    
+    book_files = Bookbaza.objects.prefetch_related('user').all()
+    print("User", request.user)
+    
+    context = {
+        'book': book,
+        'book_files': book_files,
+        'muallif': book.book_muallif.replace(',', '\n'),
+        'mualliflar': book.book_muallif.split(',')
+        
+    }   
+    
+    return render(request, "detail.html", context)
+
+
+
+
+def cer_detail(request, dgu_id):
+    try:
+        certificate = Certificate.objects.get(pk=dgu_id)
+
+    except Certificate.DoesNotExist:
+        raise Http404("Bunday dasturiy guvohnoma mavjud emas")
+    
+    dgu_files = Dgubaza.objects.prefetch_related('user').all()
+    print("User", request.user)
+    
+    context = {
+        'certificate': certificate,
+        'dgu_files':dgu_files,
+        'cer_muallif': certificate.cer_muallif.replace(',', '\n'),
+        'cer_mualliflar': certificate.cer_muallif.split(',')
+    }
+    
+    return render(request, "detail.html", context)
+
+
+
+
+def artic_detail(request, artic_id):
+    try:
+        article = Article.objects.get(pk=artic_id)
+
+    except Article.DoesNotExist:
+        raise Http404("Bunday maqola mavjud emas")
+    
+    maqola_files = Maqolabaza.objects.prefetch_related('user').all()
+    print("User", request.user)
+    
+    context = {
+        'article': article,
+        'maqola_files': maqola_files,
+        'maq_muallif': article.maq_muallif.replace(',', '\n'),
+        'maq_mualliflar': article.maq_muallif.split(',')
+    }
+    
+    return render(request, "detail.html", context)
+
+
+
+
+def diss_detail(request, diss_id):
+    try:
+        dissertation = Dissertation.objects.get(pk=diss_id)
+
+    except Dissertation.DoesNotExist:
+        raise Http404("Bunday dissertatsiya mavjud emas")
+    
+    disser_files = Dissertationbaza.objects.prefetch_related('user').all()
+    print("User", request.user)
+    
+    context = {
+        'dissertation': dissertation,
+        'disser_files':disser_files,
+        'dis_muallif': dissertation.dis_muallif.replace(',', '\n'),
+        'dis_mualliflar': dissertation.dis_muallif.split(',')
+    }
+    
     return render(request, "detail.html", context)

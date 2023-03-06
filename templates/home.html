@@ -63,46 +63,6 @@ library of young scientists
                             
                         {% endfor %}
                     {% endif %}
-
-                    {% if dgu_files %}
-                        {% for item in dgu_files %}
-                            <a>{{ item.user.username }}</a> <br>
-                                
-                            <iframe class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </iframe>
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if book_files %}
-                        {% for item in book_files %}
-                            <a>{{ item.user.username }}</a> <br>
-                                
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if maqola_files %}
-                        {% for item in maqola_files %}
-                            <a>{{ item.user.username }}</a> <br>
-                                
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
-
-                    {% if disser_files %}
-                        {% for item in disser_files %}
-                            <a>{{ item.user.username }}</a> <br>
-                                
-                            <li class="btn btn-outline-secondary my-xl-4 w-100" ><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %}
                 </ul>
             </div>
         </div>

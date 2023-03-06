@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from Users.models import CustomUser
+from django.urls import reverse
 import os
 from django.utils import timezone
 from django.db.models.signals import post_save
@@ -69,45 +70,57 @@ class Maqolabaza(models.Model):
 
 
 class Certificate(models.Model):
-    name = models.CharField(max_length=100, null=False)
-    muallif = models.CharField(max_length=100, null=False)
+    cer_name = models.CharField(max_length=100, null=False)
+    cer_muallif = models.CharField(max_length=100, null=False)
     date = models.DateTimeField(default=timezone.now)
     dgunomer = models.IntegerField(null=False)
 
     def __str__(self):
-        return self.name
+        return self.cer_name
+    
+    def get_absolute_url(self):
+        return reverse('cer_detail', args=[str(self.id)])
 
 
 class Article(models.Model):
-    name = models.CharField(max_length=100, null=False)
-    muallif = models.CharField(max_length=100, null=False)
+    maq_name = models.CharField(max_length=100, null=False)
+    maq_muallif = models.CharField(max_length=100, null=False)
     journal_name = models.CharField(max_length=100, null=False)
-    nashr_sanasi = models.DateField()
+    maq_nashr_sanasi = models.DateField()
     bob = models.CharField(max_length=100, null=False)
     number = models.IntegerField(null=False)
     sahifalar = models.CharField(max_length=200, null=False)
 
     def __str__(self):
-        return self.name
+        return self.maq_name
+    
+    def get_absolute_url(self):
+        return reverse('artic_detail', args=[str(self.id)])
 
 
 class Book(models.Model):
-    name = models.CharField(max_length=100, null=False)
-    muallif = models.CharField(max_length=100, null=False)
-    nashr_sanasi = models.DateField()
+    book_name = models.CharField(max_length=100, null=False)
+    book_muallif = models.CharField(max_length=100, null=False)
+    book_nashr_sanasi = models.DateField()
     nashriyot_name = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.book_name
+    
+    def get_absolute_url(self):
+        return reverse('book_detail', args=[str(self.id)])
 
 
 class Dissertation(models.Model):
-    name = models.CharField(max_length=100, null=False)
-    muallif = models.CharField(max_length=100, null=False)
+    dis_name = models.CharField(max_length=100, null=False)
+    dis_muallif = models.CharField(max_length=100, null=False)
     yunalish = models.CharField(max_length=100, null=False)
 
     def __str__(self):
-        return self.name
+        return self.dis_name
+    
+    def get_absolute_url(self):
+        return reverse('diss_detail', args=[str(self.id)])
 
 
 class FAQ(models.Model):

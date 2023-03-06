@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
+    'meta',
 ]
 
 MIDDLEWARE = [
@@ -144,4 +145,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "Users.CustomUser"
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+META_SITE_PROTOCOL = 'https'
+META_SITE_DOMAIN = 'example.com'
 

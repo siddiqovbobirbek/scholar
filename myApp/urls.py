@@ -1,6 +1,6 @@
 from django.urls import path
 from myApp.views import DGUView, DissertationView, BookView, MaqolaView
-from .views import home, editor, book, dissertation, maqola, dgu, about, search, index, faq_view, detail
+from .views import home, editor, book, dissertation, maqola, dgu, about, search, index, faq_view, book_detail, cer_detail, artic_detail, diss_detail
 
 app_name = "myApp"
 
@@ -19,5 +19,8 @@ urlpatterns = [
     path("search/", search, name="search"),
     path("index/", index, name="index"),
     path("faq/", faq_view, name="faq"),
-    path("detail/", detail, name="detail"),
+    path('detail/<int:book_id>/', book_detail, name='book_detail'),
+    path('detail/<int:cer_id>/', cer_detail, name='cer_detail'),
+    path('detail/<int:artic_id>/', artic_detail, name='artic_detail'),
+    path('detail/<int:diss_id>/', diss_detail, name='diss_detail'),
 ]
