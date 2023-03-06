@@ -6,33 +6,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ book.book_name }}</title>
-    <meta name="description" content="{{ book.description }}">
-    <meta name="Title" content="{{ book.book_name }}">
-    {% if mualliflar %}
-        {% for muallif in mualliflar %}
+    <title>{{ dissertation.dis_name }}</title>
+
+    {% if dis_mualliflar %}
+        {% for muallif in dis_mualliflar %}
             <meta name="author" content="{{muallif}}">
         {% endfor %}
     {% endif %}
-    
-</head>
+    <meta name="Title" content="{{ book.book_name }}">
+
     <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"
     id="font-awesome-css">
 
+</head>
+
 <body>
-    <form method="POST">
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary d-block">
+            <div class="container container-top">
+                <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
+                <ul class="navbar-nav   mb-2 mb-lg-0 d-flex justify-content-between hr">
+                </ul>
+            </div>
+            <div class="container">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class=" mt-3 navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+                        <li class="nav-item"><a href="{% url 'myApp:home' %}"
+                                class="nav-link hover link-dark px-2 active" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link hover active link-dark px-2">Features</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link hover active link-dark px-2">Pricing</a></li>
+                        <li class="nav-item"><a href="{% url 'myApp:faq' %}"
+                                class="nav-link hover link-dark active px-2">FAQs</a>
+                        </li>
+                        <li class="nav-item"><a href="{% url 'myApp:editor' %}"
+                                class="nav-link hover link-dark active px-2">Editorial Team</a></li>
+                        <li class="nav-item"><a href="{% url 'myApp:about' %}"
+                                class="nav-link hover link-dark active px-2">About</a></li>
+                        <li class="respons">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <form method="POST" class="">
         {% csrf_token %}
-        <section class=" container my-3 py-3">
+        <section class=" container my-5 py-5 mt-5">
             <div class="row">
                 <div class="col-xl-1"></div>
                 <div class="col-xl-12  py-3">
-                    <p class=" text-center px-4 h4"> <strong>{{ book.book_name }}</strong></p>
+                    <p class=" text-center px-4 h4"> <strong>{{ dissertation.dis_name }}</strong></p>
                     <hr>
                     <div class="row px-4">
                         <div class="col-xl-8 border-end">
-                            <p class="h6">{{ muallif|linebreaksbr }}</p>
+                            <p class="h6">{{ dis_muallif|linebreaksbr }}</p>
 
                             <p class="mt-5">
                                 <span class="h6">Keywords:</span>
@@ -61,44 +98,21 @@
                                 <img class="w-100" src="{% static '/assets/img/libys.jpg' %}" alt="404">
                             </a>
                             <hr>
-                            {% if dgu_files %}
-                            {% for item in dgu_files %}
-                            <iframe class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </iframe>
-                            {% endfor %}
-                            {% endif %}
-
-                            {% if book_files %}
-                            {% for item in book_files %}
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                            {% endfor %}
-                            {% endif %}
-
-                            {% if maqola_files %}
-                            {% for item in maqola_files %}
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                            {% endfor %}
-                            {% endif %}
 
                             {% if disser_files %}
-                            {% for item in disser_files %}
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                            {% endfor %}
+                                {% for item in disser_files %}
+                                    <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                        <a href="{{ item.file_upload.url }}" download>Download</a>
+                                    </li>
+                                {% endfor %}
                             {% endif %}
-                            <button class=" ms-3 btn  btn-outline-secondary"> Download </button>
+        
                             <hr>
-                            <p class="text-secondary">Published <br> <span class="text-dark">{{ book.book_nashr_sanasi }}</span></p>
+                            <p class="text-secondary">Published <br> <span class="text-dark">{{ dissertation.yunalish }}</span></p>
                             <hr>
                             <p class="text-secondary">How to Cite <br> <span class="text-dark">
-                                    {{ book.book_muallif }}
-                                    {{ book.book_nashr_sanasi }}. {{ book.book_name }} .
+                                    {{ dissertation.dis_muallif }}
+                                    {{ dissertation.yunalish }}. {{ dissertation.dis_name }} .
                                     Library Of Young Scientists (LIBYS),
                                     15(1), 81-93. Retrieved from http://www.newjournal.org/index.php <br />
                                     /new/article/view/595

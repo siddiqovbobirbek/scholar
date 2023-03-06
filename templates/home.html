@@ -27,8 +27,7 @@ library of young scientists
                 we are already working to ensure that the publications of our users are indexed
                 in other indexing databases
             </p>
-            <h5 class="mt-4">Current Issue</h5>
-            <h6 class="mt-4">Vol. 1 No. 6 (2023): LIBYS</h6>
+            <h6 class="mt-4">(2023):LIBYS</h6>
             <div class="row">
                 <div class="col-xl-3">
                     <img class="w-100" src="{% static 'assets/img/libys.jpg' %}" alt="404">
@@ -43,27 +42,10 @@ library of young scientists
                         and stages of development of education and information technology. The library contains the
                         results of research in the following areas:
                     </p>
-                    <p class="mt-xl-4">05.00.00 - Technical sciences,</p>
-                    <p class="mt-xl-4">13.00.00 - Pedagogical sciences (methods of teaching computer science).</p>
                     <p class="mt-xl-4">Full coverage of these topics will be provided in scholarly articles,
                         commentaries, and short commentaries. The library provides a convenient platform for
                         researchers, students, practitioners, and teachers to learn and contribute to the field.</p>
                 </div>
-                <p><span class="h6">Published:</span> 2023-03-21</p>
-
-                <ul class="border-bottom pb-4 w-100 d-block">
-                    <h5 class="mt-xl-4">Full Issue</h5>
-                    {% if get_files %}
-                        {% for item in get_files %}
-                            <a>{{ item.user.username }}</a> <br>
-                                
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ item.file_upload.url }}" download>{{ item.file_upload.name|cut:"documents/uploaded-" }}</a>
-                            </li>
-                            
-                        {% endfor %}
-                    {% endif %}
-                </ul>
             </div>
         </div>
 

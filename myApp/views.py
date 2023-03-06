@@ -18,18 +18,7 @@ from .models import (
 )
 
 def home(request):
-    dgu_files = Dgubaza.objects.prefetch_related('user').all()
-    book_files = Bookbaza.objects.prefetch_related('user').all()
-    maqola_files = Maqolabaza.objects.prefetch_related('user').all()
-    disser_files = Dissertationbaza.objects.prefetch_related('user').all()
-    print("User", request.user)
-    context = {
-        'dgu_files':dgu_files,
-        'book_files':book_files,
-        'maqola_files':maqola_files,
-        'disser_files':disser_files,
-        'user': request.user if request.user.is_authenticated else None
-        }
+    context = {}
     return render(request, "home.html", context)
 
 
@@ -277,6 +266,7 @@ def faq_view(request):
 
 
 def book_detail(request, book_id):
+    book = None
     try:
         book = Book.objects.get(pk=book_id)
 
@@ -294,7 +284,7 @@ def book_detail(request, book_id):
         
     }   
     
-    return render(request, "detail.html", context)
+    return render(request, "book_detail.html", context)
 
 
 
@@ -316,7 +306,7 @@ def cer_detail(request, dgu_id):
         'cer_mualliflar': certificate.cer_muallif.split(',')
     }
     
-    return render(request, "detail.html", context)
+    return render(request, "cer_detail.html", context)
 
 
 
@@ -338,7 +328,7 @@ def artic_detail(request, artic_id):
         'maq_mualliflar': article.maq_muallif.split(',')
     }
     
-    return render(request, "detail.html", context)
+    return render(request, "maq_detail.html", context)
 
 
 
@@ -360,4 +350,4 @@ def diss_detail(request, diss_id):
         'dis_mualliflar': dissertation.dis_muallif.split(',')
     }
     
-    return render(request, "detail.html", context)
+    return render(request, "diss_detail.html", context)

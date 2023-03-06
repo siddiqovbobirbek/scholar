@@ -19,8 +19,8 @@ urlpatterns = [
     path("search/", search, name="search"),
     path("index/", index, name="index"),
     path("faq/", faq_view, name="faq"),
-    path('detail/<int:book_id>/', book_detail, name='book_detail'),
-    path('detail/<int:cer_id>/', cer_detail, name='cer_detail'),
-    path('detail/<int:artic_id>/', artic_detail, name='artic_detail'),
-    path('detail/<int:diss_id>/', diss_detail, name='diss_detail'),
+    path('detail/book/<int:book_id>/', book_detail, name='book_detail'),
+    path('detail/cer/<int:dgu_id>/', cer_detail, name='cer_detail'),
+    path('detail/artic/<int:artic_id>/', artic_detail, name='artic_detail'),
+    path('detail/diss/<int:diss_id>/', diss_detail, name='diss_detail'),
 ]
