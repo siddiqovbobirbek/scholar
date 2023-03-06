@@ -23,7 +23,28 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-primary d-block">
             <div class="container container-top">
                 <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
-                <ul class="navbar-nav   mb-2 mb-lg-0 d-flex justify-content-between hr">
+                <ul class="navbar-nav   mb-2 mb-lg-0 d-flex justify-content-between">
+                    {% if user %}
+                    <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile_update' %}">View Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <ul class="nav gap-3">
+                        <li class="nav-item"><a class="hover nav-link link-dark"
+                                href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+                    {% endif %}
                 </ul>
             </div>
             <div class="container">
@@ -113,47 +134,5 @@
     <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script>
-        const func = () => {
-            let login = `<ul class="navbar-nav hr  mb-2 mb-lg-0 d-flex justify-content-between">
-                {% if user %}
-                <div class="dropdown">
-                    <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{ user.username }}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{% url 'profile_update' %}">View Profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
-                </div>
-                {% else %}
-                <ul class="nav gap-3">
-                    <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'register' %}">Register</a>
-                    </li>
-                    <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'login' %}">Login</a></li>
-                </ul>
-                {% endif %}
-            </ul>`
-
-            let brand = 'Library Of Young Scientists (LIBYS)';
-            var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-            console.log(width)
-            if (width <= 992) {
-                document.querySelector('.brand').innerHTML = null;
-                document.querySelector('.navbar-brand').innerText = brand;
-                document.querySelector('.hr').innerHTML = null;
-                document.querySelector('.respons').innerHTML = login
-            }
-            if (width > 992) {
-                document.querySelector('.brand').innerHTML = brand;
-                document.querySelector('.navbar-brand').innerText = null;
-                document.querySelector('.hr').innerHTML = login
-                document.querySelector('.respons').innerHTML = null;
-            }
-        }
-      func();
-    </script>
 
 </body>

@@ -18,7 +18,9 @@ from .models import (
 )
 
 def home(request):
-    context = {}
+    context = {
+        'user': request.user if request.user.is_authenticated else None
+    }
     return render(request, "home.html", context)
 
 
