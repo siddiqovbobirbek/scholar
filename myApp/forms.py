@@ -60,12 +60,12 @@ class BookbazaForm(forms.ModelForm):
         fields = ('file_upload',)
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
+        self.kitob_name = kwargs.pop('kitob_name', None)
         super(BookbazaForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
         book_baza = super(BookbazaForm, self).save(commit=False)
-        book_baza.user = self.user
+        book_baza.kitob_name = self.kitob_name
         if commit:
             book_baza.save()
         return book_baza
@@ -78,12 +78,12 @@ class DgubazaForm(forms.ModelForm):
         fields = ('file_upload',)
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
+        self.dgu_name = kwargs.pop('dgu_name', None)
         super(DgubazaForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
         dgu_baza = super(DgubazaForm, self).save(commit=False)
-        dgu_baza.user = self.user
+        dgu_baza.dgu_name = self.dgu_name
         if commit:
             dgu_baza.save()
         return dgu_baza
@@ -98,12 +98,12 @@ class DissertationbazaForm(forms.ModelForm):
         fields = ('file_upload',)
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
+        self.disser_name = kwargs.pop('disser_name', None)
         super(DissertationbazaForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
         disser_baza = super(DissertationbazaForm, self).save(commit=False)
-        disser_baza.user = self.user
+        disser_baza.disser_name = self.disser_name
         if commit:
             disser_baza.save()
         return disser_baza
@@ -117,12 +117,12 @@ class MaqolabazaForm(forms.ModelForm):
         fields = ('file_upload',)
 
     def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user', None)
+        self.maqola_name = kwargs.pop('maqola_name', None)
         super(MaqolabazaForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
         maqola_baza = super(MaqolabazaForm, self).save(commit=False)
-        maqola_baza.user = self.user
+        maqola_baza.maqola_name = self.maqola_name
         if commit:
             maqola_baza.save()
         return maqola_baza

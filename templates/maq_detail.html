@@ -7,14 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ article.maq_name }}</title>
+    <meta name="Type.ArticleType" content="Articles">
+    <meta name="citation_library_title" content="Library of Young Scientists">
+    <meta name="citation_library_abbrev" content="LIBYS">
 
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
-            <meta name="author" content="{{muallif}}">
+            <meta name="citation_author" content="{{muallif}}">
         {% endfor %}
     {% endif %}
 
-    <meta name="Title" content="{{ book.book_name }}">
+    <meta name="citation_date" content="{{ article.maq_nashr_sanasi }}">
+    <meta name="citation_volume" content="{{ article.bob }}">
+    <meta name="citation_issue" content="{{ article.bob }}">
+
+    {% if maq_sahifa %}
+        {% for page in maq_sahifa %}
+            <meta name="citation_firstpage" content="{{ page }}">
+        {% endfor %}
+    {% endif %}
+
+    <meta name="Title" content="{{ article.maq_name }}">
+    <meta name="Identifier.pageNumber" content="{{ article.sahifalar }}">
 
     <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -29,6 +43,7 @@
             <div class="container container-top">
                 <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
                 <ul class="navbar-nav   mb-2 mb-lg-0 d-flex justify-content-between hr">
+                    
                 </ul>
             </div>
             <div class="container">
@@ -111,10 +126,10 @@
                             <p class="text-secondary">Published <br> <span class="text-dark">{{ article.maq_nashr_sanasi }}</span></p>
                             <hr>
                             <p class="text-secondary">How to Cite <br> <span class="text-dark">
-                                    {{ article.maq_muallif }}
-                                    {{ article.maq_nashr_sanasi }}. {{ article.maq_name }} .
+                                    {{ article.maq_muallif }}, 
+                                    <strong>{{ article.maq_name }} </strong>.
                                     Library Of Young Scientists (LIBYS),
-                                    {{ article.bob }}, {{ article.sahifalar }}. Retrieved from http://www.newjournal.org/index.php <br />
+                                    {{ article.bob }}, {{ article.sahifalar }}, {{ article.maq_nashr_sanasi }}. Retrieved from http://www.newjournal.org/index.php <br />
                                     /new/article/view/595
                                 </span></p>
                             <hr>

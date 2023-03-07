@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {% if certificate %}
-            <title>{{ certificate.cer_name }}</title>
-    {% endif %}
+    <title>{{ certificate.cer_name }}</title>
+    <meta name="Type.CertificateType" content="Certificate">
+    <meta name="citation_library_title" content="Library of Young Scientists">
+    <meta name="citation_library_abbrev" content="LIBYS">
 
     {% if cer_mualliflar %}
         {% for muallif in cer_mualliflar %}

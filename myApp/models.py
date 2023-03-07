@@ -17,7 +17,7 @@ def file_path(instance, filename):
 
 class Bookbaza(models.Model):
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    kitob_name = models.ForeignKey('Article', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -30,7 +30,7 @@ class Bookbaza(models.Model):
 
 class Dgubaza(models.Model):
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    dgu_name = models.ForeignKey('Article', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -43,7 +43,7 @@ class Dgubaza(models.Model):
     
 class Dissertationbaza(models.Model):
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    disser_name = models.ForeignKey('Dissertation', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -57,7 +57,7 @@ class Dissertationbaza(models.Model):
 
 class Maqolabaza(models.Model):
     file_upload = models.FileField(upload_to=file_path)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    maqola_name = models.ForeignKey('Article', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

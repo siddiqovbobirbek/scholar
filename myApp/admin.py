@@ -3,24 +3,24 @@ from myApp.models import Certificate, Article, Book, Dissertation, Bookbaza, Dgu
 
 @admin.register(Bookbaza)
 class BookbazaAdmin(admin.ModelAdmin):
-    list_display = ("user", "upload_date", "file_upload",)
+    list_display = ("kitob_name", "upload_date", "file_upload",)
     list_display_links = ("file_upload", "upload_date")
 
 @admin.register(Dgubaza)
 class DgubazaAdmin(admin.ModelAdmin):
-    list_display = ("user", "upload_date", "file_upload",)
+    list_display = ("dgu_name", "upload_date", "file_upload",)
     list_display_links = ("file_upload", "upload_date")
 
 
 @admin.register(Maqolabaza)
 class MaqolabazaAdmin(admin.ModelAdmin):
-    list_display = ("user", "upload_date", "file_upload",)
+    list_display = ("maqola_name", "upload_date", "file_upload",)
     list_display_links = ("file_upload", "upload_date")
 
 
 @admin.register(Dissertationbaza)
 class DissertationbazaAdmin(admin.ModelAdmin):
-    list_display = ("user", "upload_date", "file_upload",)
+    list_display = ("disser_name", "upload_date", "file_upload",)
     list_display_links = ("file_upload", "upload_date")
 
 @admin.register(Certificate)

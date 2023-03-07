@@ -36,14 +36,14 @@ class DGUView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = DgubazaForm(request.POST, request.FILES, user = request.user)    
+            form = DgubazaForm(request.POST, request.FILES, dgu_name = request.POST.get('dgu_name'))    
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form
         else:
-            form = DgubazaForm(user = request.user)
+            form = DgubazaForm(dgu_name = request.dgu_name)
             context['form'] = form
         return redirect('myApp:home')
 
@@ -59,7 +59,7 @@ class DissertationView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = DissertationbazaForm(request.POST, request.FILES, user = request.user)
+            form = DissertationbazaForm(request.POST, request.FILES, disser_name = request.POST.get('disser_name'))
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
@@ -67,7 +67,7 @@ class DissertationView(TemplateView):
                 context['form'] = form
         else:
             context['form'] = form
-            form = DissertationbazaForm(user = request.user)
+            form = DissertationbazaForm(disser_name = request.disser_name)
         return redirect('myApp:home')
 
 
@@ -84,14 +84,14 @@ class BookView(TemplateView):
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = BookbazaForm(request.POST, request.FILES, user = request.user) 
+            form = BookbazaForm(request.POST, request.FILES, kitob_name = request.POST.get('kitob_name')) 
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form
         else:
-            form = BookbazaForm(user = request.user)
+            form = BookbazaForm(kitob_name = request.kitob_name)
             context['form'] = form
         return redirect('myApp:home')
 
@@ -101,22 +101,22 @@ class MaqolaView(TemplateView):
     template_name = "upload_maqola.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        get_files = Maqolabaza.objects.all()
-        print("Files", get_files)
-        context = {'form':MaqolabazaForm, 'get_files':get_files}
+        maqola_files = Maqolabaza.objects.all()
+        print("Files", maqola_files)
+        context = {'form':MaqolabazaForm, 'get_files':maqola_files}
         return context
 
     def post(self, request, **kwargs): 
         context = {}
         if request.method == 'POST':
-            form = MaqolabazaForm(request.POST, request.FILES, user = request.user)
+            form = MaqolabazaForm(request.POST, request.FILES, maqola_name = request.POST.get('maqola_name'))
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
             else:
                 context['form'] = form
         else:
-            form = MaqolabazaForm(user = request.user)
+            form = MaqolabazaForm(maqola_name = request.maqola_name)
             context['form'] = form
         return redirect('myApp:home')
 
@@ -276,7 +276,7 @@ def book_detail(request, book_id):
         raise Http404("Bunday kitob mavjud emas")
     
     book_files = Bookbaza.objects.prefetch_related('user').all()
-    print("User", request.user)
+    print("Book", request.POST.get('book_name'))
     
     context = {
         'book': book,
@@ -299,7 +299,7 @@ def cer_detail(request, dgu_id):
         raise Http404("Bunday dasturiy guvohnoma mavjud emas")
     
     dgu_files = Dgubaza.objects.prefetch_related('user').all()
-    print("User", request.user)
+    print("User", request.POST.get('dgu_name'))
     
     context = {
         'certificate': certificate,
@@ -320,14 +320,18 @@ def artic_detail(request, artic_id):
     except Article.DoesNotExist:
         raise Http404("Bunday maqola mavjud emas")
     
-    maqola_files = Maqolabaza.objects.prefetch_related('user').all()
-    print("User", request.user)
+    maqola_files = Maqolabaza.objects.prefetch_related('maqola_name').all()
+    print("Article", request.POST.get('maqola_name'))
     
     context = {
         'article': article,
         'maqola_files': maqola_files,
         'maq_muallif': article.maq_muallif.replace(',', '\n'),
-        'maq_mualliflar': article.maq_muallif.split(',')
+        'maq_mualliflar': article.maq_muallif.split(','),
+        'bob': article.bob,
+        'number': article.number,
+        'journal_name': article.journal_name,
+        'maq_sahifa': article.sahifalar.split('-'),
     }
     
     return render(request, "maq_detail.html", context)
@@ -343,7 +347,7 @@ def diss_detail(request, diss_id):
         raise Http404("Bunday dissertatsiya mavjud emas")
     
     disser_files = Dissertationbaza.objects.prefetch_related('user').all()
-    print("User", request.user)
+    print("User", request.POST.get('disser_name'))
     
     context = {
         'dissertation': dissertation,
