@@ -17,7 +17,7 @@
         {% endfor %}
     {% endif %}
    
-    <meta name="Title" content="{{ book.book_name }}">
+    <meta name="Title" content="{{ certificate.cer_name }}">
 
     <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -114,11 +114,10 @@
                             <p class="text-secondary">Published <br> <span class="text-dark">{{ certificate.date }}</span></p>
                             <hr>
                             <p class="text-secondary">How to Cite <br> <span class="text-dark">
-                                    {{ certificate.cer_muallif }}
-                                    {{ certificate.date }}. {{ certificate.cer_name }} .
+                                    {{ certificate.cer_muallif }}.
+                                    {{ certificate.cer_name }}. {{ certificate.date }}.
                                     Library Of Young Scientists (LIBYS),
-                                    15(1), 81-93. Retrieved from http://www.newjournal.org/index.php <br />
-                                    /new/article/view/595
+                                    Retrieved from http://www.newjournal.org/index.php/new/article/view/595
                                 </span></p>
                             <hr>
                         </div>
@@ -127,5 +126,38 @@
             </div>
         </section>
     </form>
+    <!-- START FOOTER -->
+    <div class=" footer continaer-flud p-5 bottom-0 w-100">
+        <div class="row ">
+            <div class="col-md-9">
+                <p>
+                    <strong>CONTACT</strong>
+                </p>
+                <p class="h6">
+                    <img src="{% static 'assets/img/location.png' %}" alt width="25">
+                    <strong> Respublic of Uzbekistan, Tashkent, st. Amir Temur, 10 </strong>
+                </p>
+                <hr>
+                <p class="h6">
+                    <img src="{% static 'assets/img/phone.png' %}" alt width="25">
+                    <strong> (+998) 99-890-96-23 </strong>
+                </p>
+                <hr>
+                <p class="h6">
+                    <img src="{% static 'assets/img/mail.png' %}" alt width="25">
+                    <strong> info@www.newscientistlibys.uz </strong>
+                </p>
+                <hr>
+                <p class="h6">
+                    <strong> This work is licensed under a Creative Commons E'tirof 4.0 Xalqaro License. </strong>
+                </p>
+            </div>
+            <div class="col-md-3" role="complementary">
+                <img class="" src="{% static 'assets/img/Library.png' %}" style="border-radius: 50%; width: 230px; "
+                    alt="">
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
 </body>
 </html>

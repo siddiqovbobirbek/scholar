@@ -79,7 +79,7 @@ class Certificate(models.Model):
         return self.cer_name
     
     def get_absolute_url(self):
-        return reverse('cer_detail', args=[str(self.id)])
+        return reverse('cer_detail', args=[str(self.pk)])
 
 
 class Article(models.Model):
@@ -95,7 +95,7 @@ class Article(models.Model):
         return self.maq_name
     
     def get_absolute_url(self):
-        return reverse('artic_detail', args=[str(self.id)])
+        return reverse('artic_detail', args=[str(self.pk)])
 
 
 class Book(models.Model):
@@ -108,7 +108,7 @@ class Book(models.Model):
         return self.book_name
     
     def get_absolute_url(self):
-        return reverse('book_detail', args=[str(self.id)])
+        return reverse('book_detail', args=[str(self.pk)])
 
 
 class Dissertation(models.Model):
@@ -120,7 +120,7 @@ class Dissertation(models.Model):
         return self.dis_name
     
     def get_absolute_url(self):
-        return reverse('diss_detail', args=[str(self.id)])
+        return reverse('diss_detail', args=[str(self.pk)])
 
 
 class FAQ(models.Model):

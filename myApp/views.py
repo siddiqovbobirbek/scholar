@@ -267,15 +267,15 @@ def faq_view(request):
 
 
 
-def book_detail(request, book_id):
+def book_detail(request, pk):
     book = None
     try:
-        book = Book.objects.get(pk=book_id)
+        book = Book.objects.get(pk=pk)
 
     except Book.DoesNotExist:
         raise Http404("Bunday kitob mavjud emas")
     
-    book_files = Bookbaza.objects.prefetch_related('user').all()
+    book_files = Bookbaza.objects.prefetch_related('book_name').all()
     print("Book", request.POST.get('book_name'))
     
     context = {
@@ -291,14 +291,14 @@ def book_detail(request, book_id):
 
 
 
-def cer_detail(request, dgu_id):
+def cer_detail(request, pk):
     try:
-        certificate = Certificate.objects.get(pk=dgu_id)
+        certificate = Certificate.objects.get(pk=pk)
 
     except Certificate.DoesNotExist:
         raise Http404("Bunday dasturiy guvohnoma mavjud emas")
     
-    dgu_files = Dgubaza.objects.prefetch_related('user').all()
+    dgu_files = Dgubaza.objects.prefetch_related('dgu_name').all()
     print("User", request.POST.get('dgu_name'))
     
     context = {
@@ -313,9 +313,9 @@ def cer_detail(request, dgu_id):
 
 
 
-def artic_detail(request, artic_id):
+def artic_detail(request, pk):
     try:
-        article = Article.objects.get(pk=artic_id)
+        article = Article.objects.get(pk=pk)
 
     except Article.DoesNotExist:
         raise Http404("Bunday maqola mavjud emas")
@@ -339,14 +339,14 @@ def artic_detail(request, artic_id):
 
 
 
-def diss_detail(request, diss_id):
+def diss_detail(request, pk):
     try:
-        dissertation = Dissertation.objects.get(pk=diss_id)
+        dissertation = Dissertation.objects.get(pk=pk)
 
     except Dissertation.DoesNotExist:
         raise Http404("Bunday dissertatsiya mavjud emas")
     
-    disser_files = Dissertationbaza.objects.prefetch_related('user').all()
+    disser_files = Dissertationbaza.objects.prefetch_related('disser_name').all()
     print("User", request.POST.get('disser_name'))
     
     context = {
