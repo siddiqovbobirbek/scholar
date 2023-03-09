@@ -149,3 +149,7 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 META_SITE_PROTOCOL = 'https'
 META_SITE_DOMAIN = 'example.com'
 
+LOGIN_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL ='myApp:home'
+LOGIN_URL = 'login'
+

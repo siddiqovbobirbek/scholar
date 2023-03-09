@@ -6,10 +6,10 @@ app_name = "myApp"
 
 urlpatterns = [
     path("", home, name="home"),
-    path("uploaddgu/", DGUView.as_view(), name="upload_dgu"),
-    path("uploaddiss/", DissertationView.as_view(), name="upload_disser"),
-    path("uploadbook/", BookView.as_view(), name="upload_book"),
-    path("uploadmaq/", MaqolaView.as_view(), name="upload_maqola"),
+    path("uploaddgu/", DGUView,  name="upload_dgu"),
+    path("uploaddiss/", DissertationView, name="upload_disser"),
+    path("uploadbook/", BookView, name="upload_book"),
+    path("uploadmaq/", MaqolaView, name="upload_maqola"),
     path("editor/", editor, name="editor"),
     path("dgu/", dgu, name="dgu"),
     path("maqola/", maqola, name="maqola"),
