@@ -24,6 +24,7 @@ def home(request):
     return render(request, "home.html", context)
 
 
+@login_required
 class DGUView(TemplateView): 
     template_name = "upload_dgu.html"
     def get_context_data(self, **kwargs):
@@ -47,6 +48,8 @@ class DGUView(TemplateView):
             context['form'] = form
         return redirect('myApp:home')
 
+
+@login_required
 class DissertationView(TemplateView): 
     template_name = "upload_disser.html"
     def get_context_data(self, **kwargs):
@@ -71,7 +74,7 @@ class DissertationView(TemplateView):
         return redirect('myApp:home')
 
 
-
+@login_required
 class BookView(TemplateView): 
     template_name = "upload_book.html"
     def get_context_data(self, **kwargs):
@@ -97,6 +100,8 @@ class BookView(TemplateView):
 
 
 
+
+@login_required
 class MaqolaView(TemplateView): 
     template_name = "upload_maqola.html"
     def get_context_data(self, **kwargs):
@@ -131,11 +136,13 @@ class MaqolaView(TemplateView):
 #         return render(request, "files.html", context)
 
 
+
 def editor(request):
     context = {}
     return render(request, "editor.html", context)
 
 
+@login_required
 def book(request):
     user = request.user
     book = None
@@ -158,6 +165,7 @@ def book(request):
     return render(request, "book.html", context)
 
 
+@login_required
 def dgu(request):
     user = request.user
     certificate = None
@@ -180,6 +188,7 @@ def dgu(request):
     return render(request, "dgu.html", context)
 
 
+@login_required
 def dissertation(request):
     user = request.user
     dissertation = None
@@ -201,6 +210,7 @@ def dissertation(request):
     return render(request, "dissertatsiya.html", context)
 
 
+@login_required
 def maqola(request):
     user = request.user
     maqola = None
@@ -267,6 +277,7 @@ def faq_view(request):
 
 
 
+@login_required
 def book_detail(request, pk):
     book = None
     try:
@@ -291,6 +302,7 @@ def book_detail(request, pk):
 
 
 
+@login_required
 def cer_detail(request, pk):
     try:
         certificate = Certificate.objects.get(pk=pk)
@@ -313,6 +325,7 @@ def cer_detail(request, pk):
 
 
 
+@login_required
 def artic_detail(request, pk):
     try:
         article = Article.objects.get(pk=pk)
@@ -339,6 +352,7 @@ def artic_detail(request, pk):
 
 
 
+@login_required
 def diss_detail(request, pk):
     try:
         dissertation = Dissertation.objects.get(pk=pk)
