@@ -24,7 +24,7 @@ def home(request):
     return render(request, "home.html", context)
 
 
-@login_required
+
 class DGUView(TemplateView): 
     template_name = "upload_dgu.html"
     def get_context_data(self, **kwargs):
@@ -49,7 +49,7 @@ class DGUView(TemplateView):
         return redirect('myApp:home')
 
 
-@login_required
+
 class DissertationView(TemplateView): 
     template_name = "upload_disser.html"
     def get_context_data(self, **kwargs):
@@ -74,7 +74,7 @@ class DissertationView(TemplateView):
         return redirect('myApp:home')
 
 
-@login_required
+
 class BookView(TemplateView): 
     template_name = "upload_book.html"
     def get_context_data(self, **kwargs):
@@ -101,7 +101,7 @@ class BookView(TemplateView):
 
 
 
-@login_required
+
 class MaqolaView(TemplateView): 
     template_name = "upload_maqola.html"
     def get_context_data(self, **kwargs):

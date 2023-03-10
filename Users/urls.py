@@ -8,6 +8,6 @@ urlpatterns = [
     path('index/', index, name="index"),
     path('logout/', logout_user, name="logout"),
     path('profile_update/', profile_update, name="profile_update"),
-    path('dashboard/', dashboard, name="dashboard")
+    path("filter/", index, name="index"),
     
 ]
