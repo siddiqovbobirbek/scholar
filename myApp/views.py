@@ -151,10 +151,11 @@ def book(request):
             book_name = request.POST['book_name']
             book_muallif = request.POST['book_muallif']
             book_nashr_sanasi = request.POST['book_nashr_sanasi']
-            nashriyot_name = request.POST['nashriyot_name']
+            volume = request.POST['volume']
+            pages = request.POST['pages']
             book = Book.objects.create(
                 book_name=book_name, book_muallif=book_muallif, 
-                nashriyot_name=nashriyot_name, book_nashr_sanasi=book_nashr_sanasi
+                pages=pages, book_nashr_sanasi=book_nashr_sanasi, volume=volume
             )
             print("Kitob: ", book)
         return redirect('myApp:upload_book')    
@@ -175,9 +176,10 @@ def dgu(request):
             cer_muallif = request.POST['cer_muallif']
             date = request.POST['date']
             dgunomer = request.POST['dgunomer']
+            application_number = request.POST['application_name']
             certificate = Certificate.objects.create(
                 cer_name=cer_name, cer_muallif=cer_muallif, 
-                date=date, dgunomer=dgunomer
+                date=date, dgunomer=dgunomer, application_number=application_number
             )
             print("Sertifikat: ", certificate)
         return redirect('myApp:upload_dgu')    
@@ -196,10 +198,11 @@ def dissertation(request):
         if user is not None and user.is_authenticated:
             dis_name = request.POST['dis_name']
             dis_muallif = request.POST['dis_muallif']
-            yunalish = request.POST['yunalish']
+            dis_nashr_sanasi = request.POST['dis_nashr_sanasi']
+            institut = request.POST['institut']
             dissertation = Dissertation.objects.create(
                 dis_name=dis_name, dis_muallif=dis_muallif, 
-                yunalish=yunalish
+                dis_nashr_sanasi=dis_nashr_sanasi, institut=institut
             )
             print("Dissertation: ", dissertation)
         return redirect('myApp:upload_disser')
@@ -220,13 +223,13 @@ def maqola(request):
             maq_muallif = request.POST['maq_muallif']
             journal_name = request.POST['journal_name']
             maq_nashr_sanasi = request.POST['maq_nashr_sanasi']
-            bob = request.POST['bob']
-            number = request.POST['number']
+            volum = request.POST['volum']
+            issue = request.POST['issue']
             sahifalar = request.POST['sahifalar']
             maqola = Article.objects.create(
                 maq_name=maq_name, maq_muallif=maq_muallif, 
                 journal_name=journal_name, maq_nashr_sanasi=maq_nashr_sanasi,
-                bob=bob, number=number, sahifalar=sahifalar
+                volum=volum, issue=issue, sahifalar=sahifalar
             )
             print("Maqola: ", maqola)
         return redirect('myApp:upload_maqola')

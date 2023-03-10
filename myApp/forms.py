@@ -14,8 +14,8 @@ class ArticleForm(forms.ModelForm):
             'maq_muallif',
             'journal_name',
             'maq_nashr_sanasi',
-            'bob',
-            'number',
+            'volum',
+            'issue',
             'sahifalar',
         ]
 
@@ -39,7 +39,8 @@ class CertificateForm(forms.ModelForm):
             'cer_name',
             'cer_muallif',
             'date',
-            'dgunomer'
+            'dgunomer',
+            'application_number',
         ]
 
 
@@ -49,7 +50,8 @@ class DissertationForm(forms.ModelForm):
         fields = [
             'dis_name',
             'dis_muallif',
-            'yunalish'
+            'dis_nashr_sanasi',
+            'institut',
         ]
 
 

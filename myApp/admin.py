@@ -6,6 +6,7 @@ class BookbazaAdmin(admin.ModelAdmin):
     list_display = ("kitob_name", "upload_date", "file_upload",)
     list_display_links = ("file_upload", "upload_date")
 
+
 @admin.register(Dgubaza)
 class DgubazaAdmin(admin.ModelAdmin):
     list_display = ("dgu_name", "upload_date", "file_upload",)
@@ -23,6 +24,7 @@ class DissertationbazaAdmin(admin.ModelAdmin):
     list_display = ("disser_name", "upload_date", "file_upload",)
     list_display_links = ("file_upload", "upload_date")
 
+
 @admin.register(Certificate)
 class CertificateAdmin(admin.ModelAdmin):
     list_display = ("cer_name", "cer_muallif", "date", "dgunomer")
@@ -37,14 +39,14 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("book_name", "book_muallif", "book_nashr_sanasi", "nashriyot_name")
+    list_display = ("book_name", "book_muallif", "book_nashr_sanasi", "pages")
     list_display_links = ("book_name", "book_muallif")
 
 
 @admin.register(Dissertation)
 class DissertationAdmin(admin.ModelAdmin):
-    list_display = ("dis_name", "dis_muallif", "yunalish")
-    list_display_links = ("dis_name", "dis_muallif", "yunalish")
+    list_display = ("dis_name", "dis_muallif", "dis_nashr_sanasi",)
+    list_display_links = ("dis_name", "dis_muallif")
 
 
 @admin.register(FAQ)

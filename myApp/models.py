@@ -73,8 +73,8 @@ class Certificate(models.Model):
     cer_name = models.CharField(max_length=100, null=False)
     cer_muallif = models.CharField(max_length=100, null=False)
     date = models.DateTimeField(default=timezone.now)
-    dgunomer = models.IntegerField(null=False)
-    # application_number = models.CharField(max_length=
+    dgunomer = models.CharField(max_length=20,  null=False, blank=True)
+    application_number = models.CharField(max_length=200, null=False, blank=True)
 
     def __str__(self):
         return self.cer_name
@@ -86,10 +86,10 @@ class Certificate(models.Model):
 class Article(models.Model):
     maq_name = models.CharField(max_length=100, null=False)
     maq_muallif = models.CharField(max_length=100, null=False)
-    journal_name = models.CharField(max_length=100, null=False)
     maq_nashr_sanasi = models.DateField()
-    bob = models.CharField(max_length=100, null=False)
-    number = models.IntegerField(null=False)
+    journal_name = models.CharField(max_length=100, null=False)
+    volum = models.CharField(max_length=10, null=False, blank=True)
+    issue = models.CharField(max_length=20, default='unknown')
     sahifalar = models.CharField(max_length=200, null=False)
 
     def __str__(self):
@@ -103,7 +103,8 @@ class Book(models.Model):
     book_name = models.CharField(max_length=100, null=False)
     book_muallif = models.CharField(max_length=100, null=False)
     book_nashr_sanasi = models.DateField()
-    nashriyot_name = models.CharField(max_length=200)
+    volume = models.CharField(max_length=20, null=False, blank=True)
+    pages = models.CharField(max_length=20, null=False, blank=True)
 
     def __str__(self):
         return self.book_name
@@ -115,7 +116,8 @@ class Book(models.Model):
 class Dissertation(models.Model):
     dis_name = models.CharField(max_length=100, null=False)
     dis_muallif = models.CharField(max_length=100, null=False)
-    yunalish = models.CharField(max_length=100, null=False)
+    dis_nashr_sanasi = models.DateField(default=timezone.now())
+    institut = models.CharField(max_length=200, null=False, blank=True)
 
     def __str__(self):
         return self.dis_name
