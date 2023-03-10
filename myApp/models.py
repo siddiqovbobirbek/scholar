@@ -74,6 +74,7 @@ class Certificate(models.Model):
     cer_muallif = models.CharField(max_length=100, null=False)
     date = models.DateTimeField(default=timezone.now)
     dgunomer = models.IntegerField(null=False)
+    # application_number = models.CharField(max_length=
 
     def __str__(self):
         return self.cer_name

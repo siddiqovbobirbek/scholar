@@ -27,7 +27,8 @@ class BookForm(forms.ModelForm):
             'book_name',
             'book_muallif',
             'book_nashr_sanasi',
-            'nashriyot_name',
+            'volume',
+            'pages'
         ]
 
 
