@@ -289,8 +289,8 @@ def book_detail(request, pk):
     except Book.DoesNotExist:
         raise Http404("Bunday kitob mavjud emas")
     
-    book_files = Bookbaza.objects.prefetch_related('book_name').all()
-    print("Book", request.POST.get('book_name'))
+    book_files = Bookbaza.objects.prefetch_related('kitob_name').all()
+    print("Book", request.POST.get('kitob_name'))
     
     context = {
         'book': book,
@@ -344,8 +344,8 @@ def artic_detail(request, pk):
         'maqola_files': maqola_files,
         'maq_muallif': article.maq_muallif.replace(',', '\n'),
         'maq_mualliflar': article.maq_muallif.split(','),
-        'bob': article.bob,
-        'number': article.number,
+        'volum': article.volum,
+        'issue': article.issue,
         'journal_name': article.journal_name,
         'maq_sahifa': article.sahifalar.split('-'),
     }
