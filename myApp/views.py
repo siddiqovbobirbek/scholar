@@ -7,7 +7,6 @@ from .forms import (
     DissertationForm
 )
 
-
 from django.contrib.auth.decorators import login_required
 
 from .models import (
@@ -176,7 +175,7 @@ def dgu(request):
             cer_muallif = request.POST['cer_muallif']
             date = request.POST['date']
             dgunomer = request.POST['dgunomer']
-            application_number = request.POST['application_name']
+            application_number = request.POST['application_number']
             certificate = Certificate.objects.create(
                 cer_name=cer_name, cer_muallif=cer_muallif, 
                 date=date, dgunomer=dgunomer, application_number=application_number
@@ -245,6 +244,7 @@ def about(request):
     return render(request, "about.html", context)
 
 
+@login_required
 def index(request):
     context = {}
     return render(request, "index.html", context)

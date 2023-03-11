@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth import logout
 
+from django.contrib.auth.decorators import login_required
+
 
 
 def register(request):
@@ -65,6 +67,9 @@ def login_view(request):
     return render(request, "login.html")
 
 
+
+
+@login_required
 def dashboard(request):
     return render(request, "dashboard.html")
 
@@ -74,6 +79,7 @@ def logout_user(request):
     return redirect('myApp:home')
 
 
+@login_required
 def profile_update(request):
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance=request.user)

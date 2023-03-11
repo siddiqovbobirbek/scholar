@@ -29,7 +29,7 @@
                 <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
                 <ul class="mb-2 mb-lg-0 d-flex justify-content-between">
                     <div id="xl" class="d-block">
-                        {% if user %}
+                        {% if user.is_authenticated %}
                         <div class="dropdown">
                             <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -55,7 +55,7 @@
             </div>
             <div class="container">
                 <div class="sdds" id="sm">
-                    {% if user %}
+                    {% if user.is_authenticated %}
                     <div class="dropdown  navbar-brand ms-2 p-0 ">
                         <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
