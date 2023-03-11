@@ -70,8 +70,8 @@ class Maqolabaza(models.Model):
 
 
 class Certificate(models.Model):
-    cer_name = models.CharField(max_length=100, null=False)
-    cer_muallif = models.CharField(max_length=100, null=False)
+    cer_name = models.CharField(max_length=250, null=False)
+    cer_muallif = models.CharField(max_length=250, null=False)
     date = models.DateTimeField(default=timezone.now)
     dgunomer = models.CharField(max_length=20,  null=False, blank=True)
     application_number = models.CharField(max_length=200, null=False, blank=True)
@@ -84,10 +84,10 @@ class Certificate(models.Model):
 
 
 class Article(models.Model):
-    maq_name = models.CharField(max_length=100, null=False)
-    maq_muallif = models.CharField(max_length=100, null=False)
+    maq_name = models.CharField(max_length=250, null=False)
+    maq_muallif = models.CharField(max_length=250, null=False)
     maq_nashr_sanasi = models.DateField()
-    journal_name = models.CharField(max_length=100, null=False)
+    journal_name = models.CharField(max_length=250, null=False)
     volum = models.CharField(max_length=10, null=False, blank=True)
     issue = models.CharField(max_length=20, default='unknown')
     sahifalar = models.CharField(max_length=200, null=False)
@@ -100,8 +100,8 @@ class Article(models.Model):
 
 
 class Book(models.Model):
-    book_name = models.CharField(max_length=100, null=False)
-    book_muallif = models.CharField(max_length=100, null=False)
+    book_name = models.CharField(max_length=250, null=False)
+    book_muallif = models.CharField(max_length=250, null=False)
     book_nashr_sanasi = models.DateField()
     volume = models.CharField(max_length=20, null=False, blank=True)
     pages = models.CharField(max_length=20, null=False, blank=True)
@@ -114,8 +114,8 @@ class Book(models.Model):
 
 
 class Dissertation(models.Model):
-    dis_name = models.CharField(max_length=100, null=False)
-    dis_muallif = models.CharField(max_length=100, null=False)
+    dis_name = models.CharField(max_length=250, null=False)
+    dis_muallif = models.CharField(max_length=250, null=False)
     dis_nashr_sanasi = models.DateField(default=timezone.now)
     institut = models.CharField(max_length=200, null=False, blank=True)
 
