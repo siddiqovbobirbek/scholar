@@ -116,7 +116,7 @@ class Book(models.Model):
 class Dissertation(models.Model):
     dis_name = models.CharField(max_length=100, null=False)
     dis_muallif = models.CharField(max_length=100, null=False)
-    dis_nashr_sanasi = models.DateField(default=timezone.now())
+    dis_nashr_sanasi = models.DateField(default=timezone.now)
     institut = models.CharField(max_length=200, null=False, blank=True)
 
     def __str__(self):

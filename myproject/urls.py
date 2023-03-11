@@ -14,13 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler404, handler500
 
+def get_sitemap(request):
+    return render(request, 'sitemap.xml', content_type='text/xml')
+
+def get_robots(request):
+    return render(request, 'robots.txt', content_type='text/plain')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('sitemap.xml', get_sitemap),
+    path('robots.txt', get_robots),
     path('', include("myApp.urls")),
     path('', include("Users.urls")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
