@@ -1,0 +1,18 @@
+User-Agent: *
+Allow: /
+
+User-agent: Googlebot
+Disallow: /admin/
+
+User-agent: Googlebot-Image
+Disallow: /admin/
+
+User-agent: Googlebot-Mobile
+Disallow: /admin/
+
+User-agent: Googlebot-News
+Disallow: /admin/
+
+User-agent: Googlebot-Video
+Disallow: /admin/
+
