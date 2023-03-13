@@ -31,7 +31,7 @@ Login to your account
                     </h2>
                     <div id="collapse{{bob.id}}" class="accordion-collapse collapse " aria-labelledby="heading{{bob.id}}" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        {{ bob.answer }}
+                        {{ bob.answer | safe }}
                       </div>
                     </div>
                   </div>
