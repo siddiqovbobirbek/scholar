@@ -12,12 +12,13 @@ Register
 <form method="post"> {% csrf_token %}
     <div class="container mt-5" style="font-size:15px">
         <div class="row">
-            <div class="text-center h4">DGU</div>
+            <div class="text-center h4">Patent</div>
             <div class="col-md-1"></div>
             <div class="col-md-10 mb-3 pb-1 ">
                 <div class="form-outline">
+                    <label class="form-label mb-0">Title</label>
                     <input type="name" name="cer_name" id="cer_name" class="form-control form-control-md" required />
-                    <label class="form-label" for="username">Title</label>
+                    
                 </div>
             </div>
         </div>
@@ -27,9 +28,9 @@ Register
             <div class="col-md-1"></div>
             <div class="col-md-10 mb-3 pb-1">
                 <div class="form-outline">
+                    <label class="form-label mb-0">Authors</label>
                     <input type="cer_muallif" name="cer_muallif" id="authors" class="form-control form-control-md"  required/>
-                    <label class="form-label" for="username">Authors</label>
-
+                    
                 </div>
             </div>
         </div>
@@ -37,11 +38,11 @@ Register
     <div class="container" style="font-size:15px">
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-10 mb-3 pb-1">
+            <div class="col-md-10 mb-3 ">
                 <div class="form-outline">
-                    <input type="date" name="date" id="data" class="form-control form-control-md" required />
-                    <label class="form-label" for="username">Publication date</label>
-
+                    <label class="form-label mb-0">Publication date</label>
+                    <input type="data" name="date" id="data" class="form-control form-control-md" required />
+                    <label class="form-label">For example: 2020, 2020/12 or 2020/12/31</label>
                 </div>
             </div>
         </div>
@@ -49,32 +50,31 @@ Register
     <div class="container" style="font-size:15px">
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-10 ">
+            <div class="col-md-10 mb-3 ">
                 <div class="form-outline w-100">
+                    <label class="form-label mb-0">Patent number</label>
                     <input type="number" name="dgunomer" id="number" class="form-control form-control-md" required/>
-                    <label class="form-label" for="username">DGU number</label>
-
+                    
                 </div>
             </div>
         </div>
     </div>
-    <div class="container" style="font-size:15px">
+    <div class="container " style="font-size:15px">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10 ">
                 <div class="form-outline w-100">
+                    <label class="form-label mb-0">Application number</label>
                     <input type="application_number" name="application_number" id="number" class="form-control form-control-md" required/>
-                    <label class="form-label" for="username">Application number</label>
-
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8"></div>
-        <div class="col-md-3 p-4">
+        <div class="col-md-4 px-5 mt-3">
             <input class="btn btn-outline-primary w-100"  type="submit"
-                value="Save" />
+                value="Save"/>
         </div>
     </div>
 </form>

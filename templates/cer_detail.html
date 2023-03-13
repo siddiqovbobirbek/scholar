@@ -18,6 +18,10 @@
     {% endif %}
    
     <meta name="Title" content="{{ certificate.cer_name }}">
+    <meta name="Identifier.pageNumber" content="{{ certificate.application_number }}">
+    <meta name="citation_date" content="{{ certificate.dgunomer }}">
+    <meta name="citation_date" content="{{ certificate.date }}">
+
 
     <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -45,8 +49,6 @@
                     <ul class=" mt-3 navbar-nav me-auto mb-2 mb-lg-0 gap-3">
                         <li class="nav-item"><a href="{% url 'myApp:home' %}"
                                 class="nav-link hover link-dark px-2 active" aria-current="page">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link hover active link-dark px-2">Features</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link hover active link-dark px-2">Pricing</a></li>
                         <li class="nav-item"><a href="{% url 'myApp:faq' %}"
                                 class="nav-link hover link-dark active px-2">FAQs</a>
                         </li>
@@ -76,26 +78,14 @@
                             <p class="h6">{{ cer_muallif|linebreaksbr }}</p>
 
                             <p class="mt-5">
-                                <span class="h6">Keywords:</span>
-                                Ключевые слова – компьютерная зрения, искусственный интеллект, идентификация, номер,
-                                знак,
-                                сегментация.
+                                This library was created to support young scientists and applicants.
+                                In this library, you can publish your articles, books, manuals, guidelines,
+                                certificates for computer programs, abstracts and conference materials. <br>
+                                In our library, your publications are indexed in Google Scolar. In the future,
+                                we are already working to ensure that the publications of our users are indexed
+                                in other indexing databases <br>
+                                This library was created with the support of Parallax IT Club LLC and the MITA team
                             </p>
-
-                            <p class="h5">
-                                Abstract
-                            </p>
-                            <p class="mt-3">
-                                Аннотация – В данной статье рассмотрено разработка программного средства для
-                                идентификации
-                                номерных знаков
-                                транспортных средств на основе методов компьютерного зрения. Автоматическое
-                                распознавание
-                                номерных <br>
-                                знаков (АРНЗ) играет важную роль в интеллектуальных транспортных системах, которые не
-                                только
-                                экономят
-                                труд, но и повышают эффективность.</p>
                         </div>
                         <div class="col-xl-4">
                             <a href="#">
@@ -115,9 +105,9 @@
                             <hr>
                             <p class="text-secondary">How to Cite <br> <span class="text-dark">
                                     {{ certificate.cer_muallif }}.
-                                    {{ certificate.cer_name }}. {{ certificate.date }}.
+                                    <strong>{{ certificate.cer_name }}</strong>. {{ certificate.application_number }}. 
                                     Library Of Young Scientists (LIBYS),
-                                    Retrieved from http://www.newjournal.org/index.php/new/article/view/595
+                                    Retrieved from <a href="https://www.newscientistlibys.uz/detail/cer/{{ certificate.id}}/">https://www.newscientistlibys.uz/detail/cer/{{ certificate.id}}/</a>
                                 </span></p>
                             <hr>
                         </div>
@@ -135,7 +125,7 @@
                 </p>
                 <p class="h6">
                     <img src="{% static 'assets/img/location.png' %}" alt width="25">
-                    <strong> Respublic of Uzbekistan, Tashkent, st. Amir Temur, 10 </strong>
+                    <strong> Respublic of Uzbekistan, Tashkent, st. Amir Temur, 108 </strong>
                 </p>
                 <hr>
                 <p class="h6">

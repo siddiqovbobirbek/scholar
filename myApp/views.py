@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, Http404
+from django.shortcuts import get_object_or_404, render, redirect, Http404
+from django.urls import reverse
 from django.views.generic import TemplateView
 from myApp.models import  Dgubaza, Dissertationbaza, Maqolabaza, Bookbaza, FAQ
 from .forms import (
@@ -26,17 +27,21 @@ def home(request):
 
 class DGUView(TemplateView): 
     template_name = "upload_dgu.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        get_files = Dgubaza.objects.all()
-        print("Files", get_files)
-        context = {'form':DgubazaForm, 'get_files':get_files}
+    def get_context_data(self, certificate_id, **kwargs):
+        certificate = Certificate.objects.get(pk=certificate_id)
+        dgu_files = Dgubaza.objects.filter(dgu_name=certificate)
+        print("Files", dgu_files)
+        context = {'form':DgubazaForm, 'dgu_files':dgu_files}
         return context
 
-    def post(self, request, **kwargs): 
+    def post(self, request, **kwargs):
+        dgu_name = get_object_or_404(Certificate, pk=kwargs.get('certificate_id'))
+        if not dgu_name:
+            print("Maqola topilmadi")
+            raise Http404("Maqola topilmadi")
         context = {}
         if request.method == 'POST':
-            form = DgubazaForm(request.POST, request.FILES, dgu_name = request.POST.get('dgu_name'))    
+            form = DgubazaForm(request.POST, request.FILES, dgu_name = dgu_name)    
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
@@ -51,17 +56,18 @@ class DGUView(TemplateView):
 
 class DissertationView(TemplateView): 
     template_name = "upload_disser.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        get_files = Dissertationbaza.objects.all()
-        print("Files", get_files)
-        context = {'form':DissertationbazaForm, 'get_files':get_files}
+    def get_context_data(self, dissertation_id, **kwargs):
+        disser = Dissertation.objects.get(pk=dissertation_id)
+        disser_files = Dissertationbaza.objects.filter(disser_name=disser)
+        print("Files", disser_files)
+        context = {'form':DissertationbazaForm, 'disser_files':disser_files}
         return context
 
     def post(self, request, **kwargs): 
+        disser_name = get_object_or_404(Dissertation, pk=kwargs.get('dissertation_id'))
         context = {}
         if request.method == 'POST':
-            form = DissertationbazaForm(request.POST, request.FILES, disser_name = request.POST.get('disser_name'))
+            form = DissertationbazaForm(request.POST, request.FILES, disser_name = disser_name)
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
@@ -76,17 +82,18 @@ class DissertationView(TemplateView):
 
 class BookView(TemplateView): 
     template_name = "upload_book.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        get_files = Bookbaza.objects.all()
-        print("Files", get_files)
-        context = {'form':BookbazaForm, 'get_files':get_files}
+    def get_context_data(self, book_id, **kwargs):
+        book = Book.objects.get(pk=book_id)
+        book_files = Bookbaza.objects.filter(kitob_name=book)
+        print("Files", book_files)
+        context = {'form':BookbazaForm, 'book_files':book_files}
         return context
 
     def post(self, request, **kwargs): 
+        kitob_name = get_object_or_404(Book, pk=kwargs.get('book_id'))
         context = {}
         if request.method == 'POST':
-            form = BookbazaForm(request.POST, request.FILES, kitob_name = request.POST.get('kitob_name')) 
+            form = BookbazaForm(request.POST, request.FILES, kitob_name = kitob_name) 
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
@@ -103,17 +110,18 @@ class BookView(TemplateView):
 
 class MaqolaView(TemplateView): 
     template_name = "upload_maqola.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        maqola_files = Maqolabaza.objects.all()
+    def get_context_data(self, maqola_id, **kwargs):
+        article = Article.objects.get(pk=maqola_id)
+        maqola_files = Maqolabaza.objects.filter(kitob_name=article)
         print("Files", maqola_files)
-        context = {'form':MaqolabazaForm, 'get_files':maqola_files}
+        context = {'form':MaqolabazaForm, 'maqola_files':maqola_files}
         return context
 
     def post(self, request, **kwargs): 
+        maqola_name = get_object_or_404(Article, pk=kwargs.get('maqola_id'))
         context = {}
         if request.method == 'POST':
-            form = MaqolabazaForm(request.POST, request.FILES, maqola_name = request.POST.get('maqola_name'))
+            form = MaqolabazaForm(request.POST, request.FILES, maqola_name = maqola_name)
             if form.is_valid():
                 form.save()
                 return redirect('myApp:home')
@@ -157,7 +165,8 @@ def book(request):
                 pages=pages, book_nashr_sanasi=book_nashr_sanasi, volume=volume
             )
             print("Kitob: ", book)
-        return redirect('myApp:upload_book')    
+            url = reverse('myApp:upload_book', kwargs={'book_id': book.pk} )
+        return redirect(url)      
 
     context = {
         'book':book
@@ -181,7 +190,8 @@ def dgu(request):
                 date=date, dgunomer=dgunomer, application_number=application_number
             )
             print("Sertifikat: ", certificate)
-        return redirect('myApp:upload_dgu')    
+            url = reverse('myApp:upload_dgu', kwargs={'certificate_id': certificate.pk} )
+        return redirect(url)    
         
     context = {
         'certificate': certificate
@@ -204,7 +214,8 @@ def dissertation(request):
                 dis_nashr_sanasi=dis_nashr_sanasi, institut=institut
             )
             print("Dissertation: ", dissertation)
-        return redirect('myApp:upload_disser')
+            url = reverse('myApp:upload_disser', kwargs={'dissertation_id': dissertation.pk} )
+        return redirect(url) 
 
     context = {
         'dissertation': dissertation
@@ -231,7 +242,8 @@ def maqola(request):
                 volum=volum, issue=issue, sahifalar=sahifalar
             )
             print("Maqola: ", maqola)
-        return redirect('myApp:upload_maqola')
+            url = reverse('myApp:upload_maqola', kwargs={'maqola_id': maqola.pk} )
+        return redirect(url) 
         
     context = {
         'maqola': maqola
@@ -289,9 +301,8 @@ def book_detail(request, pk):
     except Book.DoesNotExist:
         raise Http404("Bunday kitob mavjud emas")
     
-    book_files = Bookbaza.objects.prefetch_related('kitob_name').all()
-    print("Book", request.POST.get('kitob_name'))
-    
+    book_files = Bookbaza.objects.filter(kitob_name=book).prefetch_related('kitob_name').all()
+        
     context = {
         'book': book,
         'book_files': book_files,
@@ -313,8 +324,8 @@ def cer_detail(request, pk):
     except Certificate.DoesNotExist:
         raise Http404("Bunday dasturiy guvohnoma mavjud emas")
     
-    dgu_files = Dgubaza.objects.prefetch_related('dgu_name').all()
-    print("User", request.POST.get('dgu_name'))
+    dgu_files = Dgubaza.objects.filter(dgu_name=certificate).prefetch_related('dgu_name').all()
+    # print("User", request.POST.get('dgu_name'))
     
     context = {
         'certificate': certificate,
@@ -336,8 +347,7 @@ def artic_detail(request, pk):
     except Article.DoesNotExist:
         raise Http404("Bunday maqola mavjud emas")
     
-    maqola_files = Maqolabaza.objects.prefetch_related('maqola_name').all()
-    print("Article", request.POST.get('maqola_name'))
+    maqola_files = Maqolabaza.objects.filter(maqola_name=article).prefetch_related('maqola_name').all()
     
     context = {
         'article': article,
@@ -363,8 +373,7 @@ def diss_detail(request, pk):
     except Dissertation.DoesNotExist:
         raise Http404("Bunday dissertatsiya mavjud emas")
     
-    disser_files = Dissertationbaza.objects.prefetch_related('disser_name').all()
-    print("User", request.POST.get('disser_name'))
+    disser_files = Dissertationbaza.objects.filter(disser_name=dissertation).prefetch_related('disser_name').all()
     
     context = {
         'dissertation': dissertation,
