@@ -27,9 +27,9 @@ def home(request):
 
 class DGUView(TemplateView): 
     template_name = "upload_dgu.html"
-    def get_context_data(self, certificate_id, **kwargs):
-        certificate = Certificate.objects.get(pk=certificate_id)
-        dgu_files = Dgubaza.objects.filter(dgu_name=certificate)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        dgu_files = Dgubaza.objects.all()
         print("Files", dgu_files)
         context = {'form':DgubazaForm, 'dgu_files':dgu_files}
         return context
@@ -56,9 +56,9 @@ class DGUView(TemplateView):
 
 class DissertationView(TemplateView): 
     template_name = "upload_disser.html"
-    def get_context_data(self, dissertation_id, **kwargs):
-        disser = Dissertation.objects.get(pk=dissertation_id)
-        disser_files = Dissertationbaza.objects.filter(disser_name=disser)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        disser_files = Dissertationbaza.objects.all()
         print("Files", disser_files)
         context = {'form':DissertationbazaForm, 'disser_files':disser_files}
         return context
@@ -82,9 +82,9 @@ class DissertationView(TemplateView):
 
 class BookView(TemplateView): 
     template_name = "upload_book.html"
-    def get_context_data(self, book_id, **kwargs):
-        book = Book.objects.get(pk=book_id)
-        book_files = Bookbaza.objects.filter(kitob_name=book)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        book_files = Bookbaza.objects.all()
         print("Files", book_files)
         context = {'form':BookbazaForm, 'book_files':book_files}
         return context
@@ -110,9 +110,9 @@ class BookView(TemplateView):
 
 class MaqolaView(TemplateView): 
     template_name = "upload_maqola.html"
-    def get_context_data(self, maqola_id, **kwargs):
-        article = Article.objects.get(pk=maqola_id)
-        maqola_files = Maqolabaza.objects.filter(maqola_name=article)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        maqola_files = Maqolabaza.objects.all()
         print("Files", maqola_files)
         context = {'form':MaqolabazaForm, 'maqola_files':maqola_files}
         return context
@@ -132,15 +132,6 @@ class MaqolaView(TemplateView):
             context['form'] = form
         return redirect('myApp:home')
 
-
-        
-# def show_files(request):
-#         get_files = FileHandler.objects.prefetch_related('user').last()
-#         first_file_user = get_files.first()
-#         print("First", first_file_user.user)
-#         print("Files", get_files)
-#         context = {'get_files':get_files}
-#         return render(request, "files.html", context)
 
 
 
