@@ -103,10 +103,13 @@
                             </a>
                             <hr>
 
-                            
-                            <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                <a href="{{ maqola_files.file_upload.url }}" download>Download</a>
-                            </li>
+                            {% if maqola_files %}
+                                {% for item in maqola_files %}
+                                    <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                        <a href="{{ item.file_upload.url }}" download>Download</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
                                 
                             <hr>
                             <p class="text-secondary">Published <br> <span class="text-dark">{{ article.maq_nashr_sanasi }}</span></p>
