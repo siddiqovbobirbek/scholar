@@ -112,7 +112,7 @@ class MaqolaView(TemplateView):
     template_name = "upload_maqola.html"
     def get_context_data(self, maqola_id, **kwargs):
         article = Article.objects.get(pk=maqola_id)
-        maqola_files = Maqolabaza.objects.filter(kitob_name=article)
+        maqola_files = Maqolabaza.objects.filter(maqola_name=article)
         print("Files", maqola_files)
         context = {'form':MaqolabazaForm, 'maqola_files':maqola_files}
         return context
