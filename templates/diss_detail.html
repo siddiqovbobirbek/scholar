@@ -20,11 +20,10 @@
     <meta name="citation_date" content="{{ dissertation.dis_nashr_sanasi }}">
     <meta name="citation_institut" content="{{ dissertation.institut }}">
 
-    <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"
-    id="font-awesome-css">
-
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
 </head>
 
 <body>
@@ -32,11 +31,56 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-primary d-block">
             <div class="container container-top">
                 <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
-                <ul class="navbar-nav   mb-2 mb-lg-0 d-flex justify-content-between hr">
+                <ul class="mb-2 mb-lg-0 d-flex justify-content-between">
+                    <div class="xl">
+                        {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                {{ user.username }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'index' %}">Submission</a></li>
+                                <li><a class="dropdown-item" href="{% url 'profile_update' %}">View Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <ul class="nav gap-3">
+                            <li class="nav-item"><a class="hover nav-link link-dark"
+                                    href="{% url 'register' %}">Register</a>
+                            </li>
+                            <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'login' %}">Login</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </div>
                 </ul>
             </div>
             <div class="container">
-                <a class="navbar-brand" href="#"></a>
+                <div class="sm">
+                    {% if user.is_authenticated %}
+                    <div class="dropdown  navbar-brand ms-2 p-0 ">
+                        <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'index' %}">Submission</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile_update' %}">View Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <ul class="nav gap-3">
+                        <li class="nav-item"><a class="hover nav-link link-dark"
+                                href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +112,7 @@
             <div class="row">
                 <div class="col-xl-1"></div>
                 <div class="col-xl-12  py-3">
-                    <p class=" text-center px-4 h4"> <strong>{{ dissertation.dis_name }}</strong></p>
+                    <p class="mt-3 text-center px-4 h4"> <strong>{{ dissertation.dis_name }}</strong></p>
                     <hr>
                     <div class="row px-4">
                         <div class="col-xl-8 border-end">
@@ -106,7 +150,7 @@
                                     <strong>{{ dissertation.dis_name }}</strong>. {{ dissertation.dis_nashr_sanasi }}.
                                     {{ dissertation.institut }}.
                                     Library Of Young Scientists (LIBYS),
-                                    Retrieved from <a href="https://www.newscientistlibys.uz/detail/diss/{{ dissertation.id}}/">https://www.newscientistlibys.uz/detail/diss/{{ dissertation.id}}/</a>
+                                    Retrieved from <a href="https://newscientistlibys.uz/detail/diss/{{ dissertation.id}}/">https://newscientistlibys.uz/detail/diss/{{ dissertation.id}}/</a>
                                 </span></p>
                             <hr>
                         </div>
@@ -148,5 +192,9 @@
         </div>
     </div>
     <!-- END FOOTER -->
+    
+    <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </body>
 </html>
