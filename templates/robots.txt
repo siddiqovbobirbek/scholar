@@ -1,7 +1,7 @@
 User-Agent: *
 Allow: /
 Disallow: /admin/
-SiteMap: http://www.https://www.newscientistlibys.uz/sitemap.xml
+SiteMap: http://www.https://newscientistlibys.uz/sitemap.xml
 
 User-agent: Googlebot
 Disallow: /admin/
