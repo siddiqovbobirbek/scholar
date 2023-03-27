@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect, Http404
+from django.shortcuts import get_object_or_404, render, redirect, Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 from myApp.models import  Dgubaza, Dissertationbaza, Maqolabaza, Bookbaza, FAQ
@@ -44,13 +44,14 @@ class DGUView(TemplateView):
             form = DgubazaForm(request.POST, request.FILES, dgu_name = dgu_name)    
             if form.is_valid():
                 form.save()
-                return redirect('myApp:home')
+                redirect_url = reverse("myApp:cer_detail", args=[dgu_name.pk])
+                return HttpResponseRedirect(redirect_url)
             else:
                 context['form'] = form
         else:
             form = DgubazaForm(dgu_name = request.dgu_name)
             context['form'] = form
-        return redirect('myApp:home')
+        return redirect("myApp:home")
 
 
 
@@ -70,7 +71,8 @@ class DissertationView(TemplateView):
             form = DissertationbazaForm(request.POST, request.FILES, disser_name = disser_name)
             if form.is_valid():
                 form.save()
-                return redirect('myApp:home')
+                redirect_url = reverse("myApp:diss_detail", args=[disser_name.pk])
+                return HttpResponseRedirect(redirect_url)
             else:
                 context['form'] = form
         else:
@@ -96,7 +98,8 @@ class BookView(TemplateView):
             form = BookbazaForm(request.POST, request.FILES, kitob_name = kitob_name) 
             if form.is_valid():
                 form.save()
-                return redirect('myApp:home')
+                redirect_url = reverse("myApp:book_detail", args=[kitob_name.pk])
+                return HttpResponseRedirect(redirect_url)
             else:
                 context['form'] = form
         else:
@@ -124,7 +127,8 @@ class MaqolaView(TemplateView):
             form = MaqolabazaForm(request.POST, request.FILES, maqola_name = maqola_name)
             if form.is_valid():
                 form.save()
-                return redirect('myApp:home')
+                redirect_url = reverse("myApp:artic_detail", args=[maqola_name.pk])
+                return HttpResponseRedirect(redirect_url)
             else:
                 context['form'] = form
         else:
