@@ -287,7 +287,6 @@ def faq_view(request):
 
 
 
-@login_required
 def book_detail(request, pk):
     book = None
     try:
@@ -311,7 +310,6 @@ def book_detail(request, pk):
 
 
 
-@login_required
 def cer_detail(request, pk):
     try:
         certificate = Certificate.objects.get(pk=pk)
@@ -334,7 +332,6 @@ def cer_detail(request, pk):
 
 
 
-@login_required
 def artic_detail(request, pk):
     try:
         article = Article.objects.get(pk=pk)
@@ -360,7 +357,6 @@ def artic_detail(request, pk):
 
 
 
-@login_required
 def diss_detail(request, pk):
     try:
         dissertation = Dissertation.objects.get(pk=pk)
