@@ -15,7 +15,7 @@
 .hover{
     transition: 0.3s;
     color: black;
-    border-bottom: 1px solid #0d6efd;
+    /* border-bottom: 1px solid #0d6efd; */
 }
 .hover:after {
     display:block;
@@ -28,8 +28,13 @@
     transform: scaleX(1); 
     
 }
+
+.navbar {
+    background-color: #0AA1DD;
+}
+
 .footer {
-    background-color: rgb(135, 218, 193);
+    background-color: #79DAE8;
 }
 
 .sm{
