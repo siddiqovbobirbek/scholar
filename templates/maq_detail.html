@@ -12,6 +12,8 @@
     <meta name="citation_library_title" content="Library of Young Scientists">
     <meta name="citation_library_abbrev" content="LIBYS">
     <meta name="citation_journal_title" content="Library of Young Scientists">
+    <meta name="citation_abstract_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
 
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
@@ -35,6 +37,20 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+
+    {% if maq_mualliflar %}
+        {% for muallif in maq_mualliflar %}
+            <meta name="DC.creator" content="{{muallif}}">
+        {% endfor %}
+    {% endif %}
+    <meta name="DC.title" content="{{ article.maq_name }}">
+    <meta name="DC.source" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.date" content="{{ article.maq_nashr_sanasi }}">
+    <meta name="DC.identifier" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
+    <meta name="DC.rights" content="https://creativecommons.org/licenses/by-nc-nd/4.0">
+    <meta name="DC.Source.Issue" content="{{ article.issue }}">
+    <meta name="DC.Source.Volume" content="{{ article.volum }}">
 
 </head>
 
