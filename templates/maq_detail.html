@@ -8,37 +8,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ article.maq_name }}</title>
+    <link rel="icon" href="">
+    <meta name="generator" content="Open Journal System 3.3.0.13">
+    <meta name="gs_meta_revision" content="1.1">
     <meta name="Type.ArticleType" content="Articles">
     <meta name="citation_library_title" content="Library of Young Scientists">
     <meta name="citation_library_abbrev" content="LIBYS">
     <meta name="citation_journal_title" content="Library of Young Scientists">
+    <meta name="citation_title" content="{{ article.maq_name }}">
     <meta name="citation_abstract_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
-    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
-
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
             <meta name="citation_author" content="{{muallif}}">
         {% endfor %}
     {% endif %}
-
-    <meta name="citation_date" content="{{ article.maq_nashr_sanasi }}">
+    <meta name="citation_publication_date" scheme="ISO8601" content="{{ article.maq_nashr_sanasi }}">
     <meta name="citation_volume" content="{{ article.volum }}">
     <meta name="citation_issue" content="{{ article.issue }}">
-
     {% if maq_sahifa %}
         {% for page in maq_sahifa %}
             <meta name="citation_firstpage" content="{{ page }}">
         {% endfor %}
     {% endif %}
-
     <meta name="Title" content="{{ article.maq_name }}">
     <meta name="Identifier.pageNumber" content="{{ article.sahifalar }}">
-
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
-
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
             <meta name="DC.creator" content="{{muallif}}">
