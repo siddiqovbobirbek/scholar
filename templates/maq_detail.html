@@ -17,11 +17,13 @@
     <meta name="citation_title" content="{{ article.maq_name }}">
     <meta name="citation_abstract_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
     <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
+
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
             <meta name="citation_author" content="{{muallif}}">
         {% endfor %}
     {% endif %}
+
     <meta name="citation_publication_date" scheme="ISO8601" content="{{ article.maq_nashr_sanasi }}">
     <meta name="citation_volume" content="{{ article.volum }}">
     <meta name="citation_issue" content="{{ article.issue }}">
@@ -53,7 +55,7 @@
 
 <body>
     <div class="fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary d-block">
+        <nav class="navbar navbar-expand-lg navbar-light d-block">
             <div class="container container-top">
                 <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
                 <ul class="mb-2 mb-lg-0 d-flex justify-content-between">
