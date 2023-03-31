@@ -301,9 +301,7 @@ def book_detail(request, pk):
         'book': book,
         'book_files': book_files,
         'muallif': book.book_muallif.replace(',', '\n'),
-        'mualliflar': book.book_muallif.split(','),
-        'muallif': book.book_muallif.replace(';', '\n'),
-        'mualliflar': book.book_muallif.split(';')
+        'mualliflar': book.book_muallif.split(',')
         
     }   
     
@@ -327,8 +325,6 @@ def cer_detail(request, pk):
         'dgu_files':dgu_files,
         'cer_muallif': certificate.cer_muallif.replace(',', '\n'),
         'cer_mualliflar': certificate.cer_muallif.split(','),
-        'cer_muallif': certificate.cer_muallif.replace(';', '\n'),
-        'cer_mualliflar': certificate.cer_muallif.split(';')
     }
     
     return render(request, "cer_detail.html", context)
@@ -350,8 +346,6 @@ def artic_detail(request, pk):
         'maqola_files': maqola_files,
         'maq_muallif': article.maq_muallif.replace(',', '\n'),
         'maq_mualliflar': article.maq_muallif.split(','),
-        'maq_muallif': article.maq_muallif.replace(';', '\n'),
-        'maq_mualliflar': article.maq_muallif.split(';'),
         'volum': article.volum,
         'issue': article.issue,
         'journal_name': article.journal_name,
@@ -377,8 +371,6 @@ def diss_detail(request, pk):
         'disser_files':disser_files,
         'dis_muallif': dissertation.dis_muallif.replace(',', '\n'),
         'dis_mualliflar': dissertation.dis_muallif.split(','),
-        'dis_muallif': dissertation.dis_muallif.replace(';', '\n'),
-        'dis_mualliflar': dissertation.dis_muallif.split(';')
     }
     
     return render(request, "diss_detail.html", context)
