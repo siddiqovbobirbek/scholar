@@ -300,7 +300,7 @@ def book_detail(request, pk):
     context = {
         'book': book,
         'book_files': book_files,
-        'muallif': book.book_muallif.replace(',', ';', '\n'),
+        'muallif': book.book_muallif.replace(',', '\n'),
         'mualliflar': book.book_muallif.split(',')
         
     }   
@@ -323,7 +323,7 @@ def cer_detail(request, pk):
     context = {
         'certificate': certificate,
         'dgu_files':dgu_files,
-        'cer_muallif': certificate.cer_muallif.replace(',', ';', '\n'),
+        'cer_muallif': certificate.cer_muallif.replace(',', '\n'),
         'cer_mualliflar': certificate.cer_muallif.split(',')
     }
     
@@ -344,7 +344,7 @@ def artic_detail(request, pk):
     context = {
         'article': article,
         'maqola_files': maqola_files,
-        'maq_muallif': article.maq_muallif.replace(',', ';', '\n'),
+        'maq_muallif': article.maq_muallif.replace(',', '\n'),
         'maq_mualliflar': article.maq_muallif.split(','),
         'volum': article.volum,
         'issue': article.issue,
@@ -369,7 +369,7 @@ def diss_detail(request, pk):
     context = {
         'dissertation': dissertation,
         'disser_files':disser_files,
-        'dis_muallif': dissertation.dis_muallif.replace(',', ';', '\n'),
+        'dis_muallif': dissertation.dis_muallif.replace(',', '\n'),
         'dis_mualliflar': dissertation.dis_muallif.split(',')
     }
     
