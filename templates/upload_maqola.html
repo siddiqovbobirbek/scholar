@@ -14,14 +14,26 @@
 
 <body> 
     <div class="container mt-5 px-5">
-        <div class="text-center h4">Upload</div>
+        <div class="text-center h4">Article</div>
     <form method="POST" enctype="multipart/form-data" class="container">
         {% csrf_token %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 pb-1" id="pdfFile" name="pdfFile" accept=".pdf">
+                    {{ form.file_upload|add_class:"form-control" }}
+                </div>
+            </div>
 
-        <div class="col-md-4 mb-3 pb-1" id="pdfFile" name="pdfFile" accept=".pdf">
-            {{ form.file_upload|add_class:"form-control" }}
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8"></div>
+                <div class="col-xl-3 mb-4">
+                    <input class="btn btn-outline-primary w-100"  type="submit"
+                    value="Save"/>
+                </div>
+            </div>
+        </div>
 
     </form>
     

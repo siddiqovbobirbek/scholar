@@ -33,8 +33,8 @@ class CertificateAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ("id", "maq_name", "maq_muallif", "journal_name", "maq_nashr_sanasi")
-    list_display_links = ("maq_muallif", "journal_name")
+    list_display = ("id", "maq_name", "maq_muallif", "journal_name", "maq_nashr_sanasi", "keywords", "abstract", "references")
+    list_display_links = ("maq_name", "maq_muallif")
 
 
 @admin.register(Book)

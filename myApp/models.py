@@ -91,6 +91,9 @@ class Article(models.Model):
     volum = models.CharField(max_length=10, null=False, blank=True)
     issue = models.CharField(max_length=20, default='unknown')
     sahifalar = models.CharField(max_length=200, null=False)
+    keywords = models.CharField(max_length=255, null=True, blank=True)
+    abstract = models.TextField(max_length=1000, null=True, blank=True)
+    references = models.TextField(max_length=3000, null=True, blank=True)
 
     def __str__(self):
         return self.maq_name

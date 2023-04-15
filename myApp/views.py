@@ -231,10 +231,14 @@ def maqola(request):
             volum = request.POST['volum']
             issue = request.POST['issue']
             sahifalar = request.POST['sahifalar']
+            key_words = request.POST['key_words']
+            abstract = request.POST['abstract']
+            references = request.POST['references']
             maqola = Article.objects.create(
                 maq_name=maq_name, maq_muallif=maq_muallif, 
                 journal_name=journal_name, maq_nashr_sanasi=maq_nashr_sanasi,
-                volum=volum, issue=issue, sahifalar=sahifalar
+                volum=volum, issue=issue, sahifalar=sahifalar, keywords=key_words,
+                abstract=abstract, references=references
             )
             print("Maqola: ", maqola)
             url = reverse('myApp:upload_maqola', kwargs={'maqola_id': maqola.pk} )

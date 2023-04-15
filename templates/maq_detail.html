@@ -11,22 +11,32 @@
     <meta name="generator" content="Open Journal System 3.3.0.13">
     <meta name="gs_meta_revision" content="1.1">
     <meta name="Type.ArticleType" content="Articles">
-    <meta name="citation_library_title" content="Library of Young Scientists">
-    <meta name="citation_library_abbrev" content="LIBYS">
     <meta name="citation_journal_title" content="Library of Young Scientists">
     <meta name="citation_title" content="{{ article.maq_name }}">
+    <meta name="citation_keywords" content="{{ article.keywords }}">
+    <meta name="citation_abstract" content="{{ article.abstract }}">
+    <meta name="citation_references" content="{{ article.references }}">
+    <meta name="citation_language" content="en">
+    <meta name="citation_issn" content="2666-0001">
     <meta name="citation_abstract_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
     <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
-
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
             <meta name="citation_author" content="{{muallif}}">
         {% endfor %}
     {% endif %}
-
     <meta name="citation_publication_date" scheme="ISO8601" content="{{ article.maq_nashr_sanasi }}">
     <meta name="citation_volume" content="{{ article.volum }}">
     <meta name="citation_issue" content="{{ article.issue }}">
+    <meta name="citation_firstpage" content="{{ article.sahifalar }}">
+    <meta name="citation_lastpage" content="{{ article.sahifalar }}">
+    <meta name="citation_journal_abbrev" content="LIBYS">
+    <meta name="citation_publisher" content="Library Of Young Scientists (LIBYS)">
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
+    <meta name="citation_fulltext_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
+    <meta name="citation_fulltext_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
+    <meta name="citation_language" content="en">
+    <meta name="citation_online_date" scheme="ISO8601" content="{{ article.maq_nashr_sanasi }}">
     {% if maq_sahifa %}
         {% for page in maq_sahifa %}
             <meta name="citation_firstpage" content="{{ page }}">
@@ -45,11 +55,29 @@
     {% endif %}
     <meta name="DC.title" content="{{ article.maq_name }}">
     <meta name="DC.source" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.date.accessioned" content="{{ article.maq_nashr_sanasi }}">
+    <meta name="DC.date.available" content="{{ article.maq_nashr_sanasi }}">
     <meta name="DC.date" content="{{ article.maq_nashr_sanasi }}">
     <meta name="DC.identifier" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
     <meta name="DC.rights" content="https://creativecommons.org/licenses/by-nc-nd/4.0">
     <meta name="DC.Source.Issue" content="{{ article.issue }}">
     <meta name="DC.Source.Volume" content="{{ article.volum }}">
+    <meta name="DC.Source.Page" content="{{ article.sahifalar }}">
+    <meta name="DC.Source.ISSN" content="2666-0001">
+    <meta name="DC.Source.EISSN" content="2666-0001">
+    <meta name="DC.Source.DOI" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
+    <meta name="DC.Source.Publisher" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.Source.PublicationDate" content="{{ article.maq_nashr_sanasi }}">
+    <meta name="DC.description" content="{{ article.abstract }}">
+    <meta name="DC.language" content="en">
+    <meta name="DC.publisher" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.subject" content="{{ article.keywords }}">
+    <meta name="DC.type" content="Text">
+    <meta name="DC.format" content="text/html">
+    <meta name="DC.coverage" content="Worldwide">
+    <meta name="DC.coverage.spatial" content="Uzbekistan">
+    <meta name="DC.coverage.temporal" content="2021">
+    
 
 </head>
 
@@ -146,13 +174,11 @@
                             <p class="h6">{{ maq_muallif|linebreaksbr }}</p>
 
                             <p class="mt-5">
-                                This library was created to support young scientists and applicants.
-                                In this library, you can publish your articles, books, manuals, guidelines,
-                                certificates for computer programs, abstracts and conference materials. <br>
-                                In our library, your publications are indexed in Google Scolar. In the future,
-                                we are already working to ensure that the publications of our users are indexed
-                                in other indexing databases <br>
-                                This library was created with the support of Parallax IT Club LLC and the MITA team
+                                <strong>Abstract: </strong>
+                                {{ article.abstract }} <br>
+                                <strong>Keywords: </strong>
+                                {{ article.keywords }} <br>
+
                             </p>
                         </div>
                         <div class="col-xl-4">
@@ -184,6 +210,9 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <strong>References: </strong>
+                                {{ article.references }} <br>
         </section>
     </form>
     <!-- START FOOTER -->
