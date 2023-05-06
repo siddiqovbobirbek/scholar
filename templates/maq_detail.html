@@ -18,14 +18,13 @@
     <meta name="citation_references" content="{{ article.references }}">
     <meta name="citation_language" content="en">
     <meta name="citation_issn" content="2666-0001">
-    <meta name="citation_abstract_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
     <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
             <meta name="citation_author" content="{{muallif}}">
         {% endfor %}
     {% endif %}
-    <meta name="citation_publication_date" scheme="ISO8601" content="{{ article.maq_nashr_sanasi }}">
+    <meta name="citation_date" content="{{ article.maq_nashr_sanasi }}">
     <meta name="citation_volume" content="{{ article.volum }}">
     <meta name="citation_issue" content="{{ article.issue }}">
     <meta name="citation_firstpage" content="{{ article.sahifalar }}">

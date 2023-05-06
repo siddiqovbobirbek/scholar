@@ -46,7 +46,7 @@ class RegisterForm(CustomUserCreationForm):
         self.fields["password1"].widget.attrs.update({
             'required':'',
             'name':'password1',
-            'id':'password1',
+            'id':'id_password1',
             'type':'password',
             'style':'font-size:15px',
             'class':'form-control form-control-md',
@@ -56,7 +56,7 @@ class RegisterForm(CustomUserCreationForm):
         self.fields["password2"].widget.attrs.update({
             'required':'',
             'name':'password2',
-            'id':'password2',
+            'id':'id_password2',
             'type':'password',
             'style':'font-size:15px',
             'class':'form-control form-control-md',
