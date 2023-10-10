@@ -382,19 +382,26 @@ def diss_detail(request, pk):
 
 
 
-
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 
 # Barcha arxiv ma'lumotlarni ko'rish uchun   
 def archives_list(request):
-    archives = Article.objects.all()
-    return render(request, 'archives_list.html', {'archives': archives})
+    maqola_files = Maqolabaza.objects.select_related('maqola_name').all()
+    archives = Article.objects.prefetch_related('maqolabaza_set').all()
+    print(archives[0], type(archives[0]))
+    
+    
+    
+    context = {
+        'maqola_files': maqola_files,
+        'archives': archives,
+    }
+    return render(request, 'archives_list.html', context=context)
 
 # Ma'lum bir arxivni ko'rish uchun
 def archive_detail(request, pk):
-    archive = Article.objects.get(pk=pk)
+    archive = get_object_or_404(Article, pk=pk)
     maqola_files = Maqolabaza.objects.filter(maqola_name=archive).prefetch_related('maqola_name').all()
     context = {
         'maqola_files': maqola_files,

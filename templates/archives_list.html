@@ -11,38 +11,45 @@
 
 {% block content %}
 
-{% comment %} <body>
-    <h4>Arxiv Maqolalari Ro'yxati</h4>
-    <ul>
-        {% for archive in archives %}
-            <li><a href="{% url 'archive_detail' archive.pk %}">{{ archive.maq_name }}</a></li>
-        {% endfor %}
-    </ul>
-</body> {% endcomment %}
-
 <body>
-    <div class="row">
-        <h4>Maqolalar Arxiv</h4>
-    </div>
-    <ul>
-        {% for archive in archives %}
-        <hr>
-            <div class="section pt-4">
-                <div class="row">
-                    <a href="#"><h5>{{ archive.maq_name }}</h5></a>
-                    <p>{{ archive.maq_muallif }}</p>
+    <h6 class="mt-4">(2023):LIBYS</h6>
+            <div class="row">
+                <div class="col-xl-3">
+                    <img class="w-100" src="{% static 'assets/img/libys.jpg' %}" alt="404">
+                </div>
+                <div class="col-xl-9">
+                    <p>
+                        The main purpose of the library is to inform the scientific community about the problems of
+                        improving research and innovation in this field, to cover the scientific work of experts and
+                        scientists in the field through the Internet, to discuss current scientific issues with
+                        young scientists around the world. <br>
+                        The main task of the library is to cover the achievements, problems and prospects, history
+                        and stages of development of education and information technology. The library contains the
+                        results of research in the following areas:
+                    </p>
+                    <p class="mt-xl-4">Full coverage of these topics will be provided in scholarly articles,
+                        commentaries, and short commentaries. The library provides a convenient platform for
+                        researchers, students, practitioners, and teachers to learn and contribute to the field.</p>
                 </div>
             </div>
-            
+    <ul>
+        {% for arxiv in archives %}
+            <hr>
+            <div class="section pt-4">
+                <div class="row">
+                    <a href="{% url 'myApp:archive_detail' arxiv.pk %}"><h5>{{ arxiv.maq_name }}</h5></a>
+                    <p>{{ arxiv.maq_muallif }}</p>
+                </div>
+            </div>
 
-            {% if maqola_files %}
-                {% for item in maqola_files %}
-                    <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                        <a href="{{ item.file_upload.url }}" download>Download</a>
-                    </li>
-                {% endfor %}
-            {% endif %}
+            <li class="btn btn-outline-secondary my-xl-4 ">
+                <i class='bx bxs-file-pdf'></i>
+                <a href="{{ arxiv.file_upload.url }}" download>PDF</a>
+            </li>
+            
         {% endfor %}
+
+
     </ul>
 </body>
 

@@ -1,98 +1,257 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}
-    Archives
-{% endblock %}
-
-{% block links %}
-<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-{% endblock %}
-
-{% block content %}
-{% comment %} <head>
-    <title>Arxiv Maqolasi</title>
-</head>
-<body>
-    <h1>{{ archive.maq_name }}</h1>
-    <p><strong>Muallif:</strong> {{ archive.maq_muallif }}</p>
-    <p><strong>Nashr san'ati:</strong> {{ archive.maq_nashr_sanasi }}</p>
-    <p><strong>Jurnal nomi:</strong> {{ archive.journal_name }}</p>
-    <p><strong>Volume:</strong> {{ archive.volum }}</p>
-    <p><strong>Issue:</strong> {{ archive.issue }}</p>
-    <p><strong>Sahifalar:</strong> {{ archive.sahifalar }}</p>
-    <p><strong>Keywords:</strong> {{ archive.keywords }}</p>
-    <p><strong>Abstract:</strong> {{ archive.abstract }}</p>
-    <p><strong>References:</strong> {{ archive.references }}</p>
-</body> {% endcomment %}
-
-
-
-<!-- archive_detail.html -->
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
 {% load meta %}
 
 <head>
-    <!-- ... -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ archive.maq_name }}</title>
+    <meta name="generator" content="Open Journal System 3.3.0.13">
+    <meta name="gs_meta_revision" content="1.1">
+    <meta name="Type.ArticleType" content="Articles">
+    <meta name="citation_journal_title" content="Library of Young Scientists">
+    <meta name="citation_title" content="{{ archive.maq_name }}">
+    <meta name="citation_keywords" content="{{ archive.keywords }}">
+    <meta name="citation_abstract" content="{{ archive.abstract }}">
+    <meta name="citation_references" content="{{ archive.references }}">
+    <meta name="citation_language" content="en">
+    <meta name="citation_issn" content="2666-0001">
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ archive.pk}}/{{ archive.pk}}/">
+    {% if maq_mualliflar %}
+        {% for muallif in maq_mualliflar %}
+            <meta name="citation_author" content="{{muallif}}">
+        {% endfor %}
+    {% endif %}
+    <meta name="citation_date" content="{{ archive.maq_nashr_sanasi }}">
+    <meta name="citation_volume" content="{{ archive.volum }}">
+    <meta name="citation_issue" content="{{ archive.issue }}">
+    <meta name="citation_firstpage" content="{{ archive.sahifalar }}">
+    <meta name="citation_lastpage" content="{{ archive.sahifalar }}">
+    <meta name="citation_journal_abbrev" content="LIBYS">
+    <meta name="citation_publisher" content="Library Of Young Scientists (LIBYS)">
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ archive.pk}}/{{ archive.pk}}/">
+    <meta name="citation_fulltext_html_url" content="https://newscientistlibys.uz/detail/artic/{{ archive.pk}}/">
+    <meta name="citation_fulltext_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ archive.pk}}/{{ archive.pk}}/">
+    <meta name="citation_language" content="en">
+    <meta name="citation_online_date" scheme="ISO8601" content="{{ archive.maq_nashr_sanasi }}">
+    {% if maq_sahifa %}
+        {% for page in maq_sahifa %}
+            <meta name="citation_firstpage" content="{{ page }}">
+        {% endfor %}
+    {% endif %}
+    <meta name="Title" content="{{ archive.maq_name }}">
+    <meta name="Identifier.pageNumber" content="{{ archive.sahifalar }}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+    {% if maq_mualliflar %}
+        {% for muallif in maq_mualliflar %}
+            <meta name="DC.creator" content="{{muallif}}">
+        {% endfor %}
+    {% endif %}
+    <meta name="DC.title" content="{{ archive.maq_name }}">
+    <meta name="DC.source" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.date.accessioned" content="{{ archive.maq_nashr_sanasi }}">
+    <meta name="DC.date.available" content="{{ archive.maq_nashr_sanasi }}">
+    <meta name="DC.date" content="{{ archive.maq_nashr_sanasi }}">
+    <meta name="DC.identifier" content="https://newscientistlibys.uz/detail/artic/{{ archive.id}}/">
+    <meta name="DC.rights" content="https://creativecommons.org/licenses/by-nc-nd/4.0">
+    <meta name="DC.Source.Issue" content="{{ archive.issue }}">
+    <meta name="DC.Source.Volume" content="{{ archive.volum }}">
+    <meta name="DC.Source.Page" content="{{ archive.sahifalar }}">
+    <meta name="DC.Source.ISSN" content="2666-0001">
+    <meta name="DC.Source.EISSN" content="2666-0001">
+    <meta name="DC.Source.DOI" content="https://newscientistlibys.uz/detail/artic/{{ archive.id}}/">
+    <meta name="DC.Source.Publisher" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.Source.PublicationDate" content="{{ archive.maq_nashr_sanasi }}">
+    <meta name="DC.description" content="{{ archive.abstract }}">
+    <meta name="DC.language" content="en">
+    <meta name="DC.publisher" content="Library Of Young Scientists (LIBYS)">
+    <meta name="DC.subject" content="{{ archive.keywords }}">
+    <meta name="DC.type" content="Text">
+    <meta name="DC.format" content="text/html">
+    <meta name="DC.coverage" content="Worldwide">
+    <meta name="DC.coverage.spatial" content="Uzbekistan">
+    <meta name="DC.coverage.temporal" content="2021">
+
+
 </head>
 
 <body>
-    <!-- ... -->
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 py-3">
-                <!-- ... -->
-                <div class="row px-4">
-                    <div class="col-xl-8 border-end">
-                        <p class="h6">{{ maq_muallif|linebreaksbr }}</p>
-
-                        <p class="mt-5">
-                            <strong>Abstract: </strong>
-                            {{ article.abstract }} <br>
-                            <strong>Keywords: </strong>
-                            {{ article.keywords }} <br>
-
-                        </p>
-                    </div>
-                    <div class="col-xl-4">
-                        <a href="#">
-                            <img class="w-100" src="{% static '/assets/img/libys.jpg' %}" alt="404">
-                        </a>
-                        <hr>
-
-                        {% if maqola_files %}
-                            {% for item in maqola_files %}
-                                <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
-                                    <a href="{{ item.file_upload.url }}" download>Download</a>
-                                </li>
-                            {% endfor %}
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light d-block">
+            <div class="container container-top">
+                <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
+                <ul class="mb-2 mb-lg-0 d-flex justify-content-between">
+                    <div class="xl">
+                        {% if user.is_authenticated %}
+                        <div class="dropdown">
+                            <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                {{ user.username }}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'index' %}">Submission</a></li>
+                                <li><a class="dropdown-item" href="{% url 'profile_update' %}">View Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <ul class="nav gap-3">
+                            <li class="nav-item"><a class="hover nav-link link-dark"
+                                    href="{% url 'register' %}">Register</a>
+                            </li>
+                            <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'login' %}">Login</a>
+                            </li>
+                        </ul>
                         {% endif %}
+                    </div>
+                </ul>
+            </div>
+            <div class="container">
+                <div class="sm">
+                    {% if user.is_authenticated %}
+                    <div class="dropdown  navbar-brand ms-2 p-0 ">
+                        <button class="btn btn-white dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'index' %}">Submission</a></li>
+                            <li><a class="dropdown-item" href="{% url 'profile_update' %}">View Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <ul class="nav gap-3">
+                        <li class="nav-item"><a class="hover nav-link link-dark"
+                                href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item"><a class="hover nav-link link-dark" href="{% url 'login' %}">Login</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class=" mt-3 navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+                        <li class="nav-item"><a href="{% url 'myApp:home' %}"
+                                class="nav-link hover link-dark px-2 active" aria-current="page">Home</a>
+                        </li>
+                        <li><a href="{% url 'myApp:archives_list' %}"
+                            class="nav-link hover link-dark active px-2">Archive</a>
+                        </li>
+                        <li class="nav-item"><a href="{% url 'myApp:faq' %}"
+                                class="nav-link hover link-dark active px-2">FAQs</a>
+                        </li>
+                        <li class="nav-item"><a href="{% url 'myApp:editor' %}"
+                                class="nav-link hover link-dark active px-2">Editorial Team</a></li>
+                        <li class="nav-item"><a href="{% url 'myApp:about' %}"
+                                class="nav-link hover link-dark active px-2">About</a></li>
+                        <li class="respons">
 
-                        <hr>
-                        <p class="text-secondary">Published <br> <span class="text-dark">{{ article.maq_nashr_sanasi }}</span></p>
-                        <hr>
-                        <p class="text-secondary">How to Cite <br> <span class="text-dark">
-                                {{ article.maq_muallif }},
-                                <strong>{{ article.maq_name }} </strong>.
-                                Library Of Young Scientists (LIBYS),
-                                {{ article.sahifalar }}, {{ article.maq_nashr_sanasi }}.
-                                Retrieved from <a href="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">https://newscientistlibys.uz/detail/artic/{{ article.id}}/</a>
-                            </span></p>
-                        <hr>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    <form method="POST" class="">
+        {% csrf_token %}
+        <section class="container my-5 py-5 mt-5">
+            <div class="row">
+                <div class="col-xl-1"></div>
+                <div class="col-xl-12  py-3">
+                    <p class="mt-3 text-center px-4 h4"> <strong>{{ archive.maq_name }}</strong></p>
+                    <hr>
+                    <div class="row px-4">
+                        <div class="col-xl-8 border-end">
+                            <p class="h6">{{ maq_muallif|linebreaksbr }}</p>
+
+                            <p class="mt-5">
+                                <strong>Abstract: </strong>
+                                {{ archive.abstract }} <br>
+                                <strong>Keywords: </strong>
+                                {{ archive.keywords }} <br>
+
+                            </p>
+                        </div>
+                        <div class="col-xl-4">
+                            <a href="#">
+                                <img class="w-100" src="{% static '/assets/img/libys.jpg' %}" alt="404">
+                            </a>
+                            <hr>
+
+                            {% if maqola_files %}
+                                {% for item in maqola_files %}
+                                    <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                        <a href="{{ item.file_upload.url }}" download>Download</a>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                                
+                            <hr>
+                            <p class="text-secondary">Published <br> <span class="text-dark">{{ archive.maq_nashr_sanasi }}</span></p>
+                            <hr>
+                            <p class="text-secondary">How to Cite <br> <span class="text-dark">
+                                    {{ archive.maq_muallif }}, 
+                                    <strong>{{ archive.maq_name }} </strong>.
+                                    Library Of Young Scientists (LIBYS),
+                                    {{ archive.sahifalar }}, {{ archive.maq_nashr_sanasi }}. 
+                                    Retrieved from <a href="https://newscientistlibys.uz/archives/{{ archive.pk}}/">https://newscientistlibys.uz/archives/{{ archive.pk}}/</a>
+                                </span></p>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>
+            <hr>
+            <strong>References: </strong>
+                                {{ archive.references }} <br>
+        </section>
+    </form>
+    <!-- START FOOTER -->
+    <div class=" footer continaer-flud p-5 bottom-0 w-100">
+        <div class="row ">
+            <div class="col-md-9">
+                <p>
+                    <strong>CONTACT</strong>
+                </p>
+                <p class="h6">
+                    <img src="{% static 'assets/img/location.png' %}" alt width="25">
+                    <strong> Respublic of Uzbekistan, Tashkent, st. Amir Temur, 108 </strong>
+                </p>
+                <hr>
+                <p class="h6">
+                    <img src="{% static 'assets/img/phone.png' %}" alt width="25">
+                    <strong> (+998) 99-890-96-23 </strong>
+                </p>
+                <hr>
+                <p class="h6">
+                    <img src="{% static 'assets/img/mail.png' %}" alt width="25">
+                    <strong> info@newscientistlibys.uz </strong>
+                </p>
+                <hr>
+                <p class="h6">
+                    <strong> This work is licensed under a Creative Commons E'tirof 4.0 Xalqaro License. </strong>
+                </p>
+            </div>
+            <div class="col-md-3" role="complementary">
+                <img class="" src="{% static 'assets/img/Library.png' %}" style="border-radius: 50%; width: 230px; "
+                    alt="">
+            </div>
         </div>
-        <hr>
-        <strong>References: </strong>
-        {{ article.references }} <br>
     </div>
+    <!-- END FOOTER -->
+    
+    <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>
-{% endblock %}
-
-{% block scripts %}
-
-{% endblock %}
