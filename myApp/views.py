@@ -378,3 +378,59 @@ def diss_detail(request, pk):
     }
     
     return render(request, "diss_detail.html", context)
+
+
+
+
+
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
+
+# Barcha arxiv ma'lumotlarni ko'rish uchun   
+def archives_list(request):
+    archives = Article.objects.all()
+    return render(request, 'archives_list.html', {'archives': archives})
+
+# Ma'lum bir arxivni ko'rish uchun
+def archive_detail(request, pk):
+    archive = Article.objects.get(pk=pk)
+    maqola_files = Maqolabaza.objects.filter(maqola_name=archive).prefetch_related('maqola_name').all()
+    context = {
+        'maqola_files': maqola_files,
+        'archive': archive,
+    }
+    return render(request, 'archive_detail.html', context=context)
+
+# Yangi arxiv qo'shish
+def add_archive(request):
+    if request.method == 'POST':
+        # Arxiv qo'shish formasi bilan ma'lumotlarni olish
+        # Misol uchun: title = request.POST['title']
+        # Boshqa maydonlarni olishingiz kerak
+        # Arxiv qo'shish tugaganda arxiv ro'yxatga qaytarish
+        return redirect('archives_list')
+    else:
+        return render(request, 'add_archive.html')
+
+# Arxivni o'zgartirish
+def edit_archive(request, pk):
+    archive = get_object_or_404(Article, pk=pk)
+    if request.method == 'POST':
+        # Arxiv o'zgartirish formasi bilan ma'lumotlarni olish
+        # Ma'lumotlarni bazaga saqlash
+        # Arxiv o'zgartirish tugaganda arxivni qaytarish
+        return redirect('archive_detail', pk=archive.pk)
+    else:
+        return render(request, 'edit_archive.html', {'archive': archive})
+
+# Arxivni o'chirish
+def delete_archive(request, pk):
+    archive = get_object_or_404(Article, pk=pk)
+    if request.method == 'POST':
+        # Arxivni o'chirishni tasdiqlash
+        archive.delete()
+        return redirect('archives_list')
+    else:
+        return render(request, 'delete_archive.html', {'archive': archive})
+

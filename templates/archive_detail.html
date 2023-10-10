@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Archives
+{% endblock %}
+
+{% block links %}
+<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+{% endblock %}
+
+{% block content %}
+{% comment %} <head>
+    <title>Arxiv Maqolasi</title>
+</head>
+<body>
+    <h1>{{ archive.maq_name }}</h1>
+    <p><strong>Muallif:</strong> {{ archive.maq_muallif }}</p>
+    <p><strong>Nashr san'ati:</strong> {{ archive.maq_nashr_sanasi }}</p>
+    <p><strong>Jurnal nomi:</strong> {{ archive.journal_name }}</p>
+    <p><strong>Volume:</strong> {{ archive.volum }}</p>
+    <p><strong>Issue:</strong> {{ archive.issue }}</p>
+    <p><strong>Sahifalar:</strong> {{ archive.sahifalar }}</p>
+    <p><strong>Keywords:</strong> {{ archive.keywords }}</p>
+    <p><strong>Abstract:</strong> {{ archive.abstract }}</p>
+    <p><strong>References:</strong> {{ archive.references }}</p>
+</body> {% endcomment %}
+
+
+
+<!-- archive_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load meta %}
+
+<head>
+    <!-- ... -->
+</head>
+
+<body>
+    <!-- ... -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 py-3">
+                <!-- ... -->
+                <div class="row px-4">
+                    <div class="col-xl-8 border-end">
+                        <p class="h6">{{ maq_muallif|linebreaksbr }}</p>
+
+                        <p class="mt-5">
+                            <strong>Abstract: </strong>
+                            {{ article.abstract }} <br>
+                            <strong>Keywords: </strong>
+                            {{ article.keywords }} <br>
+
+                        </p>
+                    </div>
+                    <div class="col-xl-4">
+                        <a href="#">
+                            <img class="w-100" src="{% static '/assets/img/libys.jpg' %}" alt="404">
+                        </a>
+                        <hr>
+
+                        {% if maqola_files %}
+                            {% for item in maqola_files %}
+                                <li class="btn btn-outline-secondary my-xl-4 w-100"><i class='bx bxs-file-pdf'></i>
+                                    <a href="{{ item.file_upload.url }}" download>Download</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+
+                        <hr>
+                        <p class="text-secondary">Published <br> <span class="text-dark">{{ article.maq_nashr_sanasi }}</span></p>
+                        <hr>
+                        <p class="text-secondary">How to Cite <br> <span class="text-dark">
+                                {{ article.maq_muallif }},
+                                <strong>{{ article.maq_name }} </strong>.
+                                Library Of Young Scientists (LIBYS),
+                                {{ article.sahifalar }}, {{ article.maq_nashr_sanasi }}.
+                                Retrieved from <a href="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">https://newscientistlibys.uz/detail/artic/{{ article.id}}/</a>
+                            </span></p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <strong>References: </strong>
+        {{ article.references }} <br>
+    </div>
+</body>
+</html>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

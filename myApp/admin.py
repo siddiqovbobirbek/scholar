@@ -53,3 +53,4 @@ class DissertationAdmin(admin.ModelAdmin):
 class FAQAdmin(admin.ModelAdmin):
     list_display = ("id", "ordernumber", "question", "answer", "status")
     list_display_links = ("status", "answer")
+    

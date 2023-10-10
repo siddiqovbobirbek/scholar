@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Archives
+{% endblock %}
+
+{% block links %}
+<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+{% endblock %}
+
+{% block content %}
+<head>
+    <title>Yangi Arxiv Maqolasi</title>
+</head>
+<body>
+    <h1>Yangi Arxiv Maqolasi</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Formani to'ldirish maydonlari -->
+        <label for="maq_name">Maqola nomi:</label>
+        <input type="text" name="maq_name" id="maq_name" required><br><br>
+        <!-- Qolgan maydonlar ham shunga o'xshash shaklda qo'shiling -->
+        <input type="submit" value="Saqlash">
+    </form>
+</body>
+
+{% endblock %}

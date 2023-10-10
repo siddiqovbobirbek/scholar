@@ -1,6 +1,6 @@
 from django.urls import path
 from myApp.views import DGUView, DissertationView, BookView, MaqolaView
-from .views import home, editor, book, dissertation, maqola, dgu, about, search, index, faq_view, book_detail, cer_detail, artic_detail, diss_detail
+from .views import home, editor, book, dissertation, maqola, dgu, about, search, index, faq_view, book_detail, cer_detail, artic_detail, diss_detail, archives_list, archive_detail, add_archive, edit_archive, delete_archive
 
 app_name = "myApp"
 
@@ -23,4 +23,10 @@ urlpatterns = [
     path('detail/cer/<int:pk>/', cer_detail, name='cer_detail'),
     path('detail/artic/<int:pk>/', artic_detail, name='artic_detail'),
     path('detail/diss/<int:pk>/', diss_detail, name='diss_detail'),
+    
+    path('archives/', archives_list, name='archives_list'),
+    path('archives/<int:pk>/', archive_detail, name='archive_detail'),
+    path('archives/add/', add_archive, name='add_archive'),
+    path('archives/edit/<int:pk>/', edit_archive, name='edit_archive'),
+    path('archives/delete/<int:pk>/', delete_archive, name='delete_archive'),
 ]

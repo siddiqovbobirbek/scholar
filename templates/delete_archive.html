@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Archives
+{% endblock %}
+
+{% block links %}
+<link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+{% endblock %}
+
+{% block content %}
+<head>
+    <title>Arxivni O'chirish</title>
+</head>
+<body>
+    <h1>Arxivni O'chirish</h1>
+    <p>Rostanmi o'chirmoqchimisiz?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Ha, o'chirish">
+    </form>
+</body>
+
+{% endblock %}
