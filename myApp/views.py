@@ -387,11 +387,9 @@ from django.core.paginator import Paginator
 
 # Barcha arxiv ma'lumotlarni ko'rish uchun   
 def archives_list(request):
-    maqola_files = Maqolabaza.objects.select_related('maqola_name').all()
-    archives = Article.objects.prefetch_related('maqolabaza_set').all()
-    print(archives[0], type(archives[0]))
-    
-    
+    maqola_files = Maqolabaza.objects.all()
+    archives = Article.objects.all()
+    # print(archives[0], type(archives[0]))
     
     context = {
         'maqola_files': maqola_files,
