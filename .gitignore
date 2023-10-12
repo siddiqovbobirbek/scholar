@@ -10,3 +10,5 @@ staticfiles
 .cache/
 .profile
 resize.log
+static
+media
