@@ -177,11 +177,12 @@
                             <p class="h6">{{ maq_muallif|linebreaksbr }}</p>
 
                             <p class="mt-5">
+                                <strong>Keywords: </strong>
+                                {{ article.keywords }} <br> <br>
+
                                 <strong>Abstract: </strong>
                                 {{ article.abstract }} <br>
-                                <strong>Keywords: </strong>
-                                {{ article.keywords }} <br>
-
+    
                             </p>
                         </div>
                         <div class="col-xl-4">
@@ -215,7 +216,7 @@
             </div>
             <hr>
             <strong>References: </strong>
-                                {{ article.references }} <br>
+                                {{ article.references | urlize | linebreaks}} <br>
         </section>
     </form>
     <!-- START FOOTER -->

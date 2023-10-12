@@ -174,14 +174,18 @@
                     <hr>
                     <div class="row px-4">
                         <div class="col-xl-8 border-end">
-                            <p class="h6">{{ maq_muallif|linebreaksbr }}</p>
+                            <p class="h6">{{ archive.maq_muallif }}</p>
 
                             <p class="mt-5">
-                                <strong>Abstract: </strong>
-                                {{ archive.abstract }} <br>
                                 <strong>Keywords: </strong>
-                                {{ archive.keywords }} <br>
+                                {{ archive.keywords }} <br> <br>
 
+                                <strong>Abstract: </strong>
+                                {{ archive.abstract }} <br> <br> <br>
+                                 
+                                <hr>
+                                <strong>References: </strong>
+                                {{ archive.references | urlize | linebreaks }} <br>
                             </p>
                         </div>
                         <div class="col-xl-4">
@@ -214,8 +218,6 @@
                 </div>
             </div>
             <hr>
-            <strong>References: </strong>
-                                {{ archive.references }} <br>
         </section>
     </form>
     <!-- START FOOTER -->
