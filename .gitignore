@@ -5,3 +5,8 @@ db.sqlite3
 __pycache__
 old_db.json
 staticfiles
+.bash_history
+.bashrc
+.cache/
+.profile
+resize.log
