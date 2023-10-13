@@ -100,6 +100,18 @@ class Article(models.Model):
     
     def get_absolute_url(self):
         return reverse('artic_detail', args=[str(self.pk)])
+    
+    @property
+    def get_keywords(self):
+        return self.keywords.split(',')
+    
+    @property
+    def get_article_references(self):
+        return self.references.split(',')
+    
+    @property
+    def get_article_file(self):
+        return Maqolabaza.objects.filter(maqola_name=self.pk).first()
 
 
 class Book(models.Model):

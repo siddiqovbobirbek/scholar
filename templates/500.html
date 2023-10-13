@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>500 - Internal Server Error</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+    }
+
+    .error-container {
+      text-align: center;
+    }
+
+    .error-code {
+      font-size: 6rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+
+    .btn-back {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      border: 2px solid #343a40;
+      color: #343a40;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back:hover {
+      background-color: #343a40;
+      color: #ffffff;
+    }
+  </style>
 </head>
 <body>
-    
-    <div class="container">
-        <h2 class="text-center">Uzr serverda xatolik bo'ldi!!!</h2>
+  <div class="container error-container">
+    <div>
+      <div class="error-code">500</div>
+      <div class="error-message">Internal Server Error</div>
+      <p>Oops! Something went wrong on our end. We're working on fixing this.</p>
+      <a href="#" class="btn btn-back">Go Back</a>
     </div>
+  </div>
 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

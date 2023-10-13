@@ -21,7 +21,7 @@ urlpatterns = [
     path("faq/", faq_view, name="faq"),
     path('detail/book/<int:pk>/', book_detail, name='book_detail'),
     path('detail/cer/<int:pk>/', cer_detail, name='cer_detail'),
-    path('detail/artic/<int:pk>/', artic_detail, name='artic_detail'),
+    path('detail/article/<int:pk>/', artic_detail, name='artic_detail'),
     path('detail/diss/<int:pk>/', diss_detail, name='diss_detail'),
     
     path('archives/', archives_list, name='archives_list'),

@@ -44,7 +44,9 @@
 
             <li class="btn btn-outline-secondary my-xl-4 ">
                 <i class='bx bxs-file-pdf'></i>
-                <a href="{{ arxiv.file_upload.url }}" download>PDF</a>
+                {{ arxiv.get_article_file.get_file_type_display }}
+
+                <a href="{{arxiv.get_article_file.file_upload.url }}" target="_blank">PDF</a>
             </li>
             
         {% endfor %}
