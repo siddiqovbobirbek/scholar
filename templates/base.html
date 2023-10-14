@@ -22,6 +22,10 @@
     {% block links %}
 
     {% endblock %}
+
+    {% block styles %}
+        
+    {% endblock %}
     
 </head>
 
@@ -29,7 +33,7 @@
     <!-- START HEADER -->
     <div class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-light d-block ">
-            <div class="container container-top">
+            <!-- <div class="container container-top">
                 <h5 class="brand fs-4 px-4">Library Of Young Scientists (LIBYS)</h5>
                 <ul class="mb-2 mb-lg-0 d-flex justify-content-between">
                     <div   class="xl">
@@ -56,7 +60,7 @@
                         {% endif %}
                     </div>
                 </ul>
-            </div>
+            </div> -->
             <div class="container">
                 <div class="sm">
                     {% if user.is_authenticated %}
@@ -169,6 +173,11 @@
     <script src="{% static 'assets/js/bootstrap.bundle.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    {% block scripts %}
+        
+    {% endblock %}
 
 </body>
 </html> 

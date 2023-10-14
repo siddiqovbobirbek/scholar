@@ -28,7 +28,7 @@ class CustomUserCreationForm(UserCreationForm):
     def clean_username(self, *args, **kwargs):
         username = self.cleaned_data.get('username')
         if 'bot' in username:
-            raise forms.ValidationError("The username contains the word bot")
+            raise forms.ValidationError("Foydalanuvchi nomida bot so'zi mavjud")
         else:
             return username
 
@@ -39,26 +39,17 @@ class CustomUserCreationForm(UserCreationForm):
         if password1 == password2:
             return self.cleaned_data
         else:
-            self.add_error('password2', "The two password fields didn’t match.")
+            self.add_error('password1', "Parollar bir biriga teng emas")
 
     def clean_password1(self, *args, **kwargs):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
         if len(password1) < 8:
-            msg = "Password must be at least 8 characters long"
-            self.add_error('password2', msg)
+            msg = "Parol kamida 8 ta belgidan iborat bo'lishi kerak"
+            self.add_error('password1', msg)
         return password1
 
-    def clean(self, *args, **kwargs):
-        first_name = self.cleaned_data.get('first_name')
-        last_name = self.cleaned_data.get('last_name')
-
-        if first_name == last_name:
-            self.add_error('first_name', "First name and last name are entered the same")
-
-        else:
-            return self.cleaned_data
-
+    
 
 
 class CustomUserChangeForm(UserChangeForm):

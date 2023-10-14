@@ -7,24 +7,28 @@ Register
 
 {% block links %}
 <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/messages.css' %}">
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
 {% endblock %}
 
 
 {% block content %}
 
-{% if messages %}
-{% for message in messages %}
-<div class="container-fluid p-0">
-  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-    <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
-    </button>
-    {{ message }}
-  </div>
-</div>
-{% endfor %}
 
-{% endif %}
+{% if messages %}
+
+<div class="container-fluid p-0">
+{% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible" role="alert">
+      <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+      <div class="error_modal">
+          {{ message|safe }}
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endif %} 
 
 
 <h3 class="text-center my-5">Registration Form</h3>

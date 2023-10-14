@@ -97,6 +97,30 @@ class RegisterForm(CustomUserCreationForm):
             'placeholder':'phone number',
         })
 
+    # check if user exists
+    def clean_username(self, *args, **kwargs):
+        username = self.cleaned_data.get('username')
+        if CustomUser.objects.filter(username=username).exists():
+            raise forms.ValidationError("Bu foydalanuvchi ismi mavjud")
+        if 'bot' in username:
+            raise forms.ValidationError("Foydalanuvchi ismida bot so'zi mavjud")
+        else:
+            return username
+    
+    # def clean(self, *args, **kwargs):
+    #     password1 = self.cleaned_data.get('password1')
+    #     password2 = self.cleaned_data.get('password2')
+    #     if len(password1) < 8:
+    #         raise forms.ValidationError("Parol kamida 8 ta belgidan iborat bo'lishi kerak")
+    #     elif password1 != password2:
+    #         raise forms.ValidationError("Parollar bir biriga teng emas")
+        
+        
+
+    #     return super().clean(*args, **kwargs)
+    # check if username is exists
+    
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = CustomUser
