@@ -18,7 +18,7 @@
     <meta name="citation_references" content="{{ article.references }}">
     <meta name="citation_language" content="en">
     <meta name="citation_issn" content="2666-0001">
-    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/article/download/{{ article.id}}/{{ article.id}}/">
     {% if maq_mualliflar %}
         {% for muallif in maq_mualliflar %}
             <meta name="citation_author" content="{{muallif}}">
@@ -31,9 +31,9 @@
     <meta name="citation_lastpage" content="{{ article.sahifalar }}">
     <meta name="citation_journal_abbrev" content="LIBYS">
     <meta name="citation_publisher" content="Library Of Young Scientists (LIBYS)">
-    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
-    <meta name="citation_fulltext_html_url" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
-    <meta name="citation_fulltext_pdf_url" content="https://newscientistlibys.uz/detail/artic/download/{{ article.id}}/{{ article.id}}/">
+    <meta name="citation_pdf_url" content="https://newscientistlibys.uz/detail/article/download/{{ article.id}}/{{ article.id}}/">
+    <meta name="citation_fulltext_html_url" content="https://newscientistlibys.uz/detail/article/{{ article.id}}/">
+    <meta name="citation_fulltext_pdf_url" content="https://newscientistlibys.uz/detail/article/download/{{ article.id}}/{{ article.id}}/">
     <meta name="citation_language" content="en">
     <meta name="citation_online_date" scheme="ISO8601" content="{{ article.maq_nashr_sanasi }}">
     {% if maq_sahifa %}
@@ -57,14 +57,14 @@
     <meta name="DC.date.accessioned" content="{{ article.maq_nashr_sanasi }}">
     <meta name="DC.date.available" content="{{ article.maq_nashr_sanasi }}">
     <meta name="DC.date" content="{{ article.maq_nashr_sanasi }}">
-    <meta name="DC.identifier" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
+    <meta name="DC.identifier" content="https://newscientistlibys.uz/detail/article/{{ article.id}}/">
     <meta name="DC.rights" content="https://creativecommons.org/licenses/by-nc-nd/4.0">
     <meta name="DC.Source.Issue" content="{{ article.issue }}">
     <meta name="DC.Source.Volume" content="{{ article.volum }}">
     <meta name="DC.Source.Page" content="{{ article.sahifalar }}">
     <meta name="DC.Source.ISSN" content="2666-0001">
     <meta name="DC.Source.EISSN" content="2666-0001">
-    <meta name="DC.Source.DOI" content="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">
+    <meta name="DC.Source.DOI" content="https://newscientistlibys.uz/detail/article/{{ article.id}}/">
     <meta name="DC.Source.Publisher" content="Library Of Young Scientists (LIBYS)">
     <meta name="DC.Source.PublicationDate" content="{{ article.maq_nashr_sanasi }}">
     <meta name="DC.description" content="{{ article.abstract }}">
@@ -207,7 +207,7 @@
                                     <strong>{{ article.maq_name }} </strong>.
                                     Library Of Young Scientists (LIBYS),
                                     {{ article.sahifalar }}, {{ article.maq_nashr_sanasi }}. 
-                                    Retrieved from <a href="https://newscientistlibys.uz/detail/artic/{{ article.id}}/">https://newscientistlibys.uz/detail/artic/{{ article.id}}/</a>
+                                    Retrieved from <a href="https://newscientistlibys.uz/detail/article/{{ article.id}}/">https://newscientistlibys.uz/detail/article/{{ article.id}}/</a>
                                 </span></p>
                             <hr>
                         </div>
