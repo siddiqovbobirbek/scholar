@@ -244,11 +244,13 @@ def maqola(request):
                 abstract=abstract, references=references
                 )
                 messages.success(request, f"Maqola yaratildi")
+                    
+                print("Maqola: ", maqola)
+                url = reverse('myApp:upload_maqola', kwargs={'maqola_id': maqola.pk} )
             except Exception as e:
                 print("Maqola yaratilmadi", e)
                 messages.error(request, f"Maqola yaratilmadi: {e}")
-            print("Maqola: ", maqola)
-            url = reverse('myApp:upload_maqola', kwargs={'maqola_id': maqola.pk} )
+                url = reverse('myApp:maqola')
         return redirect(url) 
         
     context = {
