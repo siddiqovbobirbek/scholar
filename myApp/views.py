@@ -8,6 +8,8 @@ from .forms import (
     DissertationForm
 )
 
+from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
 
 from .models import (
@@ -234,12 +236,19 @@ def maqola(request):
             key_words = request.POST['key_words']
             abstract = request.POST['abstract']
             references = request.POST['references']
-            maqola = Article.objects.create(
+            try:
+                maqola = Article.objects.create(
                 maq_name=maq_name, maq_muallif=maq_muallif, 
                 journal_name=journal_name, maq_nashr_sanasi=maq_nashr_sanasi,
                 volum=volum, issue=issue, sahifalar=sahifalar, keywords=key_words,
                 abstract=abstract, references=references
-            )
+                )
+            except Exception as e:
+                print("Maqola yaratilmadi", e)
+                messages.error(request, f"Maqola yaratilmadi: {e}")
+            finally:
+                messages.success(request, f"Maqola yaratildi")
+                print("Maqola yaratildi")
             print("Maqola: ", maqola)
             url = reverse('myApp:upload_maqola', kwargs={'maqola_id': maqola.pk} )
         return redirect(url) 
