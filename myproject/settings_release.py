@@ -3,14 +3,14 @@ from .settings_base import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'scholar',
-        'USER': 'bobirtoy',
-        'PASSWORD': 'Bobur+22',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': 5432,
         'OPTIONS': {
             'client_encoding': 'UTF8',
-        }, 
+        },
     }
 }
 
