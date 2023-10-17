@@ -75,4 +75,39 @@
     color:red;
   }
 
+  .error_modal {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Styles for different message tags */
+  .container-fluid {
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for different message tags */
+  .alert-error .error_modal {
+    background-color: #f8d7da; /* Bootstrap's danger alert background color */
+    border: 1px solid #f5c6cb; /* Bootstrap's danger alert border color */
+    color: #721c24; /* Bootstrap's danger alert text color */
+  }
+  
+  .alert-success .error_modal {
+    background-color: #d4edda; /* Bootstrap's success alert background color */
+    border: 1px solid #c3e6cb; /* Bootstrap's success alert border color */
+    color: #155724; /* Bootstrap's success alert text color */
+  }
+  
+  .alert-info .error_modal {
+    background-color: #d1ecf1; /* Bootstrap's info alert background color */
+    border: 1px solid #bee5eb; /* Bootstrap's info alert border color */
+    color: #0c5460; /* Bootstrap's info alert text color */
+  }
+  
+  .alert-warning .error_modal {
+    background-color: #fff3cd; /* Bootstrap's warning alert background color */
+    border: 1px solid #ffeeba; /* Bootstrap's warning alert border color */
+    color: #856404; /* Bootstrap's warning alert text color */
+  }
 
