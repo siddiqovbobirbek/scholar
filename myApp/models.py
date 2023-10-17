@@ -96,7 +96,7 @@ class Article(models.Model):
     references = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.maq_name
+        return f"{self.maq_name[:50]}..."
     
     def get_absolute_url(self):
         return reverse('artic_detail', args=[str(self.pk)])
