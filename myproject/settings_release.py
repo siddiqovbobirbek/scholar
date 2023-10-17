@@ -8,9 +8,13 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': 5432,
+<<<<<<< HEAD
         'OPTIONS': {
             'client_encoding': 'UTF8',
         },
+=======
+        
+>>>>>>> daa46c8 (Revert "psql add 3")
     }
 }
 
