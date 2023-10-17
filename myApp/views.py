@@ -243,10 +243,10 @@ def maqola(request):
                 volum=volum, issue=issue, sahifalar=sahifalar, keywords=key_words,
                 abstract=abstract, references=references
                 )
-                messages.success(request, f"Maqola yaratildi")
-                    
-                print("Maqola: ", maqola)
+                # print("Maqola: ", maqola)
                 url = reverse('myApp:upload_maqola', kwargs={'maqola_id': maqola.pk} )
+                    
+                messages.success(request, f"Maqola yaratildi")
             except Exception as e:
                 print("Maqola yaratilmadi", e)
                 messages.error(request, f"Maqola yaratilmadi: {e}")
