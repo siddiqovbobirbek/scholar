@@ -6,8 +6,9 @@ DATABASES = {
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': 'localhost, ::1',
         'PORT': 5432,
+        
     }
 }
 
