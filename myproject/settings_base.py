@@ -32,6 +32,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
 
+DEFAULT_CHARSET = 'utf-8'
 
 # Application definition
 
