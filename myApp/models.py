@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
+from django.core.files.storage import FileSystemStorage
+import codecs
 
 
 def file_path(instance, filename):
@@ -15,6 +17,12 @@ def file_path(instance, filename):
     # format = f"{filename}"
     format = "uploaded-" + filename(encoding='utf-8')
     return os.path.join(path, format)
+
+class UTF8EncodedStorage(FileSystemStorage):
+    def _save(self, name, content):
+        if 'b' in content.mode:
+            content = codecs.EncodedFile(content, 'utf-8')
+        return super()._save(name, content)
 
 class Bookbaza(models.Model):
     file_upload = models.FileField(upload_to='documents/')
@@ -58,7 +66,7 @@ class Dissertationbaza(models.Model):
 
 
 class Maqolabaza(models.Model):
-    file_upload = models.FileField(upload_to='documents/')
+    file_upload = models.FileField(upload_to='documents/', storage=UTF8EncodedStorage())
     maqola_name = models.OneToOneField('Article', on_delete=models.CASCADE, null=True,)
     upload_date = models.DateTimeField(auto_now_add=True)
     
@@ -70,11 +78,11 @@ class Maqolabaza(models.Model):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
     
-    def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
-        self.file_upload = self.file_upload.open('rb', encoding='utf-8')
-        instance = super().save(force_insert=False, force_update=False, using=None,
-                                          update_fields=None)
-        return instance
+    # def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
+    #     self.file_upload = self.file_upload.open('rb', encoding='utf-8')
+    #     instance = super().save(force_insert=False, force_update=False, using=None,
+    #                                       update_fields=None)
+    #     return instance
     # def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
     #     name = self.file_upload.name
     #     extension = name.split('.')[-1]
