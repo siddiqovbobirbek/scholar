@@ -10,6 +10,8 @@ from django.dispatch import receiver
 from ckeditor.fields import RichTextField
 from django.core.files.storage import FileSystemStorage
 import codecs
+from django.core.files import File
+from django.utils.encoding import smart_str, smart_unicode
 
 
 def file_path(instance, filename):
@@ -77,34 +79,14 @@ class Maqolabaza(models.Model):
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
-    
-    # def save(self, *args, **kwargs):
-    #     # open file with encoding utf-8 and overwrite the file
-    #     with open(self.file_upload.path, 'r', encoding='utf-8') as f:
-    #         text = f.read()
-    #     with open(self.file_upload.path, 'w', encoding='utf-8') as f:
-    #         f.write(text)
-    #     super().save(*args, **kwargs)
-    
-    # def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
-    #     self.file_upload = self.file_upload.open('rb', encoding='utf-8')
-    #     instance = super().save(force_insert=False, force_update=False, using=None,
-    #                                       update_fields=None)
-    #     return instance
-    # def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
-    #     name = self.file_upload.name
-    #     extension = name.split('.')[-1]
-    #     for char in name:
-    #         if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.':
-    #             self.file_upload.name = f'{name}' + '.' + extension
-    #             break
-        # return super().save(force_insert, force_update, using, update_fields
-
         
-
-
     def __unicode__(self):
-        return u'%s'%(self.file_upload.name)
+        return smart_unicode(self.file_upload.url)
+
+    def save(self, *args, **kwargs):
+        self.file_upload.name = smart_str(self.file_upload.name, encoding='utf-8')
+        super(Maqolabaza, self).save(*args, **kwargs)
+
 
 class Certificate(models.Model):
     cer_name = models.CharField(max_length=250, null=False)
