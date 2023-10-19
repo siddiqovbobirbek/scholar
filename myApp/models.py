@@ -1,3 +1,4 @@
+from collections.abc import Iterable
 from django.contrib.auth.models import User
 from django.db import models
 from Users.models import CustomUser
@@ -67,6 +68,17 @@ class Maqolabaza(models.Model):
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/uploaded-', '')
+    
+    def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
+        name = self.file_upload.name
+        extension = name.split('.')[-1]
+        for char in name:
+            if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.':
+                self.city_image.name = 'a' + '.' + extension
+                break
+        instance = super().save(force_insert=False, force_update=False, using=None,
+                                          update_fields=None)
+        # return super().save(force_insert, force_update, using, update_fields)
 
 
 class Certificate(models.Model):
