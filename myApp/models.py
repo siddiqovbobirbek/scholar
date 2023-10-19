@@ -12,7 +12,7 @@ from ckeditor.fields import RichTextField
 
 def file_path(instance, filename):
     path = "documents/"
-    format = "uploaded-" + filename
+    format = f"{filename}"
     return os.path.join(path, format)
 
 
