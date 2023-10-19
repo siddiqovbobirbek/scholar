@@ -70,15 +70,15 @@ class Maqolabaza(models.Model):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
     
-    def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
-        name = self.file_upload.name
-        extension = name.split('.')[-1]
-        for char in name:
-            if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.':
-                self.file_upload.name = f'{name}' + '.' + extension
-                break
-        instance = super().save(force_insert=False, force_update=False, using=None,
-                                          update_fields=None)
+    # def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
+    #     name = self.file_upload.name
+    #     extension = name.split('.')[-1]
+    #     for char in name:
+    #         if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.':
+    #             self.file_upload.name = f'{name}' + '.' + extension
+    #             break
+    #     instance = super().save(force_insert=False, force_update=False, using=None,
+    #                                       update_fields=None)
         # return super().save(force_insert, force_update, using, update_fields
 
         
