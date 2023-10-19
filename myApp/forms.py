@@ -124,8 +124,12 @@ class MaqolabazaForm(forms.ModelForm):
         super(MaqolabazaForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        maqola_baza = super(MaqolabazaForm, self).save(commit=False)
-        maqola_baza.maqola_name = self.maqola_name
-        if commit:
-            maqola_baza.save()
-        return maqola_baza
+        try:
+            maqola_baza = super(MaqolabazaForm, self).save(commit=False)
+            maqola_baza.maqola_name = self.maqola_name
+            if commit:
+                maqola_baza.save()
+            return maqola_baza
+        except Exception as e:
+            print(e)
+            raise e

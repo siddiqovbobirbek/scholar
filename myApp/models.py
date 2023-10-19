@@ -74,7 +74,7 @@ class Maqolabaza(models.Model):
         extension = name.split('.')[-1]
         for char in name:
             if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.':
-                self.city_image.name = 'a' + '.' + extension
+                self.file_upload.name = 'a' + '.' + extension
                 break
         instance = super().save(force_insert=False, force_update=False, using=None,
                                           update_fields=None)
