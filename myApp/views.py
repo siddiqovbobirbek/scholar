@@ -222,6 +222,7 @@ def dissertation(request):
 
 @login_required
 def maqola(request):
+    request.encoding = 'utf-8'
     user = request.user
     maqola = None
     if request.method == 'POST':
