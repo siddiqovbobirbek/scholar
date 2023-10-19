@@ -57,7 +57,6 @@ class Dissertationbaza(models.Model):
         return str(self.file_upload.url).replace('documents/', '')
 
 
-from django.utils.encoding import smart_str
 
 class Maqolabaza(models.Model):
     file_upload = models.FileField(upload_to=file_path)
@@ -69,7 +68,6 @@ class Maqolabaza(models.Model):
 
 
     def get_file_name(self):
-        file_name = smart_str(self.file_upload.name)
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
     
