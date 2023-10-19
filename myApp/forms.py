@@ -125,7 +125,7 @@ class MaqolabazaForm(forms.ModelForm):
 
     def save(self, commit=True):
         try:
-            maqola_baza = super(MaqolabazaForm, self).save(commit=commit)
+            maqola_baza = super(MaqolabazaForm, self).save(commit=False)
             maqola_baza.maqola_name = self.maqola_name
             if commit:
                 maqola_baza.save()

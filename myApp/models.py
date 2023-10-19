@@ -70,6 +70,9 @@ class Maqolabaza(models.Model):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
     
+    def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
+        self.file_upload.name = self.file_upload.name.encode('utf-8')
+        return super().save(force_insert, force_update, using, update_fields)
     # def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
     #     name = self.file_upload.name
     #     extension = name.split('.')[-1]
