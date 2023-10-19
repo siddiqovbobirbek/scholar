@@ -12,3 +12,5 @@ staticfiles
 resize.log
 static
 media
+.env.save
+gunicorn_error.log
