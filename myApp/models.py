@@ -17,9 +17,8 @@ def file_path(instance, filename):
     format = "uploaded-" + filename
     return os.path.join(path, format)
 
-
 class Bookbaza(models.Model):
-    file_upload = models.FileField(upload_to=file_path)
+    file_upload = models.FileField(upload_to='documents/')
     kitob_name = models.ForeignKey('Book', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
@@ -32,7 +31,7 @@ class Bookbaza(models.Model):
 
 
 class Dgubaza(models.Model):
-    file_upload = models.FileField(upload_to=file_path)
+    file_upload = models.FileField(upload_to='documents/')
     dgu_name = models.ForeignKey('Certificate', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
@@ -45,7 +44,7 @@ class Dgubaza(models.Model):
 
     
 class Dissertationbaza(models.Model):
-    file_upload = models.FileField(upload_to=file_path)
+    file_upload = models.FileField(upload_to='documents/')
     disser_name = models.ForeignKey('Dissertation', on_delete=models.CASCADE, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
     
@@ -59,7 +58,7 @@ class Dissertationbaza(models.Model):
 
 
 class Maqolabaza(models.Model):
-    file_upload = models.FileField(upload_to=file_path)
+    file_upload = models.FileField(upload_to='documents/')
     maqola_name = models.OneToOneField('Article', on_delete=models.CASCADE, null=True,)
     upload_date = models.DateTimeField(auto_now_add=True)
     
