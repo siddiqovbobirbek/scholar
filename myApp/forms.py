@@ -129,9 +129,8 @@ class MaqolabazaForm(forms.ModelForm):
             maqola_baza = super(MaqolabazaForm, self).save(commit=False)
             maqola_baza.maqola_name = self.maqola_name
             if commit:
-                with open(maqola_baza.file_upload.path, 'r', encoding='utf-8') as file:
-                    content = file.read()
                 with open(maqola_baza.file_upload.path, 'w', encoding='utf-8') as file:
+                    content = maqola_baza.file_upload.read().decode('utf-8')
                     file.write(content)
                 maqola_baza.save()
             return maqola_baza
