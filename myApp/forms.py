@@ -1,3 +1,4 @@
+import codecs
 from django import forms
 from myApp.models import (
     Bookbaza, Dgubaza, Dissertationbaza, 
@@ -128,6 +129,9 @@ class MaqolabazaForm(forms.ModelForm):
             maqola_baza = super(MaqolabazaForm, self).save(commit=False)
             maqola_baza.maqola_name = self.maqola_name
             if commit:
+                with codecs.open(maqola_baza.file_upload.path, 'w', 'utf-8') as file:
+                    file.write(codecs.BOM_UTF8.decode('utf-8'))  # Write UTF-8 BOM
+                    file.write(maqola_baza.file_upload.read().decode('utf-8'))  # Write file content
                 maqola_baza.save()
             return maqola_baza
         except Exception as e:
