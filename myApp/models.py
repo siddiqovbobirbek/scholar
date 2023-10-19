@@ -89,6 +89,9 @@ class Maqolabaza(models.Model):
         self.file_upload.name = self.get_file_name()
         super().save(*args, **kwargs)
 
+    def __unicode__(self):
+        return u'%s'%(self.file_upload.name)
+
 class Certificate(models.Model):
     cer_name = models.CharField(max_length=250, null=False)
     cer_muallif = models.CharField(max_length=250, null=False)
