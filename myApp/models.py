@@ -66,7 +66,7 @@ class Dissertationbaza(models.Model):
 
 
 class Maqolabaza(models.Model):
-    file_upload = models.FileField(upload_to='documents/', storage=UTF8EncodedStorage())
+    file_upload = models.FileField(upload_to='documents/')
     maqola_name = models.OneToOneField('Article', on_delete=models.CASCADE, null=True,)
     upload_date = models.DateTimeField(auto_now_add=True)
     
@@ -77,6 +77,14 @@ class Maqolabaza(models.Model):
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
+    
+    def save(self, *args, **kwargs):
+        # open file with encoding utf-8 and overwrite the file
+        with open(self.file_upload.path, 'r', encoding='utf-8') as f:
+            text = f.read()
+        with open(self.file_upload.path, 'w', encoding='utf-8') as f:
+            f.write(text)
+        super().save(*args, **kwargs)
     
     # def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
     #     self.file_upload = self.file_upload.open('rb', encoding='utf-8')
