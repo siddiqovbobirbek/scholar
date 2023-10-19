@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from ckeditor.fields import RichTextField
+from django.core.files.storage import FileSystemStorage
+import codecs
 
 
 def file_path(instance, filename):
@@ -16,6 +18,11 @@ def file_path(instance, filename):
     format = "uploaded-" + filename(encoding='utf-8')
     return os.path.join(path, format)
 
+class UTF8EncodedStorage(FileSystemStorage):
+    def _save(self, name, content):
+        if 'b' in content.mode:
+            content = codecs.EncodedFile(content, 'utf-8')
+        return super()._save(name, content)
 
 class Bookbaza(models.Model):
     file_upload = models.FileField(upload_to='documents/')
