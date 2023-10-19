@@ -85,12 +85,14 @@ class Maqolabaza(models.Model):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
         
+    def __str__(self):
+        return force_text(self.file_upload.path)
 
     def __unicode__(self):
-        return force_text(self.file_upload.path)
+        return force_text(unicode(self.file_upload.path))
 
     def get_file_path(self):
-        return force_text(self.file_upload.path)
+        return force_text(unicode(self.file_upload.path))
 
 class Certificate(models.Model):
     cer_name = models.CharField(max_length=250, null=False)
