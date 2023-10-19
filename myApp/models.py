@@ -11,7 +11,7 @@ from ckeditor.fields import RichTextField
 from django.core.files.storage import FileSystemStorage
 import codecs
 from django.core.files import File
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import smart_str, get_system_encoding
 
 
 def file_path(instance, filename):
@@ -81,9 +81,11 @@ class Maqolabaza(models.Model):
         return str(self.file_upload.url).replace('documents/', '')
         
     def __unicode__(self):
-        return smart_unicode(self.file_upload.url)
+        return smart_str(self.file_upload.url)
 
     def save(self, *args, **kwargs):
+        print("File name is ", self.file_upload.url)
+        print(get_system_encoding() )
         self.file_upload.name = smart_str(self.file_upload.name, encoding='utf-8')
         super(Maqolabaza, self).save(*args, **kwargs)
 
