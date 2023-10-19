@@ -59,7 +59,7 @@ class Dissertationbaza(models.Model):
 
 
 class Maqolabaza(models.Model):
-    file_upload = models.FileField(upload_to=file_path, encoding="utf-8")
+    file_upload = models.FileField(upload_to=file_path)
     maqola_name = models.OneToOneField('Article', on_delete=models.CASCADE, null=True,)
     upload_date = models.DateTimeField(auto_now_add=True)
     
