@@ -11,7 +11,7 @@ from ckeditor.fields import RichTextField
 from django.core.files.storage import FileSystemStorage
 import codecs
 from django.core.files import File
-from django.utils.encoding import smart_str, get_system_encoding
+from django.utils.encoding import smart_str, force_text
 
 
 def file_path(instance, filename):
@@ -66,7 +66,10 @@ class Dissertationbaza(models.Model):
         return str(self.file_upload.url).replace('documents/', '')
 
 
+from django.utils.encoding import python_2_unicode_compatible, force_text
+from django.utils.encoding import filepath_to_uri
 
+@python_2_unicode_compatible
 class Maqolabaza(models.Model):
     file_upload = models.FileField(upload_to='documents/')
     maqola_name = models.OneToOneField('Article', on_delete=models.CASCADE, null=True,)
@@ -74,21 +77,22 @@ class Maqolabaza(models.Model):
     
     def __str__(self):
         return str(self.pk)
+    
+
 
 
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
         
+    def __str__(self):
+        return force_text(self.file_upload.path)
+
     def __unicode__(self):
-        return smart_str(self.file_upload.url)
+        return force_text(unicode(self.file_upload.path))
 
-    def save(self, *args, **kwargs):
-        print("File name is ", self.file_upload.url)
-        print(get_system_encoding() )
-        self.file_upload.name = smart_str(self.file_upload.name, encoding='utf-8')
-        super(Maqolabaza, self).save(*args, **kwargs)
-
+    def get_file_path(self):
+        return force_text(unicode(self.file_upload.path))
 
 class Certificate(models.Model):
     cer_name = models.CharField(max_length=250, null=False)
