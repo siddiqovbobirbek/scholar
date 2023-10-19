@@ -13,7 +13,7 @@ from ckeditor.fields import RichTextField
 def file_path(instance, filename):
     path = "documents/"
     # format = f"{filename}"
-    format = "uploaded-" + filename
+    format = "uploaded-" + filename(encoding='utf-8')
     return os.path.join(path, format)
 
 class Bookbaza(models.Model):
@@ -63,7 +63,7 @@ class Maqolabaza(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return str(self.file_upload.url)
+        return str(self.pk)
 
 
     def get_file_name(self):
