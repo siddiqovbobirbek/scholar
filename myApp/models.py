@@ -11,7 +11,7 @@ from ckeditor.fields import RichTextField
 from django.core.files.storage import FileSystemStorage
 import codecs
 from django.core.files import File
-from django.utils.encoding import smart_str, force_text
+from django.utils.encoding import smart_str
 
 
 def file_path(instance, filename):
