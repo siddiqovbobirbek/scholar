@@ -26,7 +26,7 @@ class Bookbaza(models.Model):
 
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
-        return str(self.file_upload.url).replace('documents/uploaded-', '')
+        return str(self.file_upload.url).replace('documents/', '')
 
 
 class Dgubaza(models.Model):
@@ -39,7 +39,7 @@ class Dgubaza(models.Model):
 
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
-        return str(self.file_upload.url).replace('documents/uploaded-', '')
+        return str(self.file_upload.url).replace('documents/', '')
 
     
 class Dissertationbaza(models.Model):
@@ -53,7 +53,7 @@ class Dissertationbaza(models.Model):
 
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
-        return str(self.file_upload.url).replace('documents/uploaded-', '')
+        return str(self.file_upload.url).replace('documents/', '')
 
 
 class Maqolabaza(models.Model):
@@ -67,14 +67,14 @@ class Maqolabaza(models.Model):
 
     def get_file_name(self):
         print("File name is ", self.file_upload.url)
-        return str(self.file_upload.url).replace('documents/uploaded-', '')
+        return str(self.file_upload.url).replace('documents/', '')
     
     def save(self, force_insert: bool = False, force_update: bool = False, using: str | None = None, update_fields: Iterable[str] | None = None) -> None:
         name = self.file_upload.name
         extension = name.split('.')[-1]
         for char in name:
             if char not in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.':
-                self.file_upload.name = f'documents/{name}' + '.' + extension
+                self.file_upload.name = f'{name}' + '.' + extension
                 break
         instance = super().save(force_insert=False, force_update=False, using=None,
                                           update_fields=None)
