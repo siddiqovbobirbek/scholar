@@ -71,7 +71,8 @@ class Maqolabaza(models.Model):
         return str(self.file_upload.url).replace('documents/', '')
     
     def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
-        self.file_upload.name = self.file_upload.name.encode('utf-8')
+        with open(self.file_upload, encoding='utf-8') as f:
+            self.file_upload = f
         instance = super().save(force_insert=False, force_update=False, using=None,
                                           update_fields=None)
         return instance
