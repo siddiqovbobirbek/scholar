@@ -78,13 +78,13 @@ class Maqolabaza(models.Model):
         print("File name is ", self.file_upload.url)
         return str(self.file_upload.url).replace('documents/', '')
     
-    def save(self, *args, **kwargs):
-        # open file with encoding utf-8 and overwrite the file
-        with open(self.file_upload.path, 'r', encoding='utf-8') as f:
-            text = f.read()
-        with open(self.file_upload.path, 'w', encoding='utf-8') as f:
-            f.write(text)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # open file with encoding utf-8 and overwrite the file
+    #     with open(self.file_upload.path, 'r', encoding='utf-8') as f:
+    #         text = f.read()
+    #     with open(self.file_upload.path, 'w', encoding='utf-8') as f:
+    #         f.write(text)
+    #     super().save(*args, **kwargs)
     
     # def save(self, force_insert: bool = ..., force_update: bool = ..., using: str | None = ..., update_fields: Iterable[str] | None = ...) -> None:
     #     self.file_upload = self.file_upload.open('rb', encoding='utf-8')
