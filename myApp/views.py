@@ -123,7 +123,6 @@ class MaqolaView(TemplateView):
         return context
 
     def post(self, request, **kwargs): 
-        request.encoding = 'utf-8'
         maqola_name = get_object_or_404(Article, pk=kwargs.get('maqola_id'))
         context = {}
         if request.method == 'POST':
